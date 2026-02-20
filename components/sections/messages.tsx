@@ -64,7 +64,7 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
 
     try {
       await fetch(
-        "https://docs.google.com/forms/d/e/1FAIpQLSdhwCoVZNIHDzgJDiTGB4G7dr8CkbXqtmQXqROrZGr1ghltKA/formResponse",
+        "https://docs.google.com/forms/d/e/1FAIpQLSdfDM-nAjh1Pm3ebJxWrUYRtR5kCvbm3NkjDZ6hln_eLI9YcQ/formResponse",
         {
           method: "POST",
           mode: "no-cors",

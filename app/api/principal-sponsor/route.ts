@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 
 // You'll need to replace this with your PrincipalSponsor Google Apps Script URL
-const PRINCIPAL_SPONSOR_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMcjJzT6pBjNBgRpL_5ioI5OhCyGM3ZMwglAHrC5gXWOm0jE8dysXWAR1SsTlabdXR/exec'
+const PRINCIPAL_SPONSOR_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwGwwjdK6ZF1zUj3O0YGcwwwxGoCK_uo8wELdDXgnjw68junSaRcpk_qEYU--eJtCfwdQ/exec'
 
 // PrincipalSponsor interface matching the Google Sheets structure
 export interface PrincipalSponsor {
