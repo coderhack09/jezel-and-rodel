@@ -17,14 +17,13 @@ const cinzel = Cinzel({
   weight: ["400", "600"],
 })
 
-// Champagne Gold + Beige + Soft Brown
-// creates a luxury, elegant, and warm aesthetic
+// Colors sourced from globals.css @theme inline — edit there to update everywhere
 const palette = {
-  deep: "#4E3B31",            // deep brown
-  softBrown: "#8B6F5A",       // soft brown
-  background: "#E8DCCB",      // beige background
-  champagneGold: "#D6BFA3",   // champagne
-  champagneLight: "#F2E4D3",  // light champagne / paper
+  deep:          "var(--color-motif-deep)",
+  softBrown:     "var(--color-motif-medium)",
+  background:    "var(--color-motif-cream)",
+  champagneGold: "var(--color-motif-silver)",
+  champagneLight:"var(--color-motif-cream)",
 } as const
 
 interface FAQItem {
@@ -140,14 +139,14 @@ export function FAQ() {
         <div
           className="absolute inset-0 opacity-[0.24]"
           style={{
-            background: `linear-gradient(150deg, ${palette.champagneLight} 0%, ${palette.champagneGold}24 35%, ${palette.softBrown}10 70%, ${palette.deep}08 100%)`,
+            background: 'linear-gradient(150deg, var(--color-motif-cream) 0%, color-mix(in srgb, var(--color-motif-silver) 14%, transparent) 35%, color-mix(in srgb, var(--color-motif-medium) 6%, transparent) 70%, color-mix(in srgb, var(--color-motif-deep) 3%, transparent) 100%)',
           }}
         />
         {/* Glow behind FAQ card */}
         <div
           className="absolute inset-0 opacity-[0.18]"
           style={{
-            background: `radial-gradient(circle at 50% 10%, ${palette.champagneGold} 0%, transparent 55%)`,
+            background: 'radial-gradient(circle at 50% 10%, var(--color-motif-silver) 0%, transparent 55%)',
           }}
         />
         {/* Subtle vertical texture */}
@@ -163,16 +162,16 @@ export function FAQ() {
       <Section id="faq" className="relative z-10 py-12 md:py-16 lg:py-20 overflow-hidden">
       {/* Corner decorations — soft brown tint */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(26%) sepia(12%) saturate(846%) hue-rotate(347deg) brightness(93%) contrast(92%)" }} />
+        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
       </div>
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1] scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(26%) sepia(12%) saturate(846%) hue-rotate(347deg) brightness(93%) contrast(92%)" }} />
+        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1] scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
       </div>
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(26%) sepia(12%) saturate(846%) hue-rotate(347deg) brightness(93%) contrast(92%)" }} />
+        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
       </div>
       <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(26%) sepia(12%) saturate(846%) hue-rotate(347deg) brightness(93%) contrast(92%)" }} />
+        <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
       </div>
 
       {/* Section Header */}
@@ -180,7 +179,7 @@ export function FAQ() {
         <p className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] mb-2`} style={{ color: palette.softBrown }}>
           Answers for our celebration day
         </p>
-        <h2 className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1.5 sm:mb-3 md:mb-4`} style={{ color: palette.deep, textShadow: "0 2px 10px rgba(78,59,49,0.22)" }}>
+        <h2 className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1.5 sm:mb-3 md:mb-4`} style={{ color: palette.deep, textShadow: "0 2px 10px rgba(91,102,85,0.22)" }}>
           Frequently Asked Questions
         </h2>
         <p className={`${cormorant.className} text-xs sm:text-sm md:text-base font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`} style={{ color: palette.softBrown }}>
@@ -202,9 +201,9 @@ export function FAQ() {
         <div
           className="relative backdrop-blur-md rounded-xl sm:rounded-2xl overflow-hidden border shadow-lg"
           style={{
-            backgroundColor: `${palette.champagneLight}f0`,
-            borderColor: `${palette.champagneGold}70`,
-            boxShadow: `0 4px 28px ${palette.deep}18`,
+            backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 94%, transparent)',
+            borderColor: 'color-mix(in srgb, var(--color-motif-silver) 44%, transparent)',
+            boxShadow: '0 4px 28px color-mix(in srgb, var(--color-motif-deep) 10%, transparent)',
           }}
         >
           <div className="relative p-2.5 sm:p-4 md:p-5 lg:p-6">
@@ -217,13 +216,13 @@ export function FAQ() {
                     key={index}
                     className="rounded-xl sm:rounded-2xl border overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md"
                     style={{
-                      backgroundColor: "rgba(255,255,255,0.96)",
-                      borderColor: `${palette.champagneGold}55`,
+                      backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 96%, white)',
+                      borderColor: 'color-mix(in srgb, var(--color-motif-silver) 33%, transparent)',
                     }}
                   >
                     <button
                       onClick={() => toggleItem(index)}
-                      className="group w-full px-2.5 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between text-left outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#45301F] transition-colors"
+                      className="group w-full px-2.5 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between text-left outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-motif-deep transition-colors"
                       aria-expanded={isOpen}
                       aria-controls={contentId}
                     >
@@ -251,7 +250,7 @@ export function FAQ() {
                       <div className="overflow-hidden">
                         <div
                           className="px-2.5 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-4 border-t"
-                          style={{ backgroundColor: `${palette.background}e6`, borderColor: `${palette.champagneGold}40` }}
+                          style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 90%, transparent)', borderColor: 'color-mix(in srgb, var(--color-motif-silver) 25%, transparent)' }}
                         >
                           {item.answer.includes("[RSVP_LINK]") ? (
                             <p className={`${cormorant.className} font-medium leading-relaxed sm:leading-loose text-xs sm:text-sm md:text-base lg:text-lg whitespace-pre-line tracking-wide`} style={{ color: palette.deep }}>

@@ -29,14 +29,15 @@ interface PrincipalSponsor {
   FemalePrincipalSponsor: string
 }
 
-// Champagne Gold + Beige + Soft Brown
-// creates a luxury, elegant, and warm aesthetic
+// Colors sourced from globals.css @theme inline — edit there to update everywhere
 const palette = {
-  deep: "#4E3B31",            // deep brown
-  softBrown: "#8B6F5A",       // soft brown
-  background: "#E8DCCB",      // beige background
-  champagneGold: "#D6BFA3",   // champagne
-  champagneLight: "#F2E4D3",  // light champagne / paper
+  deep:          "var(--color-motif-deep)",
+  medium:        "var(--color-motif-medium)",   // role title text
+  softBrown:     "var(--color-motif-medium)",
+  background:    "var(--color-motif-cream)",
+  champagneGold: "var(--color-motif-silver)",
+  champagneLight:"var(--color-motif-cream)",
+  sage:          "var(--color-motif-medium)",   // separator lines (was undefined)
 } as const
 
 function mapStaticEntourage(): EntourageMember[] {
@@ -242,7 +243,7 @@ export function Entourage() {
       >
         <div
           className="absolute inset-0 bg-gradient-to-r from-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 rounded-md"
-          style={{ background: `linear-gradient(to right, transparent, ${palette.champagneGold}35, transparent)` }}
+          style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-silver) 21%, transparent), transparent)' }}
         />
         <p
           className={`relative text-[11px] sm:text-[13px] md:text-sm lg:text-base font-semibold ${textAlign} transition-all duration-300`}
@@ -312,14 +313,14 @@ export function Entourage() {
         <div
           className="absolute inset-0 opacity-[0.26]"
           style={{
-            background: `linear-gradient(145deg, ${palette.champagneLight} 0%, ${palette.champagneGold}24 35%, ${palette.softBrown}10 70%, ${palette.deep}08 100%)`,
+            background: 'linear-gradient(145deg, var(--color-motif-cream) 0%, color-mix(in srgb, var(--color-motif-silver) 14%, transparent) 35%, color-mix(in srgb, var(--color-motif-medium) 6%, transparent) 70%, color-mix(in srgb, var(--color-motif-deep) 3%, transparent) 100%)',
           }}
         />
         {/* Gentle spotlight behind center card */}
         <div
           className="absolute inset-0 opacity-[0.16]"
           style={{
-            background: `radial-gradient(circle at 50% 15%, ${palette.champagneGold} 0%, transparent 58%)`,
+            background: 'radial-gradient(circle at 50% 15%, var(--color-motif-silver) 0%, transparent 58%)',
           }}
         />
         {/* Vertical soft stripes for subtle texture */}
@@ -345,7 +346,7 @@ export function Entourage() {
           width={300}
           height={300}
           className="absolute top-0 left-0 w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20"
-          style={{ transform: "scaleY(-1)", filter: "brightness(0) saturate(100%) invert(23%) sepia(12%) saturate(911%) hue-rotate(338deg) brightness(93%) contrast(90%)" }}
+          style={{ transform: "scaleY(-1)", filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }}
           priority={false}
         />
         <Image
@@ -354,7 +355,7 @@ export function Entourage() {
           width={300}
           height={300}
           className="absolute top-0 right-0 w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20"
-          style={{ transform: "scaleX(-1) scaleY(-1)", filter: "brightness(0) saturate(100%) invert(23%) sepia(12%) saturate(911%) hue-rotate(338deg) brightness(93%) contrast(90%)" }}
+          style={{ transform: "scaleX(-1) scaleY(-1)", filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }}
           priority={false}
         />
         <Image
@@ -363,7 +364,7 @@ export function Entourage() {
           width={300}
           height={300}
           className="absolute bottom-0 left-0 w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20"
-          style={{ filter: "brightness(0) saturate(100%) invert(23%) sepia(12%) saturate(911%) hue-rotate(338deg) brightness(93%) contrast(90%)" }}
+          style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }}
           priority={false}
         />
         <Image
@@ -372,7 +373,7 @@ export function Entourage() {
           width={300}
           height={300}
           className="absolute bottom-0 right-0 w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20"
-          style={{ transform: "scaleX(-1)", filter: "brightness(0) saturate(100%) invert(23%) sepia(12%) saturate(911%) hue-rotate(338deg) brightness(93%) contrast(90%)" }}
+          style={{ transform: "scaleX(-1)", filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }}
           priority={false}
         />
       </div>
@@ -408,8 +409,8 @@ export function Entourage() {
         }`}
       >
         <div
-          className="relative bg-[#F5EFE6]/95 backdrop-blur-lg rounded-xl sm:rounded-2xl overflow-hidden border shadow-lg transition-all duration-500 group"
-          style={{ borderColor: `${palette.champagneGold}70`, boxShadow: `0 18px 40px ${palette.deep}20` }}
+          className="relative bg-motif-cream/95 backdrop-blur-lg rounded-xl sm:rounded-2xl overflow-hidden border shadow-lg transition-all duration-500 group"
+          style={{ borderColor: 'color-mix(in srgb, var(--color-motif-silver) 44%, transparent)', boxShadow: '0 18px 40px color-mix(in srgb, var(--color-motif-deep) 13%, transparent)' }}
         >
           {/* Card content */}
           <div className="relative p-3 sm:p-4 md:p-5 z-10">
@@ -454,7 +455,7 @@ export function Entourage() {
                     <div key={category}>
                       {categoryIndex > 0 && (
                         <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                          <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent to-transparent" style={{ background: `linear-gradient(to right, transparent, ${palette.sage}50, transparent)` }}></div>
+                          <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                         </div>
                       )}
                       <TwoColumnLayout singleTitle="The Couple" centerContent={true}>
@@ -494,7 +495,7 @@ export function Entourage() {
                       <div key="Parents">
                         {categoryIndex > 0 && (
                           <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                            <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent to-transparent" style={{ background: `linear-gradient(to right, transparent, ${palette.sage}50, transparent)` }}></div>
+                            <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                           </div>
                         )}
                         <TwoColumnLayout leftTitle="Groom’s Parents" rightTitle="Bride’s Parents">
@@ -583,7 +584,7 @@ export function Entourage() {
                       <div key="Family">
                         {categoryIndex > 0 && (
                           <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                            <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent to-transparent" style={{ background: `linear-gradient(to right, transparent, ${palette.sage}50, transparent)` }}></div>
+                            <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                           </div>
                         )}
                         <TwoColumnLayout leftTitle="Family of the Groom" rightTitle="Family of the Bride">
@@ -626,10 +627,10 @@ export function Entourage() {
                       <div key="HonorAttendants">
                         {categoryIndex > 0 && (
                           <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                            <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent to-transparent" style={{ background: `linear-gradient(to right, transparent, ${palette.sage}50, transparent)` }}></div>
+                            <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                           </div>
                         )}
-                        <TwoColumnLayout leftTitle="Maid of Honor" rightTitle="Best Man">
+                        <TwoColumnLayout leftTitle="Best Man" rightTitle="Maid of Honor">
                           {(() => {
                             const maxLen = Math.max(bestMan.length, maidOfHonor.length)
                             const rows = []
@@ -669,7 +670,7 @@ export function Entourage() {
                       <div key="LittleOnes">
                         {categoryIndex > 0 && (
                           <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                            <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent to-transparent" style={{ background: `linear-gradient(to right, transparent, ${palette.sage}50, transparent)` }}></div>
+                            <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                           </div>
                         )}
                         <TwoColumnLayout leftTitle="Little Groom" rightTitle="Little Bride">
@@ -714,7 +715,7 @@ export function Entourage() {
                         <div key="BridalParty">
                           {categoryIndex > 0 && (
                             <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                              <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent to-transparent" style={{ background: `linear-gradient(to right, transparent, ${palette.sage}50, transparent)` }}></div>
+                              <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                             </div>
                           )}
                           <TwoColumnLayout leftTitle="Groomsmen" rightTitle="Bridesmaids">
@@ -752,7 +753,7 @@ export function Entourage() {
                     <div key={category}>
                       {categoryIndex > 0 && (
                         <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                          <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent to-transparent" style={{ background: `linear-gradient(to right, transparent, ${palette.sage}50, transparent)` }}></div>
+                          <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                         </div>
                       )}
                       {/* Secondary Sponsors label */}
@@ -819,7 +820,7 @@ export function Entourage() {
                   <div key={category}>
                     {categoryIndex > 0 && (
                       <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                        <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent to-transparent" style={{ background: `linear-gradient(to right, transparent, ${palette.sage}50, transparent)` }}></div>
+                        <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                       </div>
                     )}
                     <TwoColumnLayout singleTitle={category} centerContent={true}>

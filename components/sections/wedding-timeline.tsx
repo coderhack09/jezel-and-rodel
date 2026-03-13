@@ -25,10 +25,13 @@ const ceremonyVenue = siteConfig.ceremony.venue
 const receptionVenue = siteConfig.reception.venue
 const receptionTime = siteConfig.reception.time
 
-const TIMELINE_TEXT = "#9B6A41"
+// Colors sourced from globals.css @theme inline — edit there to update everywhere
+const TIMELINE_TEXT = "var(--color-motif-deep)"
+// SVG stroke — CSS vars are not valid SVG attributes; value matches --color-motif-deep in globals.css
+const TIMELINE_SVG_STROKE = "#5B6655"
 const DECO_FILTER =
-  "brightness(0) saturate(100%) invert(32%) sepia(55%) saturate(900%) hue-rotate(355deg) brightness(95%) contrast(90%)"
-// White tint for corner florals in timeline header area
+  "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)"
+// White tint for corner florals — section sits on dark background
 const DECO_FILTER_WHITE = "brightness(0) saturate(100%) invert(1)"
 
 type TimelineIcon = React.ComponentType<React.SVGProps<SVGSVGElement>>
@@ -143,25 +146,25 @@ export function WeddingTimeline() {
       {/* Header - white text */}
       <div className="relative z-10 text-center mb-6 sm:mb-9 md:mb-12 px-3 sm:px-4">
         <p
-          className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm tracking-[0.3em] uppercase mb-2 text-white`}
+          className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm tracking-[0.3em] uppercase mb-2 text-motif-cream`}
         >
           Day Schedule
         </p>
 
-        <h2 className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-1.5 sm:mb-3 md:mb-4 text-white`}>
+        <h2 className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-1.5 sm:mb-3 md:mb-4 text-motif-cream`}>
           Wedding Timeline
         </h2>
 
-        <p className={`${cormorant.className} text-[11px] sm:text-sm md:text-base lg:text-lg max-w-xl mx-auto leading-relaxed px-2 text-white/90`}>
+        <p className={`${cormorant.className} text-[11px] sm:text-sm md:text-base lg:text-lg max-w-xl mx-auto leading-relaxed px-2 text-motif-cream/90`}>
           A simple overview of the key moments of our day, from arrival to farewell.
         </p>
 
         <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">
-          <div className="w-8 sm:w-12 md:w-16 h-px bg-white/50" />
-          <div className="w-1.5 h-1.5 bg-white/80 rounded-full" />
-          <div className="w-1.5 h-1.5 bg-white/60 rounded-full" />
-          <div className="w-1.5 h-1.5 bg-white/80 rounded-full" />
-          <div className="w-8 sm:w-12 md:w-16 h-px bg-white/50" />
+          <div className="w-8 sm:w-12 md:w-16 h-px bg-motif-cream/50" />
+          <div className="w-1.5 h-1.5 bg-motif-cream/80 rounded-full" />
+          <div className="w-1.5 h-1.5 bg-motif-cream/60 rounded-full" />
+          <div className="w-1.5 h-1.5 bg-motif-cream/80 rounded-full" />
+          <div className="w-8 sm:w-12 md:w-16 h-px bg-motif-cream/50" />
         </div>
       </div>
 
@@ -169,7 +172,7 @@ export function WeddingTimeline() {
       <div className="relative z-10 max-w-6xl mx-auto px-3 sm:px-5 lg:px-8">
         <div
           className="hidden md:block absolute left-[4rem] md:left-[5rem] lg:left-[6rem] top-0 bottom-0 w-0.5 bg-gradient-to-b pointer-events-none opacity-50"
-          style={{ background: `linear-gradient(to bottom, ${TIMELINE_TEXT}40, ${TIMELINE_TEXT}88, ${TIMELINE_TEXT}40)` }}
+          style={{ background: 'linear-gradient(to bottom, color-mix(in srgb, var(--color-motif-deep) 25%, transparent), color-mix(in srgb, var(--color-motif-deep) 53%, transparent), color-mix(in srgb, var(--color-motif-deep) 25%, transparent))' }}
         >
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: TIMELINE_TEXT }} />
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: TIMELINE_TEXT }} />
@@ -177,7 +180,7 @@ export function WeddingTimeline() {
 
         <div
           className="md:hidden absolute left-10 sm:left-11 top-0 bottom-0 w-0.5 pointer-events-none opacity-55"
-          style={{ background: `linear-gradient(to bottom, ${TIMELINE_TEXT}45, ${TIMELINE_TEXT}99, ${TIMELINE_TEXT}45)` }}
+          style={{ background: 'linear-gradient(to bottom, color-mix(in srgb, var(--color-motif-deep) 27%, transparent), color-mix(in srgb, var(--color-motif-deep) 60%, transparent), color-mix(in srgb, var(--color-motif-deep) 27%, transparent))' }}
         />
 
         <div className="space-y-4 sm:space-y-5 md:space-y-8 lg:space-y-10">
@@ -233,8 +236,8 @@ function TimelineCard({ event, Icon, mobile }: { event: TimelineEvent; Icon: Tim
     <div
       className={`rounded-lg sm:rounded-xl border backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 ${
         mobile ? "p-3" : "p-4 sm:p-5 md:p-6 lg:p-7"
-      } max-w-md bg-white/95`}
-      style={{ borderColor: `${TIMELINE_TEXT}50`, boxShadow: `0 4px 20px ${TIMELINE_TEXT}15` }}
+      } max-w-md bg-motif-cream/95`}
+      style={{ borderColor: 'color-mix(in srgb, var(--color-motif-deep) 31%, transparent)', boxShadow: '0 4px 20px color-mix(in srgb, var(--color-motif-deep) 8%, transparent)' }}
     >
       <div className={`${mobile ? "space-y-2" : "space-y-3 md:space-y-4"}`}>
         <div className="flex items-center gap-1.5">
@@ -266,7 +269,7 @@ function TimelineCard({ event, Icon, mobile }: { event: TimelineEvent; Icon: Tim
         {event.location && (
           <div
             className={`flex items-start gap-1.5 ${mobile ? "pt-1.5" : "pt-2 md:pt-3"} border-t`}
-            style={{ borderColor: `${TIMELINE_TEXT}40` }}
+            style={{ borderColor: 'color-mix(in srgb, var(--color-motif-deep) 25%, transparent)' }}
           >
             <MapPin className={`${mobile ? "w-3 h-3" : "w-3.5 h-3.5 md:w-4 md:h-4"} mt-0.5 flex-shrink-0`} style={{ color: TIMELINE_TEXT }} />
             <p className={`${mobile ? "text-[10px]" : "text-xs md:text-sm"} ${cormorant.className} leading-relaxed opacity-90`} style={{ color: TIMELINE_TEXT }}>
@@ -307,7 +310,7 @@ function IconBadge({
       className={`${
         mobile ? "w-10 h-10" : "w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"
       } rounded-full border-2 bg-white flex items-center justify-center shadow-md hover:scale-105 transition-transform duration-300`}
-      style={{ borderColor: `${TIMELINE_TEXT}99` }}
+      style={{ borderColor: 'color-mix(in srgb, var(--color-motif-deep) 60%, transparent)' }}
     >
       <Icon className={`${mobile ? "w-5 h-5" : "w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"}`} style={{ color: TIMELINE_TEXT }} />
     </div>
@@ -316,7 +319,7 @@ function IconBadge({
 
 /* Hand-drawn–style timeline icons */
 
-const iconStroke = TIMELINE_TEXT
+const iconStroke = TIMELINE_SVG_STROKE
 
 function GuestsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (

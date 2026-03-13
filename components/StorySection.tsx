@@ -34,9 +34,9 @@ export const StorySection: React.FC<StorySectionProps> = ({
   isLast = false
 }) => {
   const isDark = theme === 'dark';
-  // Dark sections use soft brown, light sections use beige background
-  const bgColor = isDark ? 'bg-[#8B6F5A]' : 'bg-[#E8DCCB] relative z-10';
-  const textColor = isDark ? 'text-[#F5EFE6]' : 'text-[#606C60]';
+  // Palette lives in globals.css → @theme inline → --color-motif-*
+  const bgColor = isDark ? 'bg-motif-deep' : 'bg-motif-cream relative z-10';
+  const textColor = isDark ? 'text-motif-cream' : 'text-motif-deep';
   
   // Animation Hook
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -57,8 +57,8 @@ export const StorySection: React.FC<StorySectionProps> = ({
 
   // Visual Styles
   const imageFrameClass = isDark 
-    ? 'bg-white p-1.5 md:p-3 shadow-lg' 
-    : 'bg-white p-1.5 md:p-3 shadow-md';
+    ? 'bg-motif-cream p-1.5 md:p-3 shadow-lg' 
+    : 'bg-motif-cream p-1.5 md:p-3 shadow-md';
 
   // Rotation
   const rotation = layout === 'image-left' ? 'rotate-1 md:rotate-2' : '-rotate-1 md:-rotate-2';
@@ -75,11 +75,11 @@ export const StorySection: React.FC<StorySectionProps> = ({
       {!isDark && (
         <>
           {/* Top Tear */}
-          <div className="absolute top-0 left-0 w-full -mt-[8px] md:-mt-[20px] z-20 text-[#E8DCCB] pointer-events-none">
+          <div className="absolute top-0 left-0 w-full -mt-[8px] md:-mt-[20px] z-20 text-motif-cream pointer-events-none">
              <TornPaperEdge flipped={true} />
           </div>
           {/* Bottom Tear */}
-          <div className="absolute bottom-0 left-0 w-full -mb-[8px] md:-mb-[20px] z-20 text-[#E8DCCB] pointer-events-none">
+          <div className="absolute bottom-0 left-0 w-full -mb-[8px] md:-mb-[20px] z-20 text-motif-cream pointer-events-none">
              <TornPaperEdge flipped={false} />
           </div>
         </>
@@ -121,7 +121,7 @@ export const StorySection: React.FC<StorySectionProps> = ({
               <h2 className={`${cinzel.className} text-2xl md:text-6xl mb-2 md:mb-6 tracking-wide leading-none
                 transition-all duration-1000 delay-500
                 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-                ${isDark ? 'text-[#F5EFE6]' : 'text-[#606C60]'}
+                ${isDark ? 'text-motif-cream' : 'text-motif-deep'}
               `}>
                 {title}
               </h2>

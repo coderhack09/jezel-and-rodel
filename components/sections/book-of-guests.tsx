@@ -34,15 +34,13 @@ interface Guest {
 
 const CARDS_PER_VIEW = 4
 
-// Book of Guests palette — warm brown to match hero/details
-const BOOK_ACCENT = "#9B6A41"      // warm brown (hero/details)
-const BOOK_DARK = "#624630"        // medium brown
-const BOOK_DARKER = "#3E2914"      // dark brown
-const BOOK_CREAM = "#F8F4EE"       // light cream cards
-const BOOK_CREAM_ALT = "#E8E0D5"   // cream borders/subtle
-const BOOK_SECTION_BG = "#FFFFFF"  // white section background
+// Colors sourced from globals.css @theme inline — edit there to update everywhere
+const BOOK_ACCENT = "var(--color-motif-deep)"    // sage green — primary
+const BOOK_DARK = "var(--color-motif-deep)"      // headings / names
+const BOOK_DARKER = "var(--color-motif-deep)"  // body text (steel blue depth)
+const BOOK_CREAM = "var(--color-motif-cream)"    // card surfaces
 const DECO_FILTER_BOOK =
-  "brightness(0) saturate(100%) invert(32%) sepia(55%) saturate(900%) hue-rotate(355deg) brightness(95%) contrast(90%)"
+  "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)"
 
 export function BookOfGuests() {
   const [totalGuests, setTotalGuests] = useState(0)
@@ -189,7 +187,7 @@ export function BookOfGuests() {
       {/* Background — warm brown */}
       <div
         className="absolute inset-0 -z-10"
-        style={{ backgroundColor: BOOK_SECTION_BG }}
+        style={{ backgroundColor: 'var(--color-motif-cream)' }}
       />
 
       {/* Flower decoration — warm brown tint */}
@@ -275,16 +273,16 @@ export function BookOfGuests() {
             <div
               className="relative backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 shadow-lg border transition-all duration-300"
               style={{
-                backgroundColor: `${BOOK_CREAM}ee`,
-                borderColor: `${BOOK_ACCENT}40`,
-                boxShadow: `0 4px 24px rgba(62,41,20,0.12), 0 0 0 1px ${BOOK_ACCENT}20`,
+                backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 93%, transparent)',
+                borderColor: 'color-mix(in srgb, var(--color-motif-deep) 25%, transparent)',
+                boxShadow: `0 4px 24px rgba(91,102,85,0.12), 0 0 0 1px color-mix(in srgb, var(--color-motif-deep) 13%, transparent)`,
               }}
             >
               <button
                 onClick={() => fetchGuests(true)}
                 disabled={isRefreshing}
                 className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 p-1.5 sm:p-2 rounded-full transition-all duration-300 disabled:opacity-50 group z-10 hover:scale-110"
-                style={{ backgroundColor: `${BOOK_ACCENT}15` }}
+                style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 8%, transparent)' }}
                 title="Refresh counts"
               >
                 <RefreshCw className={`h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform duration-500 ${isRefreshing ? "animate-spin" : "group-hover:rotate-180"}`} style={{ color: BOOK_ACCENT }} />
@@ -335,8 +333,8 @@ export function BookOfGuests() {
                     className={`relative group rounded-xl sm:rounded-2xl p-2.5 sm:p-4 md:p-6 transition-all duration-300 border hover:shadow-xl ${justEntered ? "animate-guest-roll-in" : ""}`}
                     style={{
                       backgroundColor: BOOK_CREAM,
-                      borderColor: `${BOOK_ACCENT}30`,
-                      boxShadow: "0 2px 12px rgba(62,41,20,0.06)",
+                      borderColor: 'color-mix(in srgb, var(--color-motif-deep) 19%, transparent)',
+                      boxShadow: "0 2px 12px rgba(91,102,85,0.06)",
                       ...(justEntered
                         ? {
                             animationDelay: `${index * 120}ms`,
@@ -378,7 +376,7 @@ export function BookOfGuests() {
 
                       {guest.email && (
                         <div className="flex items-center gap-1 text-[9px] sm:text-[10px] md:text-xs mb-1.5 sm:mb-2 md:mb-3 opacity-75" style={{ color: BOOK_DARKER }}>
-                          <Mail className="h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0" style={{ color: BOOK_ACCENT }} />
+                          <Mail className="h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0" style={{ color: BOOK_DARK }} />
                           <span className="truncate">{guest.email}</span>
                         </div>
                       )}
@@ -386,7 +384,7 @@ export function BookOfGuests() {
                       <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 md:gap-2 mb-1.5 sm:mb-2 md:mb-3">
                         <div
                           className="flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 rounded-lg border"
-                          style={{ backgroundColor: `${BOOK_ACCENT}12`, borderColor: `${BOOK_ACCENT}35` }}
+                          style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 7%, transparent)', borderColor: 'color-mix(in srgb, var(--color-motif-deep) 21%, transparent)' }}
                         >
                           <Users className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 flex-shrink-0" style={{ color: BOOK_ACCENT }} />
                           <span className={`${cormorant.className} text-[9px] sm:text-[10px] md:text-xs font-semibold`} style={{ color: BOOK_DARK }}>
@@ -395,7 +393,7 @@ export function BookOfGuests() {
                         </div>
                         <div
                           className="flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 rounded-lg border"
-                          style={{ backgroundColor: `${BOOK_ACCENT}12`, borderColor: `${BOOK_ACCENT}40` }}
+                          style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 7%, transparent)', borderColor: 'color-mix(in srgb, var(--color-motif-deep) 25%, transparent)' }}
                         >
                           <MapPin className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 flex-shrink-0" style={{ color: BOOK_ACCENT }} />
                           <span className={`${cormorant.className} text-[9px] sm:text-[10px] md:text-xs font-semibold`} style={{ color: BOOK_DARK }}>
@@ -411,7 +409,7 @@ export function BookOfGuests() {
                       {guest.message && guest.message.trim() !== "" && (
                         <div
                           className="relative mb-1.5 sm:mb-2.5 md:mb-3 p-2 sm:p-3 md:p-5 rounded-lg md:rounded-xl border overflow-hidden"
-                          style={{ backgroundColor: "rgba(255,255,255,0.9)", borderColor: `${BOOK_ACCENT}25` }}
+                          style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 90%, white)', borderColor: 'color-mix(in srgb, var(--color-motif-deep) 15%, transparent)' }}
                         >
                           <div className="absolute top-0 left-0 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 opacity-[0.06]" style={{ color: BOOK_ACCENT }}>
                             <svg viewBox="0 0 100 100" fill="currentColor"><path d="M0,0 L100,0 L0,100 Z" /></svg>
@@ -430,12 +428,12 @@ export function BookOfGuests() {
                               {guest.message}
                             </p>
                           </div>
-                          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 sm:w-1 h-8 sm:h-12 md:h-16 rounded-r-full opacity-40" style={{ background: `linear-gradient(to bottom, transparent, ${BOOK_ACCENT}, transparent)` }} />
+                          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 sm:w-1 h-8 sm:h-12 md:h-16 rounded-r-full opacity-40" style={{ background: 'linear-gradient(to bottom, transparent, var(--color-motif-deep), transparent)' }} />
                         </div>
                       )}
 
                       {guest.companions && guest.companions.length > 0 && (
-                        <div className="pt-1.5 sm:pt-2 md:pt-2.5 border-t" style={{ borderColor: `${BOOK_ACCENT}25` }}>
+                        <div className="pt-1.5 sm:pt-2 md:pt-2.5 border-t" style={{ borderColor: 'color-mix(in srgb, var(--color-motif-deep) 15%, transparent)' }}>
                           <div className="flex items-center gap-1 mb-1 sm:mb-1.5">
                             <Users className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5" style={{ color: BOOK_ACCENT }} />
                             <span className={`${cormorant.className} text-[9px] sm:text-[10px] md:text-xs font-semibold`} style={{ color: BOOK_DARK }}>Companions</span>
@@ -445,11 +443,11 @@ export function BookOfGuests() {
                               <div
                                 key={idx}
                                 className="inline-flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 rounded-lg border transition-colors hover:border-opacity-60"
-                                style={{ backgroundColor: "rgba(255,255,255,0.8)", borderColor: `${BOOK_ACCENT}30` }}
+                                style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 80%, white)', borderColor: 'color-mix(in srgb, var(--color-motif-deep) 19%, transparent)' }}
                               >
                                 <span className={`${cormorant.className} text-[9px] sm:text-[10px] md:text-xs font-medium whitespace-nowrap`} style={{ color: BOOK_DARK }}>{companion.name}</span>
                                 {companion.relationship && companion.relationship.trim() !== "" && (
-                                  <span className={`${cormorant.className} text-[8px] sm:text-[9px] md:text-[10px] font-medium px-1.5 sm:px-2 py-0.5 rounded-full border whitespace-nowrap`} style={{ color: BOOK_DARK, backgroundColor: `${BOOK_ACCENT}15`, borderColor: `${BOOK_ACCENT}25` }}>
+                                  <span className={`${cormorant.className} text-[8px] sm:text-[9px] md:text-[10px] font-medium px-1.5 sm:px-2 py-0.5 rounded-full border whitespace-nowrap`} style={{ color: BOOK_DARK, backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 8%, transparent)', borderColor: 'color-mix(in srgb, var(--color-motif-deep) 15%, transparent)' }}>
                                     {companion.relationship}
                                   </span>
                                 )}
@@ -459,7 +457,7 @@ export function BookOfGuests() {
                         </div>
                       )}
 
-                      <div className="flex items-center gap-1 pt-1.5 sm:pt-2 md:pt-2.5 mt-1.5 sm:mt-2 md:mt-2.5 border-t" style={{ borderColor: `${BOOK_ACCENT}20` }}>
+                      <div className="flex items-center gap-1 pt-1.5 sm:pt-2 md:pt-2.5 mt-1.5 sm:mt-2 md:mt-2.5 border-t" style={{ borderColor: 'color-mix(in srgb, var(--color-motif-deep) 13%, transparent)' }}>
                         <Calendar className="h-2.5 w-2.5 sm:h-3 sm:w-3 opacity-70" style={{ color: BOOK_ACCENT }} />
                         <span className={`${cormorant.className} text-[8px] sm:text-[9px] md:text-[10px] opacity-80`} style={{ color: BOOK_DARKER }}>
                           Confirmed {formatDate(guest.updatedAt)}
@@ -493,7 +491,7 @@ export function BookOfGuests() {
                         className="h-2 rounded-full transition-all duration-300 hover:opacity-90"
                         style={{
                           width: isActive ? "1.75rem" : "0.5rem",
-                          backgroundColor: isActive ? BOOK_ACCENT : `${BOOK_ACCENT}50`,
+                          backgroundColor: isActive ? BOOK_ACCENT : 'color-mix(in srgb, var(--color-motif-deep) 31%, transparent)',
                         }}
                         aria-label={`Go to page ${idx + 1}`}
                       />

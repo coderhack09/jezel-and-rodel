@@ -8,14 +8,15 @@ interface LoadingScreenProps {
   onComplete: () => void;
 }
 
+// motif: "#5B6655, #9CAA99, #ECE5DB, #C4D1E2, #8799A7, #A9A9A9",
 // Countdown boxes with color photos - numbers show days, hours, minutes
 const COUNTDOWN_BOXES = [
-  { src: '/frontboxes/boxes-1.webp' },
-  { src: '/frontboxes/boxes-2.webp' },
-  { src: '/frontboxes/boxes-3.webp' },
+  { src: '/frontboxes/box (3).jpg' },
+  { src: '/frontboxes/box (2).jpg' },
+  { src: '/frontboxes/box (1).jpg' },
 ];
 
-const MAIN_BW_IMAGE = '/frontboxes/front.webp';
+const MAIN_BW_IMAGE = '/frontboxes/front.jpg';
 const STAGGER_DELAY_MS = 4000; // Each image appears every 4 seconds
 const BOX_TRANSITION_MS = 1200; // Slow, smooth transition
 const TOTAL_DURATION_MS = COUNTDOWN_BOXES.length * STAGGER_DELAY_MS + 3000;
@@ -101,25 +102,12 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   }, [onComplete]);
 
   const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`;
-  const hashtag = '#JanCarloAndHannah';
+  const hashtag = '#LtrylAndBryle';
   const productionCredit = '';
 
 
-//   Background	#F5EFE6
-// Section Alternate	#E8DCCB
-// Headings	#4E3B31
-// Paragraph Text	#8B6F5A
-// Buttons	#D6BFA3
-// Button Hover	#C9A989
-// Borders / Dividers	#F2E4D3
-  // Palette tuned to requested hues
-  const palette = {
-    deep: '#4E3B31',
-    medium: '#F5F5DC',
-    accent: '#C9A989',
-    cream: '#F2E4D3',
-    soft: '#F5EFE6',
-  };
+  // Palette lives in globals.css → @theme inline → --color-motif-*
+  // Edit there once to update every component.
 
   return (
     <div
@@ -141,7 +129,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(180deg, ${palette.deep}40 0%, transparent 25%, transparent 75%, ${palette.deep}55 100%)`,
+            background: 'linear-gradient(180deg, color-mix(in srgb, var(--color-motif-medium) 25%, transparent) 0%, transparent 25%, transparent 75%, color-mix(in srgb, var(--color-motif-medium) 33%, transparent) 100%)',
           }}
         />
       </div>
@@ -153,16 +141,16 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4">
               <span
                 className="hidden sm:block h-px w-12 flex-shrink-0"
-                style={{ backgroundColor: palette.cream }}
+                style={{ backgroundColor: 'var(--color-motif-medium)' }}
               />
               <p className="text-center">
                 <span
                   className="inline-block text-[10px] sm:text-xs tracking-[0.28em] sm:tracking-[0.36em] font-[family-name:'Cinzel', serif] uppercase px-3 py-1.5 rounded-full backdrop-blur-sm border"
                   style={{
-                    color: '#4E3B31',
-                    backgroundColor: palette.cream,
-                    borderColor: palette.deep,
-                    textShadow: '0 1px 0 palette.soft',
+                    color: 'var(--color-motif-cream)',
+                    backgroundColor: 'var(--color-motif-deep)',
+                    borderColor: 'var(--color-motif-silver)',
+                    textShadow: '0 1px 0 var(--color-motif-soft)',
                   }}
                 >
                   Your invitation is on its way
@@ -170,7 +158,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               </p>
               <span
                 className="hidden sm:block h-px w-12 flex-shrink-0"
-                style={{ backgroundColor: palette.accent }}
+                style={{ backgroundColor: 'var(--color-motif-accent)' }}
               />
             </div>
 
@@ -178,10 +166,10 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               <span
                 className="inline-block text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-[family-name:'Cinzel', serif] px-3 py-1.5 rounded-full backdrop-blur-sm border"
                 style={{
-                  color: '#800A06',
-                  backgroundColor: palette.cream,
-                  borderColor: palette.deep,
-                  textShadow: '0 1px 0 palette.soft',
+                  color: 'var(--color-motif-cream)',
+                  backgroundColor: 'var(--color-motif-deep)',
+                  borderColor: 'var(--color-motif-silver)',
+                  textShadow: '0 1px 0 var(--color-motif-soft)',
                 }}
               >
                 {hashtag}
@@ -193,9 +181,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 className="inline-block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[0.08em] sm:tracking-[0.12em] uppercase max-w-md mx-auto leading-tight px-2"
                 style={{
                   fontFamily: '"Cinzel", serif',
-                  color: '#FFFFFF',
-                  textShadow:
-                    '0 2px 14px rgba(0,0,0,0.55), 0 0 22px palette.accent, 0 0 44px palette.deep',
+                  color: 'var(--color-motif-cream)',
+                  textShadow: '0 2px 14px rgba(0,0,0,0.55), 0 0 22px var(--color-motif-soft), 0 0 44px var(--color-motif-deep)',
                 }}
               >
                 {countdownText}
@@ -234,7 +221,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: `linear-gradient(145deg, ${palette.deep}66 0%, transparent 40%, ${palette.accent}aa 100%)`,
+                    background: 'linear-gradient(145deg, color-mix(in srgb, var(--color-motif-deep) 40%, transparent) 0%, transparent 40%, color-mix(in srgb, var(--color-motif-accent) 67%, transparent) 100%)',
                   }}
                 />
 
@@ -244,12 +231,12 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black select-none leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
                     style={{
                       fontFamily: 'var(--font-granika), sans-serif',
-                      color: palette.soft,
+                      color: 'var(--color-motif-cream)',
                     }}
                   >
                     {countdownNumbers[i]}
                   </span>
-                  <span className="text-[8px] sm:text-[9px] tracking-widest uppercase mt-0.5 text-[rgba(255,246,248,0.85)]">
+                  <span className="text-[8px] sm:text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'color-mix(in srgb, var(--color-motif-soft) 85%, transparent)' }}>
                     {countdownLabels[i]}
                   </span>
                 </div>
@@ -262,7 +249,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div className="flex flex-col items-center justify-center w-full py-6 sm:py-8 px-4 flex-shrink-0">
           <p
             className="text-center text-sm sm:text-base tracking-[0.18em] uppercase text-[family-name:var(--font-crimson)] mb-2"
-            style={{ color: palette.soft }}
+            style={{ color: 'var(--color-motif-cream)' }}
           >
             Almost ready for
           </p>
@@ -270,7 +257,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             className="text-center text-2xl sm:text-3xl md:text-4xl mb-2"
             style={{
               fontFamily: '"Cinzel", serif',
-              color: palette.cream,
+              color: 'var(--color-motif-cream)',
               textShadow: '0 2px 10px rgba(0,0,0,0.35)',
             }}
           >
@@ -279,7 +266,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           {productionCredit && (
             <p
               className="text-[10px] sm:text-xs font-sans tracking-wider"
-              style={{ color: palette.soft }}
+              style={{ color: 'var(--color-motif-soft)' }}
             >
               {productionCredit}
             </p>
@@ -287,20 +274,21 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           {/* Preparing message + progress bar */}
           <p
             className="text-xs sm:text-sm tracking-[0.22em] mt-6 mb-3 font-[family-name:var(--font-crimson)] uppercase font-semibold"
-            style={{ color: '#FFFFFF', textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}
+            style={{ color: 'var(--color-motif-cream)', textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}
           >
             Crafting your invitation experience
           </p>
           <div className="w-full max-w-xs mx-auto">
             <div
               className="h-1.5 rounded-full overflow-hidden"
-              style={{ backgroundColor: 'rgba(255,255,255,0.25)' }}
+              style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-silver) 25%, transparent)' }}
             >
               <div
-                className="h-full rounded-full transition-all duration-300 ease-out shadow-[0_0_12px_rgba(255,255,255,0.7)]"
+                className="h-full rounded-full transition-all duration-300 ease-out"
                 style={{
                   width: `${progress}%`,
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: 'var(--color-motif-soft)',
+                  boxShadow: '0 0 12px color-mix(in srgb, var(--color-motif-soft) 70%, transparent)',
                 }}
               />
             </div>

@@ -23,7 +23,8 @@ const cinzel = Cinzel({
   weight: "400",
 })
 
-const MSG_COLOR = "#9B6A41"
+// Colors sourced from globals.css @theme inline — edit there to update everywhere
+const MSG_COLOR = "var(--color-motif-deep)"
 const DECO_FILTER = "brightness(0) invert(1)"
 
 interface Message {
@@ -115,18 +116,20 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
       `}</style>
       
       {/* Decorative background elements */}
-      <div className="absolute -top-3 -left-3 w-8 h-8 bg-[#9B6A41]/20 rounded-full blur-sm animate-pulse-slow" />
-      <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-[#9B6A41]/20 rounded-full blur-md animate-pulse-slow" />
+      <div className="absolute -top-3 -left-3 w-8 h-8 bg-motif-deep/20 rounded-full blur-sm animate-pulse-slow" />
+      <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-motif-deep/20 rounded-full blur-md animate-pulse-slow" />
       
-      <Card className={`relative w-full border-2 border-[#9B6A41]/40 shadow-[0_12px_30px_rgba(155,106,65,0.15)] bg-white backdrop-blur-md transition-all duration-500 group overflow-hidden rounded-2xl ${
-        isFocused ? 'scale-[1.01] border-[#9B6A41]' : 'hover:border-[#9B6A41]/60'
-      } ${isSubmitted ? 'animate-bounce' : ''}`}>
+      <Card className={`relative w-full border-2 border-motif-deep/40 bg-motif-cream backdrop-blur-md transition-all duration-500 group overflow-hidden rounded-2xl ${
+        isFocused ? 'scale-[1.01] border-motif-deep' : 'hover:border-motif-deep/60'
+      } ${isSubmitted ? 'animate-bounce' : ''}`}
+        style={{ boxShadow: '0 12px 30px color-mix(in srgb, var(--color-motif-deep) 15%, transparent)' }}
+      >
         {/* Subtle overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#9B6A41]/05 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-motif-deep/5 via-transparent to-transparent pointer-events-none" />
         
         {/* Success animation overlay */}
         {isSubmitted && (
-          <div className="absolute inset-0 bg-white/90 flex items-center justify-center z-20 pointer-events-none">
+          <div className="absolute inset-0 bg-motif-cream/90 flex items-center justify-center z-20 pointer-events-none">
             <div className="flex flex-col items-center gap-2 animate-pulse">
               <div className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: MSG_COLOR }}>
                 <Sparkles className="h-8 w-8 text-white" />
@@ -140,7 +143,7 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
           {/* Header with icon */}
           <div className="text-center mb-3 sm:mb-4 md:mb-5 lg:mb-6">
             <div className="relative inline-block mb-2 sm:mb-3 md:mb-4">
-              <div className="absolute inset-0 bg-[#9B6A41]/30 rounded-full blur-lg scale-150" />
+              <div className="absolute inset-0 bg-motif-deep/30 rounded-full blur-lg scale-150" />
               <div className="relative w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 rounded-full flex items-center justify-center mx-auto shadow-lg" style={{ backgroundColor: MSG_COLOR }}>
                 <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
               </div>
@@ -163,7 +166,7 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
             {/* Name Field */}
             <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
               <label className={`${cormorant.className} block text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2`} style={{ color: MSG_COLOR }}>
-                <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-300 ${focusedField === 'name' ? 'scale-110' : ''}`} style={{ backgroundColor: `${MSG_COLOR}20` }}>
+                <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-300 ${focusedField === 'name' ? 'scale-110' : ''}`}                   style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 13%, transparent)' }}>
                   <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" style={{ color: MSG_COLOR }} />
                 </div>
                 Your Name
@@ -179,8 +182,8 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
                   placeholder="Full Name"
                   className={`${cormorant.className} message-form-input w-full border-2 rounded-xl py-2 sm:py-2.5 md:py-3 lg:py-3.5 px-3 sm:px-4 md:px-5 text-xs sm:text-sm md:text-base placeholder:italic transition-all duration-300 bg-white shadow-sm hover:shadow-md focus:shadow-lg ${
                     focusedField === 'name' 
-                      ? 'border-[#9B6A41] focus:border-[#9B6A41] focus:ring-4 focus:ring-[#9B6A41]/25 shadow-lg' 
-                      : 'border-[#9B6A41]/40 hover:border-[#9B6A41]/50'
+                      ? 'border-motif-deep focus:border-motif-deep focus:ring-4 focus:ring-motif-deep/25 shadow-lg' 
+                      : 'border-motif-deep/40 hover:border-motif-deep/50'
                   }`}
                   style={{ color: MSG_COLOR }}
                 />
@@ -196,7 +199,7 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
             <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
               <div className="flex items-center justify-between">
                 <label className={`${cormorant.className} block text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2`} style={{ color: MSG_COLOR }}>
-                  <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-300 ${focusedField === 'message' ? 'scale-110' : ''}`} style={{ backgroundColor: `${MSG_COLOR}20` }}>
+                  <div className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-300 ${focusedField === 'message' ? 'scale-110' : ''}`} style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 13%, transparent)' }}>
                     <MessageCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4" style={{ color: MSG_COLOR }} />
                   </div>
                   Your Message
@@ -222,8 +225,8 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
                   placeholder={`Write a heartfelt message for ${coupleDisplayName}... share your wishes, memories, or words of love that will be treasured forever 💕`}
                   className={`${cormorant.className} message-form-textarea w-full border-2 rounded-xl min-h-[80px] sm:min-h-[100px] md:min-h-[120px] text-xs sm:text-sm md:text-base placeholder:italic placeholder:leading-relaxed transition-all duration-300 resize-none bg-white shadow-sm hover:shadow-md focus:shadow-lg py-2 sm:py-3 md:py-4 px-3 sm:px-4 md:px-5 ${
                     focusedField === 'message' 
-                      ? 'border-[#9B6A41] focus:border-[#9B6A41] focus:ring-4 focus:ring-[#9B6A41]/25 shadow-lg' 
-                      : 'border-[#9B6A41]/40 hover:border-[#9B6A41]/50'
+                      ? 'border-motif-deep focus:border-motif-deep focus:ring-4 focus:ring-motif-deep/25 shadow-lg' 
+                      : 'border-motif-deep/40 hover:border-motif-deep/50'
                   }`}
                   style={{ color: MSG_COLOR }}
                 />
@@ -239,20 +242,21 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
             <Button
               type="submit"
               disabled={isSubmitting || !nameValue.trim() || !messageValue.trim()}
-              className={`${cormorant.className} w-full text-white py-2 sm:py-2.5 md:py-3 lg:py-3.5 px-4 sm:px-5 md:px-6 lg:px-7 rounded-xl text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none relative overflow-hidden group border border-[#9B6A41]`}
+              className={`${cormorant.className} w-full text-motif-cream py-2 sm:py-2.5 md:py-3 lg:py-3.5 px-4 sm:px-5 md:px-6 lg:px-7 rounded-xl text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none relative overflow-hidden group border border-motif-deep`}
               style={{ 
                 backgroundColor: MSG_COLOR,
-                boxShadow: "0 6px 20px rgba(155,106,65,0.3), 0 2px 8px rgba(155,106,65,0.15)",
+                color: "var(--color-motif-cream)",
+                boxShadow: "0 6px 20px color-mix(in srgb, var(--color-motif-deep) 30%, transparent), 0 2px 8px color-mix(in srgb, var(--color-motif-deep) 15%, transparent)",
               }}
               onMouseEnter={(e) => {
                 if (!e.currentTarget.disabled) {
-                  e.currentTarget.style.backgroundColor = "#7d5534";
-                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(155,106,65,0.35), 0 3px 10px rgba(155,106,65,0.2)";
+                  e.currentTarget.style.backgroundColor = "var(--color-motif-accent)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px color-mix(in srgb, var(--color-motif-deep) 35%, transparent), 0 3px 10px color-mix(in srgb, var(--color-motif-deep) 20%, transparent)";
                 }
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = MSG_COLOR;
-                e.currentTarget.style.boxShadow = "0 6px 20px rgba(155,106,65,0.3), 0 2px 8px rgba(155,106,65,0.15)";
+                e.currentTarget.style.boxShadow = "0 6px 20px color-mix(in srgb, var(--color-motif-deep) 30%, transparent), 0 2px 8px color-mix(in srgb, var(--color-motif-deep) 15%, transparent)";
               }}
             >
               {isSubmitting ? (
@@ -340,14 +344,14 @@ export function Messages() {
         {/* Header Section */}
         <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10">
           <div className="space-y-2 sm:space-y-2.5">
-            <p className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white`}>
+            <p className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-motif-cream`}>
               Messages for {coupleDisplayName}
             </p>
-            <h2 className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white`}>
+            <h2 className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-motif-cream`}>
               Love notes &amp; prayers
             </h2>
           </div>
-          <p className={`${cormorant.className} text-xs sm:text-sm md:text-base font-light max-w-3xl mx-auto leading-relaxed px-2 sm:px-4 mt-2 text-white`}>
+          <p className={`${cormorant.className} text-xs sm:text-sm md:text-base font-light max-w-3xl mx-auto leading-relaxed px-2 sm:px-4 mt-2 text-motif-cream`}>
             Leave a short note for {coupleDisplayName}. Every wish and prayer becomes part of their forever story.
           </p>
         </div>
@@ -373,16 +377,16 @@ export function Messages() {
         <div className="relative max-w-4xl mx-auto">
           <div className="text-center mb-4 sm:mb-6 md:mb-8">
             <div className="relative inline-block mb-3 sm:mb-4 md:mb-6">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#9B6A41]/30 via-[#9B6A41]/20 to-[#9B6A41]/20 rounded-full blur-xl scale-150 animate-pulse-slow" />
+              <div className="absolute inset-0 bg-gradient-to-r from-motif-deep/30 via-motif-deep/20 to-motif-deep/20 rounded-full blur-xl scale-150 animate-pulse-slow" />
               <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center mx-auto shadow-lg hover:scale-110 transition-transform duration-300" style={{ backgroundColor: MSG_COLOR }}>
                 <MessageCircle className="h-4 w-4 sm:h-6 sm:h-6 md:h-8 md:w-8 text-white" />
               </div>
-              <div className="absolute -inset-2 rounded-full bg-[#9B6A41]/20 blur-md opacity-0 hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute -inset-2 rounded-full bg-motif-deep/20 blur-md opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <h3 className={`${cinzel.className} text-lg sm:text-xl md:text-2xl font-bold mb-1.5 sm:mb-2 md:mb-3 text-white`}>
+            <h3 className={`${cinzel.className} text-lg sm:text-xl md:text-2xl font-bold mb-1.5 sm:mb-2 md:mb-3 text-motif-cream`}>
               Messages from Loved Ones
             </h3>
-            <p className={`${cormorant.className} text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-2 sm:px-4 text-white`}>
+            <p className={`${cormorant.className} text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-2 sm:px-4 text-motif-cream`}>
               Read the beautiful messages shared by family and friends
             </p>
           </div>
