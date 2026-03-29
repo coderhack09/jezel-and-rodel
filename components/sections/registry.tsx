@@ -11,25 +11,10 @@ const cinzel = Cinzel({
   weight: ["400", "600"],
 })
 
-const GCASH_QR = [
-  {
-    id: "MariBank",
-    src: "",
-    label: "MariBank",
-    accountNumber: "MARIBANK: (****2960) Ltryl Benitez",
-  },
-  {
-    id: "gcash",
-    src: "",
-    label: "GCash",
-    accountNumber: "GCash: LT**L B.",
-  },
-] as const
-
-type ActiveQrId = (typeof GCASH_QR)[number]["id"]
+const GCASH_QR = Object.values(siteConfig?.giftRegistry ?? {})
 
 export function Registry() {
-  const [activeQr, setActiveQr] = useState<ActiveQrId>("MariBank")
+  const [activeQr, setActiveQr] = useState(GCASH_QR[0]?.id ?? "")
   const activeItem = GCASH_QR.find((i) => i.id === activeQr) ?? GCASH_QR[0]
 
   return (

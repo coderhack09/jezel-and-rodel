@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
+import { siteConfig } from '@/content/site';
 
 interface HeroProps {
   onOpen: () => void;
@@ -155,7 +156,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
               }}
             >
               <Image
-                src="/monogram/newmonogram.png"
+                src={siteConfig.couple.monogram}
                 alt="Monogram"
                 fill
                 className="object-contain"

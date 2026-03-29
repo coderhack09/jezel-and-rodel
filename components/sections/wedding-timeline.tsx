@@ -152,7 +152,7 @@ export function WeddingTimeline() {
       {/* Header */}
       <div className="relative z-10 text-center mb-8 sm:mb-10 md:mb-12 px-3 sm:px-4">
         <p
-          className={`${cormorant.className} text-[0.85rem] sm:text-base md:text-lg tracking-[0.04em] lowercase mb-1 drop-shadow-sm`}
+          className={`${cormorant.className} text-[0.85rem] sm:text-base md:text-lg tracking-[0.04em] mb-1 drop-shadow-sm`}
           style={{ color: TIMELINE_TEXT }}
         >
           Wedding Day

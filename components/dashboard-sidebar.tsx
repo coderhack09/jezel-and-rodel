@@ -11,6 +11,7 @@ import {
   UserPlus,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { siteConfig } from "@/content/site"
 
 interface DashboardSidebarProps {
   activeTab: "dashboard" | "guests" | "requests" | "messages" | "entourage" | "details"
@@ -112,7 +113,7 @@ export function DashboardSidebar({
       {/* Sync Button */}
       <div className="p-4 border-t border-[#E5E7EB]">
         <a
-          href="https://docs.google.com/spreadsheets/d/1W_1yyfNVzxW7Avi7QAAS2Vj0h9kIcrNrmXSsR3282ko/edit?usp=sharing"
+          href={siteConfig.googleAPI.googleShare}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-[#6B7280] hover:text-[#6B4423] hover:bg-[#F9FAFB] border border-[#E5E7EB] transition-all duration-200 justify-start"

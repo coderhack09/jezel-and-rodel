@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import { useAudio } from "@/contexts/audio-context"
+import { siteConfig } from "@/content/site"
 
 const BackgroundMusic = () => {
   const { audioRef } = useAudio()
@@ -48,7 +49,7 @@ const BackgroundMusic = () => {
     <audio
       ref={audioRef}
       // Use an encoded URI to avoid issues with spaces/parentheses on some mobile browsers
-      src={encodeURI("/background_music/Yellow - Coldplay [BRIDGERTON].mp3")}
+      src={encodeURI(siteConfig.couple.backgroundMusic)}
       loop
       preload="auto"
       // playsInline helps iOS treat this as inline media rather than requiring fullscreen behavior

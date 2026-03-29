@@ -228,7 +228,7 @@ export function Countdown() {
         >
           <div className="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[36rem] lg:h-[36rem] xl:w-[40rem] xl:h-[40rem] opacity-90">
             <Image
-              src="/monogram/newmonogram.png"
+              src={siteConfig.couple.monogram}
               alt={`${groomNickname} & ${brideNickname} Monogram`}
               fill
               className="object-contain"

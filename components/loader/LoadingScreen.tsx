@@ -17,6 +17,7 @@ const COUNTDOWN_BOXES = [
 ];
 
 const MAIN_BW_IMAGE = '/frontboxes/Front.webp';
+const DESKTOP_BW_IMAGE = '/frontboxes/desktopView.JPG';
 const STAGGER_DELAY_MS = 4000; // Each image appears every 4 seconds
 const BOX_TRANSITION_MS = 1200; // Slow, smooth transition
 const TOTAL_DURATION_MS = COUNTDOWN_BOXES.length * STAGGER_DELAY_MS + 3000;
@@ -130,11 +131,21 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     >
       {/* Background image with overlay */}
       <div className="absolute inset-0">
+        {/* Mobile background */}
         <Image
           src={MAIN_BW_IMAGE}
           alt=""
           fill
-          className="object-cover object-center"
+          className="object-cover object-center md:hidden"
+          sizes="100vw"
+          priority
+        />
+        {/* Desktop background (md and above) */}
+        <Image
+          src={DESKTOP_BW_IMAGE}
+          alt=""
+          fill
+          className="object-cover object-center hidden md:block"
           sizes="100vw"
           priority
         />

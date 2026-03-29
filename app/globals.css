@@ -93,7 +93,7 @@
   --color-motif-accent:  #F2B5B5; /* pastel pink */
   --color-motif-cream:   #FFF8F5; /* creamy white */
   --color-motif-soft:    #F9E4E4; /* soft background */
-  --color-motif-silver:  #CFC7C7 /* luxury silver— borders, neutral separators   */
+  --color-motif-silver:  #CFC7C7; /* luxury silver— borders, neutral separators   */
   /* ─────────────────────────────────────────────────────────── */
   --font-imperial-script: "Imperial Script", cursive;
   --color-background: var(--background);

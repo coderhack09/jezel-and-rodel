@@ -3,17 +3,20 @@ export const siteConfig = {
     bride: "Ronnie May Labordo", //Noenyl Bryle M. Gonzaga
     brideNickname: "Nomay", //Ltryl
     groom: "Kenneth Siman", //Ltryl B. Benitez
-    groomNickname: "Kenneth", //Ltryl
+    groomNickname: "Kenneth",
+    monogram:"/monogram/newmonogram.png" ,//Ltryl
+    backgroundMusic:"/background_music/Ed Sheeran - The Joker And The Queen (Lyrics) feat. Taylor Swift.mp3"
   },
   googleAPI:{
-    guestList: "https://script.google.com/macros/s/AKfycbyEr2o10YlHZ_13-QQF7vZ72dHkD7uaJLm4qZwzGY3JCMe9W8AOyu6Q2SWbL6fMRTH7Fg/exec",
-    guestRequest: "https://script.google.com/macros/s/AKfycbwtOtn2eI0_8XWV9qr0D2ypUEkznp5vYsrX-CnUK-oUNww058Vygw3o-nYb7Hl-LebJZA/exec",
-    message: "https://script.google.com/macros/s/AKfycbwtOtn2eI0_8XWV9qr0D2ypUEkznp5vYsrX-CnUK-oUNww058Vygw3o-nYb7Hl-LebJZA/exec",
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSf0WUkTPmzeNx0nl7NQiHAzXB7X7uhK3lrX0SZPZKn0MX-6VQ/formResponse",
-entourage: "https://script.google.com/macros/s/AKfycbwtOtn2eI0_8XWV9qr0D2ypUEkznp5vYsrX-CnUK-oUNww058Vygw3o-nYb7Hl-LebJZA/exec",
-sponsors: "https://script.google.com/macros/s/AKfycbwtOtn2eI0_8XWV9qr0D2ypUEkznp5vYsrX-CnUK-oUNww058Vygw3o-nYb7Hl-LebJZA/exec",
-weddingDetails: "https://script.google.com/macros/s/AKfycbwtOtn2eI0_8XWV9qr0D2ypUEkznp5vYsrX-CnUK-oUNww058Vygw3o-nYb7Hl-LebJZA/exec",
-
+    message: "https://script.google.com/macros/s/AKfycbyuP6pES5o5ZguyuUEW_TCe80YNmKkpOM3l_ED2YTFTeMDvEQ4VBgrNMxx3WBs10iR2Kw/exec",
+    guestList: "https://script.google.com/macros/s/AKfycbxiU8Tk0Lrhgy9Yz7ODpamVvhaIyVxibNHTd_1NTXaU6NEaDy2hx56XwkPw3NDpnCtDuw/exec",
+    guestRequest: "https://script.google.com/macros/s/AKfycbyDBijMrRGWbqeE7ipotE7KTritduviNlT0wdZ-TBp44ttdejaRHeJSD1_0zfyxN3lU/exec",
+    entourage: "https://script.google.com/macros/s/AKfycbxDJuS4w9hlf9N0VYS6qbGN43uJBVGYgiGFdPg-xwrUCkURkHAbFhRgFuY-m4DNxk6pow/exec",
+    sponsors: "https://script.google.com/macros/s/AKfycbzYWENhNcIed-cIUzQUDD8JZavcjQ1n5ulNYEdsQfWSRIEZfQG8W06tik3dzpIutM2IWQ/exec",
+    weddingDetails: "https://script.google.com/macros/s/AKfycbzRaNGHVEwL9K9-7w7vA0PY8nBjPOQdq7ODmOFMcJuOeVCPGpeBzrulwn8pgPBKlus--g/exec",
+////google share
+    googleShare: "https://docs.google.com/spreadsheets/d/17ji99dMUexZD77VGYWLv8n4VoKcpK0PmkhXrpcUx31o/edit?usp=sharing",
   },
   wedding: {
     date: "June 24, 2026",
@@ -29,6 +32,20 @@ weddingDetails: "https://script.google.com/macros/s/AKfycbwtOtn2eI0_8XWV9qr0D2yp
       contact: "Kenneth Siman",
       phone: "0927 815 3245",
     },
+  },
+  giftRegistry: {
+    QR_1:{
+    id: "MariBank",
+    src: "/QR/pleaseProvideQR.png",
+    label: "MariBank",
+    accountNumber: "MARIBANK: To Follow",
+    },
+    QR_2:{
+    id: "gcash",
+    src: "/QR/pleaseProvideQR.png",
+    label: "GCash",
+    accountNumber: "GCash: to Follow.",
+    }
   },
   ceremony: {
     location: "Our Lady of Lourdes Parish",
