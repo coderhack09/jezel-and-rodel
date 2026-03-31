@@ -1,22 +1,22 @@
 export const siteConfig = {
   couple: {
-    bride: "Mary Rose Obelidor", //Noenyl Bryle M. Gonzaga
+    bride: "Mary Rose Bricia", //Noenyl Bryle M. Gonzaga
     brideNickname: "Mary Rose", //Ltryl
-    groom: "Ramon Bricia", //Ltryl B. Benitez
+    groom: "Ramon Obelidor", //Ltryl B. Benitez
     groomNickname: "Ramon",
     monogram:"/monogram/monogram.png" ,//Ltryl
     backgroundMusic:"/background_music/Ed Sheeran - The Joker And The Queen (Lyrics) feat. Taylor Swift.mp3"
   },
   googleAPI:{
-    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLScFmpNtAI3vx2FKRaMIE38Kcn0w9ajHtz7CYn6CYgQ8yKqAng/formResponse", //done
-    message: "https://script.google.com/macros/s/AKfycbx6G-cc8v2OJdWPOSJpARdwqigPcAzAvyZPTd1v6cIwZuHHoRXW1ZBeBDDBg1Tt5Mc0/exec", //done
-    guestList: "https://script.google.com/macros/s/AKfycbyd62qRIHpsAQfG-yxV6oqF0RXtL3oJcWcsBpICn_cicAPPbEZTpa0yIcJrS-3SfnKi/exec", //done
-    guestRequest: "https://script.google.com/macros/s/AKfycbwQ3Jo1ycAwY0ZPZcmZrRuK1Sg_X9w-9t8H5_Lq069qWKlJvaIteO1nmUEPpGLfrXdV/exec", //done
-    entourage: "https://script.google.com/macros/s/AKfycbzH5KpZMOHBmUpeuTtM3cfURhMc77_oyUaHZmSoP0JAQoenBqfb5mV5z9i2SEUSnkly/exec", //done
-    sponsors: "https://script.google.com/macros/s/AKfycbz3xGAnhS-aTRnkUPPMmT-1zVsssbDphzqdWR0gW5mSttDqE1nf4GgmELJYUrSEyt-W/exec", //done
-    weddingDetails: "https://script.google.com/macros/s/AKfycby4v8qqP2dpT5G3oOBb2g3we70qGnx_paDqH1hZdMT_P31-MzflyoQDnercr84Wemio/exec", //done
+    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSd2sps-PpnZlAHaz1OgYhEoG3H6bP-pYxPxIOWNt6TIZJJ1Dw/formResponse", //done
+    message: "https://script.google.com/macros/s/AKfycbzI-4aR1C08e4RyXmxidBKlCB0-l0NbYD-nDmQYqxRk30eZpW3i6c8DEglaT-tmMhw4/exec", //done
+    guestList: "https://script.google.com/macros/s/AKfycbyMiSuYuMrp1EoRnhLrIbnHti4XAydEIjsf-oFTsUhmB0b8IPquHugaw6HmRHUalgsO/exec", //done
+    guestRequest: "https://script.google.com/macros/s/AKfycby5Z84vBpLWU-WDDT4x49inzYII3BTN4aLlO5C4yrN2a1QRUTsKLdrhOqRusQDU4Awy/exec", //done
+    entourage: "https://script.google.com/macros/s/AKfycbziTwqV5_ycPUxUgtkg7VmsZT_j7kXgjbspj0c10WjlAf6FyuOsmcxDgbEjo1PBgnVY/exec", //done
+    sponsors: "https://script.google.com/macros/s/AKfycbwc2OI4ntKkLwx8yrWzL1Spu40O2YGoTaI0su8p8h9wKAvrAoUqKyuwbm4UnQsv_xcN/exec", //done
+    weddingDetails: "https://script.google.com/macros/s/AKfycbwoPm17iVHjUsqRLJd1M0LBxPL8KM3kMNjv4sHePR3CqCwa5r3SSqsAL3KkmHDC-yxY/exec", //done
 ////google share 
-    googleShare: "https://docs.google.com/spreadsheets/d/1NzySlITNcY__DZtbF57EVfVjvy5SCEw35adaofzaioQ/edit?usp=sharing",
+    googleShare: "https://docs.google.com/spreadsheets/d/1SDjlC_uFesf7fuDXnfsehkhdIsiCwd7IVrAL4yzGHuM/edit?usp=sharing",
   },
   wedding: {
     date: "May 8,2026",
@@ -28,9 +28,9 @@ export const siteConfig = {
   },
   details: {
     rsvp: {
-      deadline: "May 1, 2026.",
-      contact: "Mary Rose Obelidor",
-      phone: "to be announced",
+      deadline: "APRIL 15, 2026",
+      contact: "Mary Rose Bricia",
+      phone: "0906 206 6888",
     },
   },
   giftRegistry: {
@@ -111,7 +111,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     secondary: "#F5F5DC",
   },
   snapShare: {
-    googleDriveLink: "https://drive.google.com/drive/folders/1OHc4gq4VHPequrPTjIrV6-YpZ5ctk9lo?usp=sharing",
+    googleDriveLink: "https://drive.google.com/drive/folders/1-YgiIdPWeneGnvEBpu2ON8l8gDEq1uBR?usp=sharing",
     hashtag: ["#MonAmourRose"],
     instructions: "Please scan this QR Code, create a folder with your name and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
