@@ -83,26 +83,21 @@ export function Details() {
 
   // Venue information from site config
   const ceremonyVenueName = siteConfig.ceremony.location
-  const ceremonyVenueDetail = ""
   const ceremonyAddress = siteConfig.ceremony.venue
   const ceremonyVenue = `${ceremonyVenueName}, ${ceremonyAddress}`
-  const ceremonyMapsLink = `https://maps.app.goo.gl/aV2PgzJ1VwF6ZKr18`
+  const ceremonyMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ceremonyVenue)}`
 
   const receptionVenueName = siteConfig.reception.location
-  const receptionVenueDetail = ""
   const receptionAddress = siteConfig.reception.venue
   const receptionVenue = `${receptionVenueName}, ${receptionAddress}`
-  const receptionMapsLink = `https://maps.google.com/?q=${encodeURIComponent(receptionVenue)}`
+  const receptionMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(receptionVenue)}`
 
-  // Aliases used in the image modal
-  const ceremonyLocationFormatted = ceremonyVenueName
-  const receptionLocationFormatted = receptionVenueName
   const ceremonyLocation = ceremonyVenue
   const receptionLocation = receptionVenue
   const formattedCeremonyDate = siteConfig.ceremony.date
   const formattedReceptionDate = siteConfig.ceremony.date // reception follows ceremony on same day
 
-  const DECO_FILTER = "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)"
+  const DECO_FILTER = "brightness(0) saturate(100%) invert(22%) sepia(88%) saturate(1800%) hue-rotate(185deg) brightness(90%) contrast(105%)"
 
   const openInMaps = (link: string) => {
     window.open(link, '_blank', 'noopener,noreferrer')
@@ -188,17 +183,13 @@ export function Details() {
           <div className="h-px w-16 sm:w-24 bg-motif-silver/60" />
         </div>
         <h2
-          className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-motif-deep mb-3 sm:mb-4 uppercase`}
-          style={{
-            letterSpacing: "0.16em",
-            textShadow: "0 2px 10px rgba(91,102,85,0.25)",
-            fontWeight: 600,
-          }}
+         className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight"
+         style={{ color: 'var(--color-motif-deep)' }}
         >
           Event Details
         </h2>
         <p
-          className={`${cinzel.className} text-sm sm:text-base md:text-lg text-motif-medium font-normal max-w-xl mx-auto leading-relaxed tracking-[0.14em] px-4`}
+          className="text-xs sm:text-sm md:text-base text-motif-medium font-normal max-w-xl mx-auto leading-relaxed tracking-[0.14em] px-4"
         >
           Everything you need to know about our special day.
         </p>
@@ -231,10 +222,10 @@ export function Details() {
                 {/* <p className="text-sm sm:text-base md:text-lg font-[family-name:var(--font-ephesis)] text-[#FFF7F6] mb-1 sm:mb-2 drop-shadow-lg">
                   Ceremony
                 </p> */}
-                <h3 className={`${cinzel.className} text-lg sm:text-xl md:text-2xl lg:text-3xl font-[family-name:var(--font-crimson)] font-normal text-white mb-0.5 sm:mb-1 drop-shadow-lg uppercase tracking-[0.1em] leading-tight`}>
+                <h3 className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight" style={{ color: 'var(--color-motif-cream)' }}>
                   {siteConfig.ceremony.location}
                 </h3>
-                <p className={`${cinzel.className} text-xs sm:text-sm md:text-base text-white/95 drop-shadow-md tracking-wide`}>
+                <p className="text-xs sm:text-sm md:text-base text-motif-cream/95 tracking-wide" style={{ color: 'var(--color-motif-cream)' }}>
                   {siteConfig.ceremony.venue}
                 </p>
               </div>
@@ -245,24 +236,24 @@ export function Details() {
               {/* Date Section */}
               <div className="text-center mb-5 sm:mb-8 md:mb-10">
                 {/* Day name */}
-                <p className={`${cinzel.className} text-[10px] sm:text-xs md:text-sm font-semibold text-motif-medium uppercase tracking-[0.2em] mb-2 sm:mb-3`}>
+                <p className="text-[10px] sm:text-xs md:text-sm font-semibold text-motif-medium uppercase tracking-[0.2em] mb-2 sm:mb-3">
                   {siteConfig.ceremony.day}
                 </p>
                 
                 {/* Month - Script style with warm gold */}
                 <div className="mb-2 sm:mb-4">
-                  <p className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl text-motif-medium leading-none`}>
+                  <p className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight" style={{ color: 'var(--color-motif-medium)' }}>
                   {new Date(siteConfig.ceremony.date).toLocaleString('default', { month: 'long' })}
                   </p>
                 </div>
                 
                 {/* Day and Year */}
                 <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-7">
-                  <p className={`${cinzel.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-motif-deep leading-none`}>
+                  <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-motif-deep leading-none">
                   {new Date(siteConfig.ceremony.date).getDate()}
                   </p>
                   <div className="h-10 sm:h-12 md:h-16 lg:h-20 w-[2px] bg-gradient-to-b from-motif-medium via-motif-deep to-motif-medium" />
-                  <p className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-motif-deep leading-none`}>
+                  <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-motif-deep leading-none">
                   {new Date(siteConfig.ceremony.date).getFullYear()}
                   </p>
                 </div>
@@ -275,7 +266,7 @@ export function Details() {
                 </div>
 
                 {/* Time */}
-                <p className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-motif-deep tracking-wide`}>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-motif-deep tracking-wide">
                   {siteConfig.ceremony.time}
                 </p>
               </div>
@@ -288,15 +279,10 @@ export function Details() {
                     <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] font-semibold text-motif-deep mb-1.5 sm:mb-2 uppercase tracking-wide">
                       Location
                     </p>
-                    <p className={`${cinzel.className} text-xs sm:text-sm md:text-base lg:text-lg font-[family-name:var(--font-crimson)] text-motif-deep leading-relaxed`}>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg font-[family-name:var(--font-crimson)] text-motif-deep leading-relaxed">
                       {ceremonyVenueName}
                     </p>
-                    {ceremonyVenueDetail && (
-                      <p className={`${cinzel.className} text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] text-motif-medium/70 leading-relaxed mt-1`}>
-                        {ceremonyVenueDetail}
-                      </p>
-                    )}
-                    <p className={`${cinzel.className} text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] text-motif-deep/70 leading-relaxed`}>
+                    <p className="text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] text-motif-deep/70 leading-relaxed">
                       {ceremonyAddress}
                     </p>
                   </div>
@@ -377,10 +363,10 @@ export function Details() {
                 {/* <p className="text-sm sm:text-base md:text-lg font-[family-name:var(--font-ephesis)] text-[#FFF7F6] mb-1 sm:mb-2 drop-shadow-lg">
                   Reception
                 </p> */}
-                <h3 className={`${cinzel.className} text-lg sm:text-xl md:text-2xl lg:text-3xl font-[family-name:var(--font-crimson)] font-normal text-white mb-0.5 sm:mb-1 drop-shadow-lg uppercase tracking-[0.1em] leading-tight`}>
+                <h3 className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight" style={{ color: 'var(--color-motif-cream)' }}>
                   {siteConfig.reception.location}
                 </h3>
-                <p className={`${cinzel.className} text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-white/95 drop-shadow-md tracking-wide`}>
+                <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-white/95 drop-shadow-md tracking-wide">
                   {siteConfig.reception.venue}
                 </p>
               </div>
@@ -390,15 +376,15 @@ export function Details() {
          
               <div className="text-center mb-5 sm:mb-8">
                 {siteConfig.reception.time === "To follow after the ceremony" ? (
-                  <p className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-[family-name:var(--font-crimson)]  font-semibold text-motif-deep tracking-wide`}>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl font-[family-name:var(--font-crimson)]  font-semibold text-motif-deep tracking-wide">
                     To follow after the ceremony
                   </p>
                 ) : (
                   <>
-                    <p className={`${cinzel.className} text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] font-semibold text-motif-medium uppercase tracking-[0.2em] mb-2 sm:mb-3`}>
+                    <p className="text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] font-semibold text-motif-medium uppercase tracking-[0.2em] mb-2 sm:mb-3">
                       {siteConfig.reception.time === "After ceremony" ? "Starts" : "Starts at"}
                     </p>
-                    <p className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-[family-name:var(--font-crimson)] font-semibold text-motif-deep tracking-wide`}>
+                    <p className="text-sm sm:text-base md:text-lg lg:text-xl font-[family-name:var(--font-crimson)] font-semibold text-motif-deep tracking-wide">
                       {siteConfig.reception.time}
                     </p>
                   </>
@@ -413,15 +399,10 @@ export function Details() {
                     <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] font-semibold text-motif-deep mb-1.5 sm:mb-2 uppercase tracking-wide">
                       Location
                     </p>
-                    <p className={`${cinzel.className} text-xs sm:text-sm md:text-base lg:text-lg font-[family-name:var(--font-crimson)] text-motif-deep leading-relaxed`}>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg font-[family-name:var(--font-crimson)] text-motif-deep leading-relaxed">
                       {receptionVenueName}
                     </p>
-                    {receptionVenueDetail && (
-                    <p className={`${cinzel.className} text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] text-motif-deep/70 leading-relaxed mt-1`}>
-                        {receptionVenueDetail}
-                      </p>
-                    )}
-                    <p className={`${cinzel.className} text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] text-motif-deep/70 leading-relaxed`}>
+                    <p className="text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] text-motif-deep/70 leading-relaxed">
                       {receptionAddress}
                     </p>
                   </div>
@@ -482,13 +463,13 @@ export function Details() {
             <div className="h-px w-10 sm:w-14 md:w-20 bg-motif-silver/60" />
           </div>
           <h3
-            className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl font-semibold text-motif-deep mb-3 sm:mb-4 uppercase`}
-            style={{ letterSpacing: "0.16em", textShadow: "0 2px 10px rgba(91,102,85,0.25)" }}
+           className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight"
+           style={{ color: 'var(--color-motif-deep)' }}
           >
             Attire Guidelines
           </h3>
           <p
-            className={`${cinzel.className} text-sm sm:text-base md:text-lg text-motif-medium font-normal`}
+            className="text-sm sm:text-base md:text-lg text-motif-medium font-normal"
           >
             Please dress according to the guidelines below.
           </p>
@@ -501,7 +482,8 @@ export function Details() {
             
             <div className="relative bg-motif-cream backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-7 lg:p-9 border  hover:shadow-[0_20px_48px_rgba(0,0,0,0.24)] hover:border-motif-deep/70 transition-all duration-300">
               <h4
-                className={`${cinzel.className} text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-motif-deep mb-4 sm:mb-5 md:mb-6 uppercase tracking-[0.16em] text-center px-2`}
+                className="lighten-regular text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] leading-tight text-center mb-4 sm:mb-5 md:mb-6 "
+                style={{ color: 'var(--color-motif-deep)' }}
               >
                 Principal Sponsors: 
               </h4>
@@ -559,13 +541,14 @@ export function Details() {
             
             <div className="relative bg-motif-cream backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-7 lg:p-9 border  hover:shadow-[0_20px_48px_rgba(0,0,0,0.24)] hover:border-motif-deep/70 transition-all duration-300">
               <h4
-                className={`${cinzel.className} text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-motif-deep mb-4 sm:mb-5 md:mb-6 uppercase tracking-[0.16em] text-center px-2`}
+                className="lighten-regular text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] leading-tight text-center mb-4 sm:mb-5 md:mb-6 "
+                style={{ color: 'var(--color-motif-deep)' }}
               >
                 Guest Attire
               </h4>
 
               {/* Copy: follow color palette */}
-              <p className={`${cinzel.className} text-center text-xs sm:text-sm md:text-base lg:text-lg text-motif-deep/90 font-light leading-relaxed mb-4 sm:mb-5 md:mb-6 max-w-xl mx-auto px-3`}>
+              <p className="text-center text-xs sm:text-sm md:text-base lg:text-lg text-motif-deep/90 font-light leading-relaxed mb-4 sm:mb-5 md:mb-6 max-w-xl mx-auto px-3">
               Kindly follow the color palette below for your outfit.
               </p>
 
@@ -644,7 +627,7 @@ export function Details() {
           {/* Content */}
           <div className="relative z-10 px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
             {/* Animated couple photos carousel */}
-            <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8">
+            {/* <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8">
               {coupleImages.map((image, index) => {
                 const isActive = index === currentImageIndex
                 // Alternate rotation: -5deg, 5deg, -3deg, 3deg for variety
@@ -676,11 +659,14 @@ export function Details() {
                   </div>
                 )
               })}
-            </div>
+            </div> */}
 
             {/* Title */}
-            <h3 className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl text-center text-motif-deep mb-6 sm:mb-8 font-normal tracking-wide`}>
-              GENTLE REMINDERS
+            <h3 
+             className="lighten-regular text-[40px] sm:text-[50px] md:text-[60px] lg:text-[70px] xl:text-[80px] leading-tight text-center mb-4 sm:mb-5 md:mb-6 "
+             style={{ color: 'var(--color-motif-deep)' }}
+             >
+              Gentle Reminders
             </h3>
 
             {/* Reminders List */}
@@ -697,7 +683,9 @@ export function Details() {
 
               {/* Unplugged Ceremony Reminder */}
               <div className="bg-motif-cream/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-semibold text-motif-deep mb-2 sm:mb-3`}>
+                <h4 className="lighten-regular text-[24px] sm:text-[30px] md:text-[35px] lg:text-[40px] xl:text-[45px] leading-tight text-center mb-4 sm:mb-5 md:mb-6 "
+                style={{ color: 'var(--color-motif-deep)' }}
+                >
                 Unplugged Ceremony
 
                 </h4>
@@ -708,7 +696,9 @@ export function Details() {
 
               {/* Arrival Reminder */}
               <div className="bg-motif-cream/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-semibold text-motif-deep mb-2 sm:mb-3`}>
+                <h4 className="lighten-regular text-[24px] sm:text-[30px] md:text-[35px] lg:text-[40px] xl:text-[45px] leading-tight text-center mb-4 sm:mb-5 md:mb-6 "
+                style={{ color: 'var(--color-motif-deep)' }}
+                >
                 Arrival
                 </h4>
                 <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-deep/80 leading-relaxed`}>
@@ -803,8 +793,8 @@ export function Details() {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-1000 z-0" />
 
               <CloudinaryImage
-                src={showImageModal === "ceremony" ? "/Details/ceremony&location.jpg" : "/Details/Kayama Mountain Resort And Events Place, Sitio Kaytuyang, Brgy. Aga Nasugbu, Batangas.png"}
-                alt={showImageModal === "ceremony" ? ceremonyLocationFormatted : receptionLocationFormatted}
+                src={showImageModal === "ceremony" ? siteConfig.ceremony.image : siteConfig.reception.image[0]}
+                alt={showImageModal === "ceremony" ? ceremonyVenueName : receptionVenueName}
                 fill
                 className="object-contain p-6 sm:p-8 md:p-10 transition-transform duration-700 group-hover:scale-105 z-10"
                 sizes="95vw"
@@ -833,14 +823,12 @@ export function Details() {
                       ) : (
                         <Utensils className="w-6 h-6 text-motif-cream" />
                       )}
-                      {showImageModal === "ceremony" ? siteConfig.ceremony.venue : siteConfig.reception.venue}
+                      {showImageModal === "ceremony" ? ceremonyVenueName : receptionVenueName}
                     </h3>
                     <div className="flex items-center gap-2 text-sm opacity-70 text-motif-cream">
                       <MapPin className="w-4 h-4 text-motif-cream" />
                       <span>
-                        {showImageModal === "ceremony"
-                          ? ceremonyLocationFormatted
-                          : receptionLocationFormatted}
+                        {showImageModal === "ceremony" ? ceremonyAddress : receptionAddress}
                       </span>
                     </div>
 

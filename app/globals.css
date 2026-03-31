@@ -88,12 +88,12 @@
   --font-serif: "Great Vibes", "Great Vibes Fallback";
 
   /* ─── Motif palette — edit here, affects every component ─── */
-  --color-motif-deep:    #5A3A1A;  /* deep brown (main text / headers) */
-  --color-motif-medium:  #8B5E34;  /* warm gold-brown */
-  --color-motif-accent:  #C89B6D;  /* soft gold highlight */
-  --color-motif-cream:   #F7F3EE;  /* background ivory */
-  --color-motif-soft:    #EDE3D9;  /* soft beige section */
-  --color-motif-silver:  #CFC6BD;  /* neutral divider */
+  --color-motif-deep:    #015B97;  /* main brand blue */
+  --color-motif-medium:  #3A7CA5;  /* softened blue for UI */
+  --color-motif-accent:  #7FB3D5;  /* light airy accent */
+  --color-motif-cream:   #F4F8FB;  /* very light bluish white */
+  --color-motif-soft:    #E3EEF6;  /* soft section background */
+  --color-motif-silver:  #C9D6E2;  /* cool neutral divider */  /* neutral divider */
   /* ─────────────────────────────────────────────────────────── */
   --font-imperial-script: "Imperial Script", cursive;
   --color-background: var(--background);
@@ -161,6 +161,40 @@ html {
   font-family: "Lavishly Yours", cursive;
   font-weight: 400;
   font-style: normal;
+}
+
+/* ── Lighten display font ── */
+@font-face {
+  font-family: "LightenFree";
+  src: url("/fonts/LightenFreeRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.lighten-regular {
+  font-family: "LightenFree", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ── Loader animations ── */
+@keyframes loader-glow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.2); }
+}
+
+@keyframes loader-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(500%); }
+}
+
+.animate-loader-glow {
+  animation: loader-glow 3.6s ease-in-out infinite;
+}
+
+.animate-loader-shimmer {
+  animation: loader-shimmer 2.8s ease-in-out infinite;
 }
 
 /* Scrollbar styling */

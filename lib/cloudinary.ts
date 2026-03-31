@@ -1,5 +1,5 @@
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-const PROJECT_PREFIX = "wedding-projects/vince-and-era"
+const PROJECT_PREFIX = "wedding-projects/ramon-and-maryrose"
 
 /**
  * Converts a local public path to a Cloudinary public ID, scoped to this
@@ -43,6 +43,37 @@ interface CloudinaryUrlOptions {
   quality?: string | number
   crop?: "fill" | "fit" | "scale" | "crop" | "pad"
   gravity?: string
+}
+
+interface CloudinaryVideoOptions {
+  width?: number
+  height?: number
+  quality?: string | number
+}
+
+/**
+ * Generates a Cloudinary optimized video URL.
+ * Accepts local paths (e.g. "/background_music/video.mp4") or Cloudinary public IDs.
+ * Falls back to the original src if NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME is not set.
+ *
+ * Usage:
+ *   src={getCloudinaryVideoUrl("/background_music/video.mp4")}
+ */
+export function getCloudinaryVideoUrl(
+  src: string,
+  options: CloudinaryVideoOptions = {}
+): string {
+  if (!CLOUD_NAME) return src
+  if (src.startsWith("https://") || src.startsWith("http://")) return src
+
+  const publicId = toPublicId(src)
+  const { width, height, quality = "auto" } = options
+
+  const transforms: string[] = [`q_${quality}`]
+  if (width) transforms.push(`w_${width}`)
+  if (height) transforms.push(`h_${height}`)
+
+  return `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/f_auto,${transforms.join(",")}/${publicId}`
 }
 
 /**

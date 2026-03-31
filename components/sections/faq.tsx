@@ -58,6 +58,11 @@ const faqItems: FAQItem[] = [
     `Please RSVP through the RSVP section on this invitation. Simply search for your name in the guest list and confirm your attendance. Due Date of final RSVP is on ${siteConfig.details.rsvp.deadline}. For any questions, please contact ${siteConfig.details.rsvp.contact} via Messenger`
   },
   {
+    question: "Are children allowed?",
+    answer:
+    "While we love your little ones, in the spirit of celebration and intimacy, we kindly request that this special day occasion be reserved for adults only. "
+  },
+  {
     question: "Can I sit anywhere at the reception?",
     answer:
       "Please don't. We kindly ask our guests to follow the seating arrangement prepared for the reception.\n\nA great deal of thought and care went into planning the seating so that everyone will feel comfortable and be seated with friends, family, or guests who share similar connections. Each seat was thoughtfully arranged with every guest in mind. Our reception team will gladly assist you in finding your assigned table.",
@@ -147,16 +152,16 @@ export function FAQ() {
       <Section id="faq" className="relative z-10 py-12 md:py-16 lg:py-20 overflow-hidden">
       {/* Corner decorations — soft brown tint */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
+        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(88%) saturate(1800%) hue-rotate(185deg) brightness(90%) contrast(105%)" }} />
       </div>
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1] scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
+        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1] scale-y-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(88%) saturate(1800%) hue-rotate(185deg) brightness(90%) contrast(105%)" }} />
       </div>
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
+        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(88%) saturate(1800%) hue-rotate(185deg) brightness(90%) contrast(105%)" }} />
       </div>
       <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)" }} />
+        <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-20 scale-x-[-1]" priority={false} style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(88%) saturate(1800%) hue-rotate(185deg) brightness(90%) contrast(105%)" }} />
       </div>
 
       {/* Section Header */}
@@ -164,10 +169,13 @@ export function FAQ() {
         <p className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] mb-2`} style={{ color: palette.softBrown }}>
           Answers for our celebration day
         </p>
-        <h2 className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1.5 sm:mb-3 md:mb-4`} style={{ color: palette.deep, textShadow: "0 2px 10px rgba(91,102,85,0.22)" }}>
+        <h2 
+                className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight"
+                style={{ color: 'var(--color-motif-deep)' }}
+                >
           Frequently Asked Questions
         </h2>
-        <p className={`${cormorant.className} text-xs sm:text-sm md:text-base font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`} style={{ color: palette.softBrown }}>
+        <p className="text-xs sm:text-sm md:text-base font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3" style={{ color: 'var(--color-motif-medium)' }}>
           Helpful notes so you can simply arrive, celebrate, and enjoy this new chapter with us.
         </p>
         <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">
@@ -212,7 +220,7 @@ export function FAQ() {
                       aria-controls={contentId}
                     >
                       <span
-                        className={`${cinzel.className} font-semibold pr-2 sm:pr-3 md:pr-4 text-xs sm:text-sm md:text-base lg:text-lg leading-snug sm:leading-relaxed transition-colors duration-200`}
+                        className="font-semibold pr-2 sm:pr-3 md:pr-4 text-xs sm:text-sm md:text-base lg:text-lg leading-snug sm:leading-relaxed transition-colors duration-200"
                         style={{ color: isOpen ? palette.softBrown : palette.deep }}
                       >
                         {item.question}

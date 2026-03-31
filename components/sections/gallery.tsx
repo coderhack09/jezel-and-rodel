@@ -181,7 +181,7 @@ export function Gallery() {
           Our Story in Frames
         </p>
         <h2
-          className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-2 sm:mb-3`}
+          className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight"
           style={{ color: 'var(--color-motif-deep)' }}
         >
           Gallery

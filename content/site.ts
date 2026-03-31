@@ -1,9 +1,9 @@
 export const siteConfig = {
   couple: {
-    bride: "Ma. Geraldine B. Divina", //Noenyl Bryle M. Gonzaga
-    brideNickname: "Era", //Ltryl
-    groom: "Vincent Ivan M. Ferrer", //Ltryl B. Benitez
-    groomNickname: "Vince",
+    bride: "Mary Rose Obelidor", //Noenyl Bryle M. Gonzaga
+    brideNickname: "Mary Rose", //Ltryl
+    groom: "Ramon Bricia", //Ltryl B. Benitez
+    groomNickname: "Ramon",
     monogram:"/monogram/monogram.png" ,//Ltryl
     backgroundMusic:"/background_music/Ed Sheeran - The Joker And The Queen (Lyrics) feat. Taylor Swift.mp3"
   },
@@ -19,67 +19,67 @@ export const siteConfig = {
     googleShare: "https://docs.google.com/spreadsheets/d/1NzySlITNcY__DZtbF57EVfVjvy5SCEw35adaofzaioQ/edit?usp=sharing",
   },
   wedding: {
-    date: "April 25, 2026",
+    date: "May 8,2026",
     time: "1:00 PM",
-    venue: "Sto. Niño De Taguig Parish",
+    venue: "Parroquia Nuestra Señora De La Porteria",
     tagline: "are getting married!",
     theme: "Our wedding palette is inspired by timeless elegance and warmth.Motif Colors: Champagne Gold, Soft Beige, Warm Soft Brown",
-    motif: "#BBCED5, #B9C3A8, #F3D8C5, #D1C4D4, #ECD8BA, #F4E8D8, #E1DCCF",
+    motif: "#001F4B, #04396D, #015B97, #6497B2, #B2CDE0",
   },
   details: {
     rsvp: {
-      deadline: "April 10, 2026.",
-      contact: "Ma. Geraldine B. Divina",
+      deadline: "May 1, 2026.",
+      contact: "Mary Rose Obelidor",
       phone: "to be announced",
     },
   },
   giftRegistry: {
     QR_1:{
     id: "Gcash",
-    src: "/QR/Gcash.png",
+    src: "/QR/pleaseProvideQR.png",
     label: "Gcash",
-    accountNumber: "Gcash: Ma. Geraldine B. Divina",
+    accountNumber: "Gcash: Mary Rose Obelidor",
     },
     QR_2:{
     id: "Landbank",
-    src: "/QR/LandBank.png",
+    src: "/QR/pleaseProvideQR.png",
     label: "Landbank",
-    accountNumber: "Landbank: Ma. Geraldine B. Divina",
+    accountNumber: "Landbank: Mary Rose Obelidor",
     }
   },
   ceremony: {
-    location: "Sto. Niño De Taguig Parish",
-    venue: "Sampaloc St. Zone 1. Signal Village, Taguig City",
-    date: "April 25, 2026",
-    day: "Saturday",
+    location: "Parroquia Nuestra Señora De La Porteria",
+    venue: "Sta. Maria Hill, San Roque, Daraga, Albay",
+    date: "May 8, 2026",
+    day: "Friday",
     time: "1:00 PM",
     entourageTime: "12:00 PM",
     guestsTime: "12:30 PM",
     image: "/Details/ceremony.png",
   },
   reception: {
-    location: "Mahogany Farm Events Place Farm Hall",
-    venue: "Samama Compound 1, Brgy. Ligid-Tipas, Taguig City",
-    date: "April 25, 2026",
-    time: "2 :30 PM",
-    image: ["/Details/reception2.png","/Details/reception1.png"],
+    location: "Socorro's The Venue",
+    venue: "Brgy. Sumlang, Camalig, Albay",
+    date: "May 8, 2026",
+    time: "5 :00 PM",
+    image: ["/Details/reception1.png","/Details/reception2.png"],
   },                          
   dressCode: {
       theme: "SEMI-FORMAL",
-    colors: "#BBCED5, #B9C3A8, #F3D8C5, #D1C4D4, #ECD8BA, #F4E8D8, #E1DCCF",
+    colors: "#001F4B, #04396D, #015B97, #6497B2, #B2CDE0",
     sponsors: {
       male: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
       female: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
-      notes: "Ninong: Barong and Black Slacks\n Ninang: Pilipiniana Inspired Gown",
+      notes: "Ninong: Barong and Black Slacks\n Ninang: Long Gown",
       photo: "/Details/sponsors.png",
-      palette: "#ECD8BA, #F4E8D8, #E1DCCF"
+      palette: "#001F4B, #04396D, #015B97, #6497B2, #B2CDE0",
     },
     guests: {
       gents: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
       ladies: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
-      notes: "You may glam up in theses shades.",
-      photo: "/Details/Guest.png",
-      palette: "#BBCED5, #B9C3A8, #F3D8C5, #D1C4D4, #ECD8BA, #F4E8D8, #E1DCCF",
+      notes: "Gentlemen: Suit and Tie\n Ladies: Long Gown",
+      photo: "/Details/guest.png",
+      palette: "#001F4B, #04396D, #015B97, #6497B2, #B2CDE0",
     },
     note: "We kindly request our guests to dress in attire following our wedding palette."
   },
@@ -112,7 +112,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
   },
   snapShare: {
     googleDriveLink: "https://drive.google.com/drive/folders/1OHc4gq4VHPequrPTjIrV6-YpZ5ctk9lo?usp=sharing",
-    hashtag: ["#VINCEgotMesmERAized","#heaVINCENTforERA"],
+    hashtag: ["#MonAmourRose"],
     instructions: "Please scan this QR Code, create a folder with your name and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
 }

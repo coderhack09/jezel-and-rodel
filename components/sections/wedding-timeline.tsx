@@ -152,17 +152,17 @@ export function WeddingTimeline() {
       {/* Header */}
       <div className="relative z-10 text-center mb-8 sm:mb-10 md:mb-12 px-3 sm:px-4">
         <p
-          className={`${cormorant.className} text-[0.85rem] sm:text-base md:text-lg tracking-[0.04em] mb-1 drop-shadow-sm`}
-          style={{ color: TIMELINE_TEXT }}
+          className="text-[10px] sm:text-xs md:text-sm font-semibold text-motif-medium uppercase tracking-[0.2em] mb-1 sm:mb-1.5 mt-4 sm:mt-6 md:mt-8"
+          style={{ color: 'var(--color-motif-cream)' }}
         >
           Wedding Day
         </p>
 
         <h2
-          className={`${cinzel.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[0.95] mb-2 drop-shadow`}
-          style={{ color: TIMELINE_TEXT }}
+          className="lighten-regular text-[40px] sm:text-[50px] md:text-[60px] lg:text-[70px] xl:text-[80px] leading-tight mb-2 drop-shadow"
+          style={{ color: 'var(--color-motif-cream)' }}
         >
-          timeline
+          Timeline
         </h2>
 
         <p

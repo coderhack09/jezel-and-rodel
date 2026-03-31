@@ -1,324 +1,476 @@
-'use client';
+"use client"
 
-import React, { useEffect, useState, useMemo } from 'react';
-import { siteConfig } from '@/content/site';
-import { CloudinaryImage } from '@/components/ui/cloudinary-image';
-
+import React, { useEffect, useState, useRef } from "react"
+import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import { siteConfig } from "@/content/site"
 
 interface LoadingScreenProps {
-  onComplete: () => void;
+  onComplete: () => void
 }
 
-// Countdown boxes with color photos - numbers show days, hours, minutes
-const COUNTDOWN_BOXES = [
-  { src: '/frontboxes/box1.jpg' },
-  { src: '/frontboxes/box2.jpg' },
-  { src: '/frontboxes/box3.jpg' },
-];
+/** Splits a date string like "May 8, 2026" into ["05", "08", "26"] */
+function getDateSegments(dateStr: string): string[] {
+  const d = new Date(dateStr)
+  return [
+    String(d.getMonth() + 1).padStart(2, "0"),
+    String(d.getDate()).padStart(2, "0"),
+    String(d.getFullYear()).slice(-2),
+  ]
+}
 
-const MAIN_BW_IMAGE = '/frontboxes/phone.jpg';
-const DESKTOP_BW_IMAGE = '/frontboxes/desktop.jpg';
-const STAGGER_DELAY_MS = 4000; // Each image appears every 4 seconds
-const BOX_TRANSITION_MS = 1200; // Slow, smooth transition
-const TOTAL_DURATION_MS = COUNTDOWN_BOXES.length * STAGGER_DELAY_MS + 3000;
+const GHOST_NUMBERS = getDateSegments(siteConfig.wedding.date)
+
+// ── Canvas particle system ──────────────────────────────────────────────────
+
+interface Particle {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  radius: number
+  opacity: number
+  twinklePhase: number
+  twinkleSpeed: number
+  colorIdx: number
+}
+
+/** Soft blues / whites matching the motif palette */
+const PARTICLE_COLORS = [
+  "255, 255, 255",  // pure white
+  "178, 205, 224",  // motif soft   #B2CDE0
+  "100, 151, 178",  // motif accent #6497B2
+  "244, 248, 251",  // motif cream  #F4F8FB
+]
+
+function createParticles(width: number, height: number): Particle[] {
+  const count = Math.min(45, Math.max(20, Math.floor((width * height) / 15000)))
+  return Array.from({ length: count }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    vx: (Math.random() - 0.5) * 0.25,
+    vy: -(Math.random() * 0.18 + 0.06),   // slow upward drift
+    radius: Math.random() * 1.8 + 0.4,
+    opacity: Math.random() * 0.4 + 0.15,
+    twinklePhase: Math.random() * Math.PI * 2,
+    twinkleSpeed: Math.random() * 0.012 + 0.004,
+    colorIdx: Math.floor(Math.random() * PARTICLE_COLORS.length),
+  }))
+}
+
+// ── Component ───────────────────────────────────────────────────────────────
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
-  const [fadeOut, setFadeOut] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [visibleBoxes, setVisibleBoxes] = useState<number[]>([]);
-  const [now, setNow] = useState(() => new Date());
+  const [fadeOut, setFadeOut]           = useState(false)
+  const [progress, setProgress]         = useState(0)
+  // phase gates: 0=hidden · 1=monogram · 2=names · 3=tagline · 4=date · 5=progress
+  const [phase, setPhase]               = useState(0)
 
-    // Live countdown: days, hours, minutes until wedding
-  const countdown = useMemo(() => {
-    const weddingDate = new Date(siteConfig.wedding.date);
-    const diff = weddingDate.getTime() - now.getTime();
-    if (diff <= 0) return { days: 0, hours: 0, minutes: 0 };
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    return { days, hours, minutes };
-  }, [now]);
+  const canvasRef     = useRef<HTMLCanvasElement>(null)
+  const animFrameRef  = useRef<number>(0)
+  const particlesRef  = useRef<Particle[]>([])
 
-  const countdownText = useMemo(() => {
-    const { days } = countdown;
-    if (days === 0) return 'TODAY IS THE DAY';
-    if (days === 1) return 'ONE DAY TO GO';
-    if (days >= 28 && days <= 31) return 'ONE MONTH TO GO';
-    if (days >= 58 && days <= 62) return 'TWO MONTHS TO GO';
-    if (days >= 88 && days <= 93) return 'THREE MONTHS TO GO';
-    if (days >= 118 && days <= 123) return 'FOUR MONTHS TO GO';
-    if (days >= 148 && days <= 153) return 'FIVE MONTHS TO GO';
-    return `${days} DAYS TO GO`;
-  }, [countdown.days]);
+  const TOTAL_LOAD_MS = 12000
+  const FADE_MS       = 700
 
-  // Wedding date derived from siteConfig.wedding.date
-  const debutDateObj = new Date(siteConfig.wedding.date);
-  const debutMonthName = debutDateObj
-    .toLocaleString('default', { month: 'short' })
-    .toUpperCase(); // e.g. "MAY"
-  const debutDay = String(debutDateObj.getDate()).padStart(2, '0'); // e.g. "09"
-  const debutYear = String(debutDateObj.getFullYear()); // e.g. "2026"
-
-  const countdownNumbers = [debutMonthName, debutDay, debutYear]; // e.g. May, 09, 2026
-  const countdownLabels = ['Month', 'Day', 'Year']; // should return Month, Day, Year
-
+  // ── Canvas particle animation ────────────────────────────────────────────
   useEffect(() => {
-    const t = setInterval(() => setNow(new Date()), 60000); // update every minute
-    return () => clearInterval(t);
-  }, []);
+    const canvas = canvasRef.current
+    if (!canvas) return
 
-  useEffect(() => {
-    const t = setInterval(() => setNow(new Date()), 60000); // update every minute
-    return () => clearInterval(t);
-  }, []);
+    const resize = () => {
+      canvas.width  = window.innerWidth
+      canvas.height = window.innerHeight
+      particlesRef.current = createParticles(canvas.width, canvas.height)
+    }
+    resize()
+    window.addEventListener("resize", resize)
 
-  useEffect(() => {
-    const timers: NodeJS.Timeout[] = [];
-    COUNTDOWN_BOXES.forEach((_, i) => {
-      timers.push(
-        setTimeout(() => setVisibleBoxes((prev) => [...prev, i]), i * STAGGER_DELAY_MS)
-      );
-    });
-    return () => timers.forEach(clearTimeout);
-  }, []);
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
 
-  useEffect(() => {
-    const startTime = Date.now();
-    const progressInterval = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const pct = Math.min(100, (elapsed / TOTAL_DURATION_MS) * 100);
-      setProgress(pct);
-    }, 50);
+    let running = true
 
-    const timer = setTimeout(() => {
-      setProgress(100);
-      setFadeOut(true);
-      setTimeout(onComplete, 500);
-    }, TOTAL_DURATION_MS);
+    const draw = () => {
+      if (!running) return
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      particlesRef.current.forEach((p) => {
+        // Gentle twinkle
+        p.twinklePhase += p.twinkleSpeed
+        const twinkle   = (Math.sin(p.twinklePhase) + 1) * 0.5
+        const alpha     = p.opacity * (0.3 + twinkle * 0.7)
+        const color     = PARTICLE_COLORS[p.colorIdx]
+        const blurR     = p.radius * 3.5
+
+        // Soft glow circle via radial gradient
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, blurR)
+        g.addColorStop(0,   `rgba(${color}, ${alpha})`)
+        g.addColorStop(0.4, `rgba(${color}, ${alpha * 0.45})`)
+        g.addColorStop(1,   `rgba(${color}, 0)`)
+
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, blurR, 0, Math.PI * 2)
+        ctx.fillStyle = g
+        ctx.fill()
+
+        // Drift
+        p.x += p.vx
+        p.y += p.vy
+
+        // Wrap
+        const { width, height } = canvas
+        if (p.y < -20)          { p.y = height + 10; p.x = Math.random() * width }
+        if (p.x < -20)            p.x = width + 20
+        if (p.x > width + 20)     p.x = -20
+      })
+
+      animFrameRef.current = requestAnimationFrame(draw)
+    }
+
+    draw()
 
     return () => {
-      clearTimeout(timer);
-      clearInterval(progressInterval);
-    };
-  }, [onComplete]);
+      running = false
+      cancelAnimationFrame(animFrameRef.current)
+      window.removeEventListener("resize", resize)
+    }
+  }, [])
 
-  const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`;
-  const hashtag = siteConfig.snapShare.hashtag[0];
-  const productionCredit = '';
+  // ── Staggered content reveal ─────────────────────────────────────────────
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 150),
+      setTimeout(() => setPhase(2), 460),
+      setTimeout(() => setPhase(3), 760),
+      setTimeout(() => setPhase(4), 990),
+      setTimeout(() => setPhase(5), 1220),
+    ]
+    return () => timers.forEach(clearTimeout)
+  }, [])
 
+  // ── Progress counter ─────────────────────────────────────────────────────
+  useEffect(() => {
+    let rafId = 0
+    const start        = performance.now()
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
 
-//   Background	#F5EFE6
-// --color-motif-deep:    #9C5A63; /* deeper rose */
-// --color-motif-medium:  #D88C9A; /* muted pink */
-// --color-motif-accent:  #F2B5B5; /* pastel pink */
-// --color-motif-cream:   #FFF8F5; /* creamy white */
-// --color-motif-soft:    #F9E4E4; /* soft background */
-// --color-motif-silver:  #CFC7C7; /* refined gray */
-  const palette = {
-    deep: '--color-motif-deep',
-    medium: '--color-motif-medium',
-    accent: '--color-motif-accent',
-    cream: '--color-motif-cream',
-    soft: '--color-motif-soft',
-    silver: '--color-motif-silver',
-  };
+    const tick = (now: number) => {
+      const t    = Math.min(1, (now - start) / TOTAL_LOAD_MS)
+      const next = Math.round(easeOutCubic(t) * 100)
+      setProgress((prev) => (next > prev ? next : prev))
+      if (t < 1) rafId = requestAnimationFrame(tick)
+    }
+    rafId = requestAnimationFrame(tick)
 
+    const fadeTimer = setTimeout(() => setFadeOut(true), TOTAL_LOAD_MS - FADE_MS)
+    const doneTimer = setTimeout(() => { setProgress(100); onComplete() }, TOTAL_LOAD_MS)
+
+    return () => {
+      cancelAnimationFrame(rafId)
+      clearTimeout(fadeTimer)
+      clearTimeout(doneTimer)
+    }
+  }, [onComplete])
+
+  // Helper: CSS transition classes based on phase gate
+  const vis = (minPhase: number) =>
+    phase >= minPhase
+      ? "opacity-100 translate-y-0 transition-all duration-700 ease-out"
+      : "opacity-0 translate-y-5 transition-all duration-700 ease-out"
+
+  // ── Render ───────────────────────────────────────────────────────────────
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col overflow-hidden transition-opacity duration-500 ${
-        fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden transition-opacity duration-700 ease-out ${
+        fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
+      role="progressbar"
+      aria-valuenow={progress}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label="Loading invitation"
     >
-      {/* Background image with overlay */}
-      <div className="absolute inset-0">
-        {/* Mobile background */}
-        <CloudinaryImage
-          src={MAIN_BW_IMAGE}
-          alt=""
-          fill
-          className="object-cover object-center md:hidden"
-          sizes="100vw"
-          priority
-        />
-        {/* Desktop background (md and above) */}
-        <CloudinaryImage
-          src={DESKTOP_BW_IMAGE}
-          alt=""
-          fill
-          className="object-cover object-center hidden md:block"
-          sizes="100vw"
-          priority
-        />
-        {/* Gradient overlay for readability and warmth */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(180deg, var(--color-motif-deep)40 0%, transparent 25%, transparent 75%, var(--color-motif-deep)55 100%)`,
-          }}
-        />
-      </div>
+      {/* ── Layer 1: Deep navy gradient base ── */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(155deg, #000F26 0%, #011D42 40%, #013560 70%, #01407A 100%)",
+        }}
+      />
 
-      <div className="relative flex flex-col flex-1 min-h-0">
-        {/* Top: headline + hashtag + countdown (readable over photo, no container) */}
-        <div className="flex flex-col items-center justify-center w-full pt-12 sm:pt-16 md:pt-24 px-4 sm:px-6 flex-shrink-0">
-          <div className="w-full max-w-lg mx-auto">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-              <span
-                className="hidden sm:block h-px w-12 flex-shrink-0"
-                style={{ backgroundColor: 'var(--color-motif-cream)' }}
-              />
-              <p className="text-center">
-                <span
-                  className="inline-block text-[10px] sm:text-xs tracking-[0.28em] sm:tracking-[0.36em] font-[family-name:'Cinzel', serif] uppercase px-3 py-1.5 rounded-full backdrop-blur-sm border"
-                  style={{
-                    color: 'var(--color-motif-deep)',
-                    backgroundColor: 'var(--color-motif-cream)',
-                    borderColor: 'var(--color-motif-deep)',
-                    textShadow: '0 1px 0 palette.soft',
-                  }}
-                >
-                  Your invitation is on its way
-                </span>
-              </p>
-              <span
-                className="hidden sm:block h-px w-12 flex-shrink-0"
-                style={{ backgroundColor: 'var(--color-motif-accent)' }}
-              />
-            </div>
+      {/* ── Layer 2: Soft radial glow at center ── */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 50% at 50% 52%, rgba(1, 91, 151, 0.42) 0%, transparent 75%)",
+        }}
+      />
 
-            <p className="text-center mb-4 sm:mb-5">
-              <span
-                className="inline-block text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-[family-name:'Cinzel', serif] px-3 py-1.5 rounded-full backdrop-blur-sm border"
-                style={{
-                  color: 'var(--color-motif-deep)',
-                  backgroundColor: 'var(--color-motif-cream)',
-                  borderColor: 'var(--color-motif-deep)',
-                  textShadow: '0 1px 0 palette.soft',
-                }}
-              >
-                {hashtag}
-              </span>
-            </p>
+      {/* ── Layer 3: Canvas particle field ── */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 pointer-events-none"
+        style={{ mixBlendMode: "screen" }}
+        aria-hidden
+      />
 
-            <h2 className="text-center">
-              <span
-                className="inline-block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[0.08em] sm:tracking-[0.12em] uppercase max-w-md mx-auto leading-tight px-2"
-                style={{
-                  fontFamily: '"Cinzel", serif',
-                  color: 'var(--color-motif-cream)',
-                  textShadow:
-                    '0 2px 14px rgba(0,0,0,0.55), 0 0 22px var(--color-motif-accent), 0 0 44px var(--color-motif-deep)',
-                }}
-              >
-                {countdownText}
-              </span>
-            </h2>
-          </div>
-        </div>
+      {/* ── Layer 4: Edge vignette for depth ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 85% 80% at 50% 50%, transparent 35%, rgba(0, 8, 20, 0.62) 100%)",
+        }}
+      />
 
-        {/* Spacer - lets B&W image dominate (upper 2/3) */}
-        <div className="flex-1 min-h-[12vh]" />
-
-        {/* Middle: Three color countdown boxes - staggered reveal */}
-        <div className="flex items-stretch justify-center gap-3 sm:gap-4 md:gap-6 px-3 sm:px-4 py-4 flex-shrink-0">
-          {COUNTDOWN_BOXES.map((item, i) => {
-            const isVisible = visibleBoxes.includes(i);
-            return (
-              <div
-                key={i}
-                className="relative flex-1 max-w-[28vw] sm:max-w-[140px] md:max-w-[160px] aspect-[3/4] overflow-hidden rounded-3xl border border-white/40 bg-white/10 backdrop-blur-md shadow-[0_18px_45px_rgba(0,0,0,0.35)]"
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible
-                    ? 'translateY(0) scale(1)'
-                    : 'translateY(28px) scale(0.94)',
-                  transition: `opacity ${BOX_TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${BOX_TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`,
-                }}
-              >
-                <CloudinaryImage
-                  src={item.src}
-                  alt={coupleNames}
-                  fill
-                  className="object-cover scale-105"
-                  sizes="(max-width: 640px) 28vw, 160px"
-                />
-                {/* Soft gradient overlay for readable number */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `linear-gradient(145deg, ${palette.deep}66 0%, transparent 40%, ${palette.accent}aa 100%)`,
-                  }}
-                />
-
-                {/* Bold debut date number + label - centered at bottom */}
-                <div className="absolute bottom-2 inset-x-0 sm:bottom-3 flex flex-col items-center">
-                  <span
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black select-none leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
-                    style={{
-                      fontFamily: 'var(--font-granika), sans-serif',
-                      color: 'var(--color-motif-soft)',
-                    }}
-                  >
-                    {countdownNumbers[i]}
-                  </span>
-                  <span className="text-[8px] sm:text-[9px] tracking-widest uppercase mt-0.5 text-[rgba(255,246,248,0.85)]">
-                    {countdownLabels[i]}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Bottom: Names + production credit + progress bar */}
-        <div className="flex flex-col items-center justify-center w-full py-6 sm:py-8 px-4 flex-shrink-0">
-          <p
-            className="text-center text-sm sm:text-base tracking-[0.18em] uppercase text-[family-name:var(--font-crimson)] mb-2"
-            style={{ color: 'var(--color-motif-cream)' }}
-          >
-            Almost ready for
-          </p>
-          <div
-            className="text-center text-2xl sm:text-3xl md:text-4xl mb-2"
+      {/* ── Layer 5: Ghost wedding-date watermark (right side) ── */}
+      <div
+        className="absolute inset-0 pointer-events-none flex flex-col items-end justify-center pr-4 sm:pr-8 md:pr-12 lg:pr-16 select-none"
+        aria-hidden
+      >
+        {GHOST_NUMBERS.map((num, i) => (
+          <span
+            key={`ghost-${num}-${i}`}
+            className="font-bold leading-[0.82]"
             style={{
               fontFamily: '"Cinzel", serif',
-              color: 'var(--color-motif-cream)',
-              textShadow: '0 2px 10px var(--color-motif-deep)35',
+              fontSize: "clamp(5rem, 14vw, 12rem)",
+              color: "rgba(100, 151, 178, 0.055)",
+              letterSpacing: "-0.04em",
+              opacity: phase >= 2 ? 1 : 0,
+              transition: `opacity 1.6s ease-out ${i * 150}ms`,
             }}
           >
-            {coupleNames}
-          </div>
-          {productionCredit && (
-            <p
-              className="text-[10px] sm:text-xs font-sans tracking-wider"
-              style={{ color: 'var(--color-motif-soft)' }}
-            >
-              {productionCredit}
-            </p>
-          )}
-          {/* Preparing message + progress bar */}
-          <p
-            className="text-xs sm:text-sm tracking-[0.22em] mt-6 mb-3 font-[family-name:var(--font-crimson)] uppercase font-semibold"
-            style={{ color: 'var(--color-motif-cream)', textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}
-          >
-            Crafting your invitation experience
-          </p>
-          <div className="w-full max-w-xs mx-auto">
+            {num}
+          </span>
+        ))}
+      </div>
+
+      {/* ── Main content ── */}
+      <div className="relative z-10 w-full max-w-sm mx-auto px-6 sm:px-8 text-center">
+
+        {/* Monogram + glow ring */}
+        <div
+          className={`mb-8 flex justify-center ${
+            phase >= 1
+              ? "opacity-100 translate-y-0 scale-100 transition-all duration-700 ease-out"
+              : "opacity-0 -translate-y-4 scale-95 transition-all duration-700 ease-out"
+          }`}
+        >
+          <div className="relative flex items-center justify-center">
+            {/* Soft pulsing glow */}
             <div
-              className="h-1.5 rounded-full overflow-hidden"
-              style={{ backgroundColor: 'rgba(255,255,255,0.25)' }}
+              className="absolute rounded-full animate-loader-glow"
+              style={{
+                width: "176px",
+                height: "176px",
+                background:
+                  "radial-gradient(circle, rgba(100, 151, 178, 0.22) 0%, transparent 65%)",
+              }}
+            />
+            {/* Thin ring accent */}
+            <div
+              className="absolute rounded-full"
+              style={{
+                width: "96px",
+                height: "96px",
+                border: "1px solid rgba(178, 205, 224, 0.14)",
+              }}
+            />
+            <CloudinaryImage
+              src="/monogram/monogram.png"
+              alt="Monogram"
+              width={240}
+              height={240}
+              className="relative h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain object-center brightness-0 invert"
+              style={{ opacity: 0.88 }}
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Year ornament rule */}
+        <div className={`flex items-center gap-3 justify-center mb-5 ${vis(2)}`}>
+          <div
+            className="h-px flex-1"
+            style={{ background: "linear-gradient(to left, rgba(178, 205, 224, 0.28), transparent)" }}
+          />
+          <span
+            style={{
+              fontFamily: '"Cinzel", serif',
+              fontSize: "0.5rem",
+              letterSpacing: "0.45em",
+              textTransform: "uppercase",
+              color: "rgba(178, 205, 224, 0.42)",
+            }}
+          >
+            Est. {new Date(siteConfig.wedding.date).getFullYear()}
+          </span>
+          <div
+            className="h-px flex-1"
+            style={{ background: "linear-gradient(to right, rgba(178, 205, 224, 0.28), transparent)" }}
+          />
+        </div>
+
+        {/* Couple names — Lighten font */}
+        <h1
+          className={`${vis(2)}`}
+          style={{ transitionDelay: "60ms" }}
+        >
+          <span
+            className="lighten-regular block"
+            style={{
+              fontSize: "clamp(2.6rem, 9vw, 4.2rem)",
+              color: "#EEF4FA",
+              letterSpacing: "0.13em",
+              textShadow: "0 2px 32px rgba(100, 151, 178, 0.38)",
+            }}
+          >
+            {siteConfig.couple.groomNickname.trim()}
+          </span>
+
+          <span
+            className="block my-1"
+            style={{
+              fontFamily: "var(--font-imperial-script), cursive",
+              fontSize: "clamp(1.55rem, 5vw, 2.35rem)",
+              color: "rgba(178, 205, 224, 0.62)",
+              fontWeight: 400,
+            }}
+          >
+            &amp;
+          </span>
+
+          <span
+            className="lighten-regular block"
+            style={{
+              fontSize: "clamp(2.6rem, 9vw, 4.2rem)",
+              color: "#EEF4FA",
+              letterSpacing: "0.13em",
+              textShadow: "0 2px 32px rgba(100, 151, 178, 0.38)",
+            }}
+          >
+            {siteConfig.couple.brideNickname.trim()}
+          </span>
+        </h1>
+
+        {/* Diamond divider */}
+        <div
+          className={`flex items-center gap-3 justify-center mt-5 mb-2 ${vis(3)}`}
+        >
+          <div
+            className="h-px flex-1"
+            style={{ background: "linear-gradient(to left, rgba(178, 205, 224, 0.22), transparent)" }}
+          />
+          <span
+            style={{
+              color: "rgba(178, 205, 224, 0.38)",
+              fontSize: "5px",
+              letterSpacing: "0.25em",
+            }}
+          >
+            ◆
+          </span>
+          <div
+            className="h-px flex-1"
+            style={{ background: "linear-gradient(to right, rgba(178, 205, 224, 0.22), transparent)" }}
+          />
+        </div>
+
+        {/* Supporting line */}
+        <p
+          className={`${vis(3)}`}
+          style={{
+            fontFamily: '"Great Vibes", cursive',
+            fontSize: "clamp(1.3rem, 4vw, 1.7rem)",
+            color: "rgba(178, 205, 224, 0.65)",
+            transitionDelay: "80ms",
+          }}
+        >
+          Together with their families
+        </p>
+
+        {/* Wedding date */}
+        <p
+          className={`mt-3 mb-9 leading-none ${vis(4)}`}
+          style={{
+            fontFamily: '"Cinzel", serif',
+            fontSize: "clamp(0.52rem, 1.4vw, 0.62rem)",
+            letterSpacing: "0.42em",
+            textTransform: "uppercase",
+            color: "rgba(178, 205, 224, 0.42)",
+          }}
+          aria-label={`${siteConfig.ceremony.day}, ${siteConfig.wedding.date} · ${siteConfig.ceremony.time}`}
+        >
+          <span>{siteConfig.ceremony.day}</span>
+          <span className="mx-2" style={{ opacity: 0.5 }} aria-hidden>·</span>
+          <span className="tabular-nums">{siteConfig.wedding.date}</span>
+          <span className="mx-2" style={{ opacity: 0.5 }} aria-hidden>·</span>
+          <span className="tabular-nums">{siteConfig.ceremony.time}</span>
+        </p>
+
+        {/* Progress section */}
+        <div className={`${vis(5)}`}>
+          <p
+            style={{
+              fontFamily: '"Great Vibes", cursive',
+              fontSize: "clamp(1.2rem, 3.5vw, 1.55rem)",
+              color: "rgba(178, 205, 224, 0.5)",
+              marginBottom: "14px",
+            }}
+          >
+            Preparing your invitation
+          </p>
+
+          {/* Hairline progress bar with shimmer */}
+          <div
+            className="w-full max-w-[200px] mx-auto relative"
+            style={{ height: "1px" }}
+            role="presentation"
+          >
+            {/* Track */}
+            <div
+              className="absolute inset-0 rounded-full"
+              style={{ backgroundColor: "rgba(100, 151, 178, 0.15)" }}
+            />
+            {/* Filled portion */}
+            <div
+              className="absolute inset-y-0 left-0 rounded-full overflow-hidden"
+              style={{
+                width: `${Math.max(progress, 2)}%`,
+                transition: "width 200ms linear",
+                background:
+                  "linear-gradient(to right, rgba(100, 151, 178, 0.45), rgba(244, 248, 251, 0.88))",
+              }}
             >
+              {/* Travelling shimmer sweep */}
               <div
-                className="h-full rounded-full transition-all duration-300 ease-out shadow-[0_0_12px_rgba(255,255,255,0.7)]"
+                className="absolute inset-y-0 animate-loader-shimmer"
                 style={{
-                  width: `${progress}%`,
-                  backgroundColor: 'var(--color-motif-accent)',
+                  width: "50px",
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.65) 50%, transparent 100%)",
                 }}
               />
             </div>
           </div>
+
+          {/* Percentage counter */}
+          <p
+            className="tabular-nums mt-4"
+            style={{
+              fontFamily: '"Cinzel", serif',
+              fontSize: "clamp(0.52rem, 1.4vw, 0.62rem)",
+              letterSpacing: "0.35em",
+              color: "rgba(178, 205, 224, 0.38)",
+            }}
+            aria-live="polite"
+          >
+            {progress}%
+          </p>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

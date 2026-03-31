@@ -148,7 +148,7 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
                 <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
               </div>
             </div>
-            <h3 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-bold mb-1.5 sm:mb-2`} style={{ color: MSG_COLOR }}>
+            <h3 className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight" style={{ color: MSG_COLOR }}>
               Share Your Love
             </h3>
             <p className={`${cormorant.className} text-[10px] sm:text-xs md:text-sm`} style={{ color: MSG_COLOR, opacity: 0.85 }}>
@@ -327,12 +327,12 @@ export function Messages() {
       className="relative overflow-hidden"
     >
       {/* Corner floral decoration - white (same as welcome/countdown) */}
-      <div className="absolute left-0 top-0 z-0 pointer-events-none">
+      {/* <div className="absolute left-0 top-0 z-0 pointer-events-none">
         <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-60 scale-y-[-1]" priority={false} style={{ filter: DECO_FILTER }} />
-      </div>
-      <div className="absolute right-0 top-0 z-0 pointer-events-none">
+      </div> */}
+      {/* <div className="absolute right-0 top-0 z-0 pointer-events-none">
         <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-60 scale-x-[-1] scale-y-[-1]" priority={false} style={{ filter: DECO_FILTER }} />
-      </div>
+      </div> */}
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
         <CloudinaryImage src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] opacity-60" priority={false} style={{ filter: DECO_FILTER }} />
       </div>
@@ -347,7 +347,7 @@ export function Messages() {
             <p className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-motif-cream`}>
               Messages for {coupleDisplayName}
             </p>
-            <h2 className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-motif-cream`}>
+            <h2 className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight" style={{ color: 'var(--color-motif-cream)' }}>
               Love notes &amp; prayers
             </h2>
           </div>
@@ -383,7 +383,7 @@ export function Messages() {
               </div>
               <div className="absolute -inset-2 rounded-full bg-motif-deep/20 blur-md opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <h3 className={`${cinzel.className} text-lg sm:text-xl md:text-2xl font-bold mb-1.5 sm:mb-2 md:mb-3 text-motif-cream`}>
+            <h3 className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight" style={{ color: 'var(--color-motif-cream)' }}>
               Messages from Loved Ones
             </h3>
             <p className={`${cormorant.className} text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-2 sm:px-4 text-motif-cream`}>

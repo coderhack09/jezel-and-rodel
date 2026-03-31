@@ -31,7 +31,10 @@ export function Registry() {
           <div className="w-8 sm:w-12 md:w-16 h-px bg-motif-cream/60" />
         </div>
         
-        <h2 className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-motif-cream mb-2 sm:mb-3 md:mb-4">
+        <h2 
+          className="lighten-regular text-[40px] sm:text-[50px] md:text-[60px] lg:text-[70px] xl:text-[80px] leading-tight text-motif-cream mb-2 sm:mb-3 md:mb-4"
+          style={{ color: 'var(--color-motif-cream)' }}
+        >
           Gift Guide
         </h2>
         
@@ -50,8 +53,10 @@ export function Registry() {
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
   {/* GCASH QR toggle */}
   <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 mb-6 sm:mb-8">
-        <h3 className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl font-normal text-motif-cream text-center mb-4 sm:mb-6`}>
-          GCASH
+        <h3 className="lighten-regular text-[24px] sm:text-[30px] md:text-[35px] lg:text-[40px] xl:text-[45px] leading-tight text-motif-cream text-center mb-4 sm:mb-6"
+        style={{ color: 'var(--color-motif-cream)' }}
+        >
+          {activeItem?.label}
         </h3>
         <div className="flex flex-col items-center gap-4 sm:gap-6">
           {/* Toggle buttons */}

@@ -401,8 +401,8 @@ export function Entourage() {
         </p>
 
         <h2
-          className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1 sm:mb-2 md:mb-2.5`}
-          style={{ color: 'var(--color-motif-deep)', textShadow: "0 2px 10px rgba(var(--color-motif-deep), 0.22)" }}
+          className="lighten-regular text-[40px] sm:text-[50px] md:text-[60px] lg:text-[70px] xl:text-[80px] leading-tight mb-1 sm:mb-2 md:mb-2.5"
+          style={{ color: 'var(--color-motif-deep)' }}
         >
           Wedding Entourage
         </h2>

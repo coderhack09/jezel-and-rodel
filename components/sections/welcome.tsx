@@ -32,44 +32,44 @@ export function Welcome() {
     >
       {/* Corner floral decoration - same as countdown section */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        {/* <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-60 scale-y-[-1]"
           priority={false}
-        />
+        /> */}
       </div>
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        {/* <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-60 scale-x-[-1] scale-y-[-1]"
           priority={false}
-        />
+        /> */}
       </div>
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        {/* <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-60"
           priority={false}
-        />
+        /> */}
       </div>
       <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        {/* <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
           height={300}
           className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-60 scale-x-[-1]"
           priority={false}
-        />
+        /> */}
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
@@ -91,7 +91,7 @@ export function Welcome() {
               {brideName} &amp; {groomName}
             </p>
             <h2
-              className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[2.9rem]`}
+              className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight"
               style={{ color: 'var(--color-motif-deep)' }}
             >
               Welcome to our forever

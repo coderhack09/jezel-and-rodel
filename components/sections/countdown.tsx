@@ -174,7 +174,7 @@ export function Countdown() {
     >
       {/* Corner floral decoration - white */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        {/* <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -182,10 +182,10 @@ export function Countdown() {
           className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-y-[-1]"
           priority={false}
           style={{ filter: "brightness(0) invert(1)" }}
-        />
+        /> */}
       </div>
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        {/* <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -193,10 +193,10 @@ export function Countdown() {
           className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-x-[-1] scale-y-[-1]"
           priority={false}
           style={{ filter: "brightness(0) invert(1)" }}
-        />
+        /> */}
       </div>
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        {/* <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -204,10 +204,10 @@ export function Countdown() {
           className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60"
           priority={false}
           style={{ filter: "brightness(0) invert(1)" }}
-        />
+        /> */}
       </div>
       <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        {/* <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -215,7 +215,7 @@ export function Countdown() {
           className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-x-[-1]"
           priority={false}
           style={{ filter: "brightness(0) invert(1)" }}
-        />
+        /> */}
       </div>
       
       {/* Monogram - centered at top */}
@@ -250,8 +250,11 @@ export function Countdown() {
           <div className="w-8 sm:w-12 md:w-16 h-px bg-motif-cream/25" />
         </div>
         
-        <h2 className={`${cinzelRegular.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-motif-cream mb-2 sm:mb-3 md:mb-4`}>
-          Counting down to our forever
+        <h2
+           className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight"
+           style={{ color: 'var(--color-motif-cream)' }}
+          >
+          Counting down to our Forever
         </h2>
         
         {/* <p className="text-xs sm:text-sm md:text-base lg:text-lg text-motif-cream/95 font-light max-w-xl mx-auto leading-relaxed px-2">

@@ -40,7 +40,7 @@ const BOOK_DARK = "var(--color-motif-deep)"      // headings / names
 const BOOK_DARKER = "var(--color-motif-deep)"  // body text (steel blue depth)
 const BOOK_CREAM = "var(--color-motif-cream)"    // card surfaces
 const DECO_FILTER_BOOK =
-  "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)"
+  "brightness(0) saturate(100%) invert(22%) sepia(88%) saturate(1800%) hue-rotate(185deg) brightness(90%) contrast(105%)"
 
 export function BookOfGuests() {
   const [totalGuests, setTotalGuests] = useState(0)
@@ -245,8 +245,8 @@ export function BookOfGuests() {
           Our Cherished Guests
         </p>
         <h2
-          className={`${cinzel.className} text-xl sm:text-3xl md:text-4xl lg:text-5xl mb-1 sm:mb-2 md:mb-3`}
-          style={{ color: BOOK_DARK }}
+          className="lighten-regular text-[40px] sm:text-[50px] md:text-[60px] lg:text-[70px] xl:text-[80px] leading-tight mb-1 sm:mb-2 md:mb-3"
+          style={{ color: 'var(--color-motif-deep)' }}
         >
           Book of Guests
         </h2>
