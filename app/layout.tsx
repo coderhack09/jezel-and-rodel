@@ -6,10 +6,10 @@ import "./globals.css"
 import { siteConfig } from "@/content/site"
 import { ClientLayout } from "@/components/client-layout"
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ramon-and-maryrose.weddinginvitationrsvp.com/"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jennifer-and-patrick.weddinginvitationrsvp.com/"
 const canonicalUrl = siteUrl.replace(/\/$/, "")
-const desktopHero = "/Details/ImagePreview.jpeg"
-const mobileHero = "/Details/ImagePreview.jpeg"
+const desktopHero = "/Details/LinkPreview.jpg"
+const mobileHero = "/Details/LinkPreview.jpg"
 
 // Hardcoded Cloudinary URL — image is already uploaded and always accessible via CDN.
 // f_jpg forces JPEG so all OG scrapers (iMessage, Viber, Facebook, etc.) can display it.

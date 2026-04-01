@@ -6,9 +6,6 @@ import { CloudinaryImage } from "@/components/ui/cloudinary-image"
 type ImageItem = {
   src: string
   category: "desktop" | "mobile" | "front" | "gallery"
-  width: number
-  height: number
-  orientation: "portrait" | "landscape"
 }
 
 export default function MasonryGallery({ images }: { images: ImageItem[] }) {
@@ -106,19 +103,15 @@ export default function MasonryGallery({ images }: { images: ImageItem[] }) {
             >
               ‹
             </button>
-            <div className="relative max-h-[80vh] w-auto">
+            <div className="relative w-[90vw] max-w-4xl h-[80vh]">
               <CloudinaryImage
                 src={filtered[lightboxIdx].src}
                 alt=""
-                width={filtered[lightboxIdx].width}
-                height={filtered[lightboxIdx].height}
-                className="max-h-[80vh] w-auto rounded-xl shadow-2xl border border-[#606C60]/30 object-contain"
+                fill
+                sizes="90vw"
+                className="rounded-xl shadow-2xl border border-[#606C60]/30 object-contain"
                 quality={95}
                 priority={true}
-                style={{
-                  imageRendering: 'high-quality',
-                  WebkitImageRendering: 'high-quality',
-                }}
               />
             </div>
             <button

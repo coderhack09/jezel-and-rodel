@@ -87,10 +87,10 @@ export default function Home() {
               {appState === AppState.DETAILS && <div className="h-12 sm:h-14 md:h-16" aria-hidden />}
               <MainHero />
               <Welcome />
-              {/* <CoupleVideo />  */}
-              {/* <LoveStory /> */}
+              <CoupleVideo /> 
+              <LoveStory />
               <Countdown /> 
-              {/* <Gallery /> */}
+              <Gallery />
 
               <Details />
               {/* <GuestInformation /> */}

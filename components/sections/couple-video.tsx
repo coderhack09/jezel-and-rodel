@@ -28,9 +28,9 @@ export function CoupleVideo() {
   const playerRef = useRef<any>(null)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const { pauseMusic, resumeMusic } = useAudio()
-  // https://youtube.com/shorts/TLCE9Xee2-s
+  // https://youtu.be/neG0dhj4PXU
   // YouTube video ID
-  const videoId = "TLCE9Xee2-s"
+  const videoId = "neG0dhj4PXU"
 
   // Load YouTube IFrame API
   useEffect(() => {
@@ -173,8 +173,8 @@ export function CoupleVideo() {
         </div>
         
         <h2
-          className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal text-motif-cream mb-1.5 sm:mb-2 md:mb-3 lg:mb-4 drop-shadow-lg`}
-          style={{ textShadow: "0 4px 18px rgba(236,229,219,0.3)" }}
+         className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight"
+         style={{ color: 'var(--color-motif-cream)' }}
         >
           A Glimpse of Our Love
         </h2>
@@ -243,7 +243,7 @@ export function CoupleVideo() {
                   >
                     {/* Custom poster image */}
                     <CloudinaryImage
-                      src="/desktop-background/couple-12.webp"
+                      src="/desktop-background/couple (27).jpg"
                       alt="Video thumbnail"
                       fill
                       className="object-cover transform group-hover:scale-105 transition-transform duration-500"

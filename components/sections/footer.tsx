@@ -188,7 +188,12 @@ export function Footer() {
                 <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-md" style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-deep) 9%, transparent)' }}>
                   <Heart className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 flex-shrink-0" style={{ color: palette.deep }} fill="var(--color-motif-deep)" />
                 </div>
-                <h3 className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal`} style={{ color: palette.deep }}>{groomNickname} & {brideNickname}</h3>
+                <h3 
+                 className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight"
+                 style={{ color: 'var(--color-motif-deep)' }}
+                >
+                  {groomNickname} & {brideNickname}
+                  </h3>
               </div>
               <div className="space-y-2.5 sm:space-y-3 md:space-y-4">
                 <div className={`flex items-center gap-2 sm:gap-2.5 md:gap-3 ${cormorant.className}`} style={{ color: palette.softBrown }}>

@@ -1,9 +1,9 @@
 export const siteConfig = {
   couple: {
-    bride: "Mary Rose Bricia", //Noenyl Bryle M. Gonzaga
-    brideNickname: "Mary Rose", //Ltryl
-    groom: "Ramon Obelidor", //Ltryl B. Benitez
-    groomNickname: "Ramon",
+    bride: "Jennifer Vidal ", //Noenyl Bryle M. Gonzaga
+    brideNickname: "Jennifer", //Ltryl
+    groom: "Patrick Capulong", //Ltryl B. Benitez
+    groomNickname: "Patrick",
     monogram:"/monogram/monogram.png" ,//Ltryl
     backgroundMusic:"/background_music/Ed Sheeran - The Joker And The Queen (Lyrics) feat. Taylor Swift.mp3"
   },
@@ -19,18 +19,18 @@ export const siteConfig = {
     googleShare: "https://docs.google.com/spreadsheets/d/1SDjlC_uFesf7fuDXnfsehkhdIsiCwd7IVrAL4yzGHuM/edit?usp=sharing",
   },
   wedding: {
-    date: "May 8,2026",
+    date: "May 22, 2026",
     time: "1:00 PM",
-    venue: "Parroquia Nuestra Señora De La Porteria",
+    venue: "St. Benedict Parish ",
     tagline: "are getting married!",
     theme: "Our wedding palette is inspired by timeless elegance and warmth.Motif Colors: Champagne Gold, Soft Beige, Warm Soft Brown",
     motif: "#001F4B, #04396D, #015B97, #6497B2, #B2CDE0",
   },
   details: {
     rsvp: {
-      deadline: "APRIL 15, 2026",
-      contact: "Mary Rose Bricia",
-      phone: "0906 206 6888",
+      deadline: "APRIL 30, 2026",
+      contact: "Jennifer Vidal",
+      phone: "0927 888 8888",
     },
   },
   giftRegistry: {
@@ -48,9 +48,9 @@ export const siteConfig = {
     }
   },
   ceremony: {
-    location: "Parroquia Nuestra Señora De La Porteria",
-    venue: "Sta. Maria Hill, San Roque, Daraga, Albay",
-    date: "May 8, 2026",
+    location: "St. Benedict Parish ",
+    venue: "Ayala Westgrove Heights, South Blvd, Silang, 4118 Cavite",
+    date: "May 22, 2026",
     day: "Friday",
     time: "1:00 PM",
     entourageTime: "12:00 PM",
@@ -58,11 +58,11 @@ export const siteConfig = {
     image: "/Details/ceremony.png",
   },
   reception: {
-    location: "Socorro's The Venue",
-    venue: "Brgy. Sumlang, Camalig, Albay",
-    date: "May 8, 2026",
-    time: "5 :00 PM",
-    image: ["/Details/reception1.png","/Details/reception2.png"],
+    location: "Aquila Crystal Palace Tagaytay",
+    venue: "Brgy Maitim 2nd St. E. Aguinaldo Highway, Tagaytay City, 4120 Cavite",
+    date: "May 22, 2026",
+    time: "2 :00 PM",
+    image: ["/Details/reception.png","/Details/reception2.png"],
   },                          
   dressCode: {
       theme: "SEMI-FORMAL",

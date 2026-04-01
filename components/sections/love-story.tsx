@@ -43,12 +43,8 @@ export function LoveStory() {
         text={
           <>
             <p className="mb-4">
-            Era and Vince’s story began in the simplest yet most 
-            meaningful way—two hearts crossing paths at the 
-            right moment, unaware that something extraordinary 
-            was about to unfold.  <i> <strong>We hope you could share your own love story with us; this is just a demo sample that can be replaced anytime </strong></i>. 
-            What started as a connection soon blossomed into a love that felt both natural and destined, growing stronger with every 
-            shared smile and conversation.
+            Jennifer and Patrick’s story began in the simplest yet most meaningful way—two hearts crossing paths at just the right moment, unaware that something extraordinary was about to unfold. <i> <strong>We hope you could share your own love story with us; this is just a demo sample that can be replaced anytime </strong></i>. 
+            What started as a connection soon blossomed into a love that felt both natural and destined, growing stronger with every shared smile and conversation.
             </p>
            
           </>
@@ -90,12 +86,12 @@ export function LoveStory() {
             <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (4).jpg"
+        imageSrc="/mobile-background/couple (8).jpg"
         // title="Became a Couple (2019)"
         text={
           <>
             <p>
-            Now, Era and Vince are ready to take the next step—hand in hand, heart to heart. With grateful spirits and hopeful hearts, they choose to turn their love into a lifelong commitment, embracing a future filled with shared dreams and endless possibilities.
+            Now, Jennifer and Patrick are ready to take the next step—hand in hand, heart to heart. With grateful spirits and hopeful hearts, they choose to turn their love into a lifelong commitment, embracing a future filled with shared dreams and endless possibilities.
             </p>
           </>
         }
