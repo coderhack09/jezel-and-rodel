@@ -36,15 +36,15 @@ export const siteConfig = {
   giftRegistry: {
     QR_1:{
     id: "Gcash",
-    src: "/QR/pleaseProvideQR.png",
+    src: "/QR/Gcash.png",
     label: "Gcash",
-    accountNumber: "Gcash: Mary Rose Obelidor",
+    accountNumber: "Gcash: JE*****R V.",
     },
     QR_2:{
-    id: "Landbank",
-    src: "/QR/pleaseProvideQR.png",
-    label: "Landbank",
-    accountNumber: "Landbank: Mary Rose Obelidor",
+    id: "BPI",
+    src: "/QR/BPI.png",
+    label: "BPI",
+    accountNumber: "BPI: JE*****R V.",
     }
   },
   ceremony: {
