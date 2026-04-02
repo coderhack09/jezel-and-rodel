@@ -27,13 +27,15 @@ const cinzel = Cinzel({
 })
 
 const galleryItems = [
-  { image: "/gallery/couple (1).jpg", text: " " },
-  { image: "/gallery/couple (7).jpg", text: " " },
-  { image: "/gallery/couple (4).jpg", text: " " },
-  { image: "/gallery/couple (5).jpg", text: " " },
-  { image: "/gallery/couple (6).jpg", text: " " },
-  { image: "/gallery/couple (8).jpg", text: " " },
-  { image: "/gallery/couple (2).jpg", text: " " },
+  { image: "/mobile-background/couple (1).jpg", text: " " },
+  { image: "/gallery/a.jpg", text: " " },
+  { image: "/gallery/b.jpg", text: " " },
+  { image: "/gallery/c.jpg", text: " " },
+  { image: "/gallery/d.jpg", text: " " },
+  { image: "/mobile-background/couple (3).jpg", text: " " },
+  { image: "/mobile-background/couple (22).jpg", text: " " },
+  { image: "/mobile-background/couple (21).jpg", text: " " },
+
 ]
 
 export function Gallery() {

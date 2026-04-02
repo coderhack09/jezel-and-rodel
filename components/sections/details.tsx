@@ -533,6 +533,94 @@ export function Details() {
 
         </div>
 
+                {/* Entourage Attire Cards */}
+                <div className="space-y-5 sm:space-y-6 md:space-y-8 mb-4">
+          {/* Guests Attire */}
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-br from-motif-silver/22 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
+            
+            <div className="relative bg-motif-cream backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-7 lg:p-9 border  hover:shadow-[0_20px_48px_rgba(0,0,0,0.24)] hover:border-motif-deep/70 transition-all duration-300">
+              <h4
+                className="lighten-regular text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] leading-tight text-center mb-4 sm:mb-5 md:mb-6 "
+                style={{ color: 'var(--color-motif-deep)' }}
+              >
+                Entourage  & Secondary Attire 
+              </h4>
+
+              {/* Copy: follow color palette */}
+              {/* <p className="text-center text-xs sm:text-sm md:text-base lg:text-lg text-motif-deep/90 font-light leading-relaxed mb-4 sm:mb-5 md:mb-6 max-w-xl mx-auto px-3">
+              Kindly follow the color palette below for your outfit.
+              </p> */}
+
+              {/* Principal sponsor attire image */}
+              <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] max-w-2xl mx-auto rounded-lg sm:rounded-xl overflow-hidden border border-motif-medium/30 mb-4 sm:mb-6 md:mb-8">
+                <CloudinaryImage
+                  src={siteConfig.dressCode.entourage.photo}
+                  alt={siteConfig.dressCode.entourage.notes}
+                  fill
+                  className="object-contain bg-[#FFF7F6]/50 p-2 sm:p-3"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 672px"
+                />
+              </div>
+
+              {/* Color palette for principal sponsors — keep explicit dress-code colors (not UI palette) */}
+              <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap mb-5 sm:mb-6 md:mb-7 px-2">
+                {siteConfig.dressCode.entourage.palette.split(',').map((color) => (
+                  <div
+                    key={color.trim()}
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full shadow-md border border-white ring-2 ring-motif-silver/40 hover:scale-110 transition-transform duration-300"
+                    style={{ backgroundColor: color.trim() }}
+                    title={color.trim()}
+                  />
+                ))}
+              </div>
+              
+              {/* Guests Dress Code Text */}
+              <div className="text-center pt-3 sm:pt-4 border-t border-motif-silver/70 px-3 sm:px-4 mb-4">
+                <p className="text-sm sm:text-base md:text-lg font-[family-name:var(--font-crimson)] text-motif-deep leading-relaxed mb-2">
+                  <span className="font-semibold">{siteConfig.dressCode.entourage.notes}</span>
+                  <br />
+               
+                </p>
+                {/* <div className="mt-3 sm:mt-4 text-left max-w-2xl mx-auto">
+                  <div className="flex items-center justify-center sm:justify-start gap-2 mb-2">
+                    <span className="inline-flex h-2 w-2 rounded-full bg-motif-accent/80" aria-hidden="true" />
+                    <p className={`${cinzel.className} text-[11px] sm:text-xs tracking-[0.22em] uppercase text-motif-deep/80`}>
+                      Notes
+                    </p>
+                    <span className="hidden sm:block h-px flex-1 bg-motif-deep/15" aria-hidden="true" />
+                  </div>
+
+                  <ul className="space-y-2 sm:space-y-2.5">
+                    <li className="flex gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-motif-deep/40" aria-hidden="true" />
+                      <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-motif-deep/90 leading-relaxed">
+                        Ladies, we know you’d look beautiful in white—but let’s save that for the bride.
+                      </p>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-motif-deep/40" aria-hidden="true" />
+                      <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-motif-deep/90 leading-relaxed">
+                        We kindly encourage everyone to avoid casual attire such as jeans, shorts, slippers, and sando.
+                      </p>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-motif-deep/40" aria-hidden="true" />
+                      <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-motif-deep/90 leading-relaxed">
+                        We also gently discourage wearing all or predominantly black outfits to match the bright and joyful mood of our wedding celebration.
+                      </p>
+                    </li>
+                  </ul>
+                </div> */}
+                {/* <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-motif-deep leading-relaxed italic">
+                  {siteConfig.dressCode.note}
+                </p> */}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
         {/* Attire Cards */}
         <div className="space-y-5 sm:space-y-6 md:space-y-8 mb-4">
           {/* Guests Attire */}
@@ -702,7 +790,7 @@ export function Details() {
                 Arrival
                 </h4>
                 <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-deep/80 leading-relaxed`}>
-                To ensure everything runs smoothly, please arrive at least 30 minutes before the ceremony starts. The program will begin at 3:30 PM, so we kindly ask everyone to arrive by 2:30 PM. This will give you time to find your seat, take in the beautiful setup, and be fully present for our special moment
+                To ensure everything runs smoothly, please arrive at least 30 minutes before the ceremony starts. The program will begin at {siteConfig.ceremony.time}, so we kindly ask everyone to arrive by {siteConfig.ceremony.guestsTime}. This will give you time to find your seat, take in the beautiful setup, and be fully present for our special moment
                 </p>
               </div>
 

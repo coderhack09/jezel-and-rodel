@@ -59,10 +59,10 @@ export const siteConfig = {
   },
   reception: {
     location: "Aquila Crystal Palace Tagaytay",
-    venue: "Brgy Maitim 2nd St. E. Aguinaldo Highway, Tagaytay City, 4120 Cavite",
+    venue: "Emilio Aguinaldo Highway, Tagaytay City, Philippines",
     date: "May 22, 2026",
     time: "2 :00 PM",
-    image: ["/Details/reception.png","/Details/reception2.png"],
+    image: ["/Details/reception3.png","/Details/reception4.png"],
   },                          
   dressCode: {
       theme: "SEMI-FORMAL",
@@ -70,16 +70,21 @@ export const siteConfig = {
     sponsors: {
       male: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
       female: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
-      notes: "Ninong: Barong and Black Slacks\n Ninang: Long Gown",
-      photo: "/Details/sponsors.png",
-      palette: "#001F4B, #04396D, #015B97, #6497B2, #B2CDE0",
+      notes: "Navy blue dress, Navy blue/black coat and tie",
+      photo: "/Details/newSponsors.png",
+      palette: "#000000, #1F1D1D,#001F4B, #0B1F3A, #142C4F",
     },
     guests: {
       gents: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
       ladies: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
-      notes: "Gentlemen: Suit and Tie\n Ladies: Long Gown",
-      photo: "/Details/guest.png",
-      palette: "#001F4B, #04396D, #015B97, #6497B2, #B2CDE0",
+      notes: "Gray/dark gray cocktail dress/ semi-formal dress",
+      photo: "/Details/newGuest.png",
+      palette: "#000000, #1F1D1D, #3A3636, #514B4B",
+    },
+    entourage: {
+      notes: "Black dresses | Dark gray coat & tie",
+      photo: "/Details/newEntourage.png",
+      palette: "#000000, #1F1D1D, #3A3636, #514B4B"
     },
     note: "We kindly request our guests to dress in attire following our wedding palette."
   },
@@ -112,7 +117,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
   },
   snapShare: {
     googleDriveLink: "https://drive.google.com/drive/folders/1DqNft6O7vkNQsIaWgUbGW6-m9NQraMfd?usp=sharing",
-    hashtag: ["#MonAmourRose"],
+    hashtag: ["#JENfoundtherightPATh"],
     instructions: "Please scan this QR Code, create a folder with your name and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
 }
