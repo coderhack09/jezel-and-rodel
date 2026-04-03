@@ -379,7 +379,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         </div>
 
         {/* Supporting line */}
-        <p
+        {/* <p
           className={`${vis(3)}`}
           style={{
             fontFamily: '"Great Vibes", cursive',
@@ -389,7 +389,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           }}
         >
           Together with their families
-        </p>
+        </p> */}
 
         {/* Wedding date */}
         <p

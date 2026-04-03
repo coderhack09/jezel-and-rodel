@@ -39,7 +39,7 @@ export function Registry() {
         </h2>
         
         <p className="text-xs sm:text-sm md:text-base lg:text-lg text-motif-cream/90 font-light max-w-2xl mx-auto leading-relaxed px-2">
-        With hearts full of gratitude, we ask only for your presence and prayers as we celebrate together. Should you wish to bless us further, a gift toward our future would be a blessing we will always treasure. 
+        We truly appreciate your love and support. As we already share a home, we kindly request monetary gifts, which will help us toward our future together.
 
         </p>
         
