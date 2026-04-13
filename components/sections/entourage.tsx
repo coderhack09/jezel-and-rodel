@@ -96,6 +96,7 @@ const ROLE_CATEGORY_ORDER = [
   "Ring Bearer",
   "Bible Bearer",
   "Coin Bearer",
+  "Flower Maidens",
   "Flower Girls",
 ]
 
@@ -104,7 +105,7 @@ const HIDDEN_ROLE_CATEGORIES = new Set<string>([])
 function normalizeRoleCategory(category: string): string {
   const normalized = category.trim()
   if (normalized.toLowerCase() === "officiating minister") {
-    return "OFFICIATING MINISTER"
+    return "Officiant"
   }
   return normalized
 }
@@ -262,7 +263,7 @@ export function Entourage() {
           className={`relative text-[10px] sm:text-[11.5px] md:text-[12.5px] lg:text-[13.5px] font-semibold ${textAlign} transition-all duration-300`}
           style={{ color: palette.deep }}
         >
-          {member.Name.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}
+          {member.Name}
         </p>
         {showRole && member.RoleTitle && (
           <p
@@ -401,8 +402,8 @@ export function Entourage() {
         </p>
 
         <h2
-          className="lighten-regular text-[40px] sm:text-[50px] md:text-[60px] lg:text-[70px] xl:text-[80px] leading-tight mb-1 sm:mb-2 md:mb-2.5"
-          style={{ color: 'var(--color-motif-deep)' }}
+          className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1 sm:mb-2 md:mb-2.5`}
+          style={{ color: 'var(--color-motif-deep)', textShadow: "0 2px 10px rgba(var(--color-motif-deep), 0.22)" }}
         >
           Wedding Entourage
         </h2>
@@ -545,7 +546,7 @@ export function Entourage() {
                           if (officiating.length === 0) return null
                           return (
                             <div key="OfficiatingMinisterBeforeSponsors" className="mt-4 sm:mt-5 md:mt-6">
-                              <TwoColumnLayout singleTitle="OFFICIATING MINISTER" centerContent={true}>
+                              <TwoColumnLayout singleTitle="Officiant" centerContent={true}>
                                 {officiating.map((member, idx) => (
                                   <div
                                     key={`officiating-${idx}-${member.Name}`}
@@ -667,7 +668,7 @@ export function Entourage() {
                             <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                           </div>
                         )}
-                        <TwoColumnLayout leftTitle="Best Man" rightTitle="Maid of Honor">
+                        <TwoColumnLayout leftTitle="Bestmen" rightTitle="Maids of Honor">
                           {(() => {
                             const maxLen = Math.max(bestMan.length, maidOfHonor.length)
                             const rows = []
@@ -784,6 +785,48 @@ export function Entourage() {
                   return null
                 }
 
+                // Special handling for Ring Bearer and Coin Bearer - combine into single two-column layout
+                if (category === "Ring Bearer" || category === "Coin Bearer") {
+                  const ringBearer = grouped["Ring Bearer"] || []
+                  const coinBearer = grouped["Coin Bearer"] || []
+
+                  // Only render once (when processing "Ring Bearer")
+                  if (category === "Ring Bearer") {
+                    return (
+                      <div key="RingCoinBearer">
+                        {categoryIndex > 0 && (
+                          <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
+                            <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
+                          </div>
+                        )}
+                        <TwoColumnLayout leftTitle="Ring Bearer" rightTitle="Coin Bearer">
+                          {(() => {
+                            const maxLen = Math.max(ringBearer.length, coinBearer.length)
+                            const rows = []
+                            for (let i = 0; i < maxLen; i++) {
+                              const left = ringBearer[i]
+                              const right = coinBearer[i]
+                              rows.push(
+                                <React.Fragment key={`ringcoin-row-${i}`}>
+                                  <div key={`ring-cell-${i}`} className="px-1.5 sm:px-2 md:px-2.5">
+                                    {left ? <NameItem member={left} align="right" /> : <div className="py-0.5" />}
+                                  </div>
+                                  <div key={`coin-cell-${i}`} className="px-1.5 sm:px-2 md:px-2.5">
+                                    {right ? <NameItem member={right} align="left" /> : <div className="py-0.5" />}
+                                  </div>
+                                </React.Fragment>
+                              )
+                            }
+                            return rows
+                          })()}
+                        </TwoColumnLayout>
+                      </div>
+                    )
+                  }
+                  // Skip rendering for "Coin Bearer" since it's already rendered above
+                  return null
+                }
+
                 // Secondary Sponsors block: render all three groups under one heading
                 if (category === "Candle Sponsors" || category === "Veil Sponsors" || category === "Cord Sponsors") {
                   // Only render the full block once — when processing the first one that exists in order
@@ -849,8 +892,6 @@ export function Entourage() {
                         const SINGLE_COLUMN_SECTIONS = new Set([
                           "Best Man",
                           "Maid of Honor",
-                          "Ring Bearer",
-                          "Coin Bearer",
                           "Bible Bearer",
                           "Flower Girls",
                           "Presider",

@@ -8,15 +8,15 @@ export const siteConfig = {
     backgroundMusic:"/background_music/Kay Tagal Kitang Hinintay - Spongecola (wedding version).mp3"
   },
   googleAPI:{
-    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSdC0hHItXxsbAmG_-LtoQrb8ihxw-5OthDKLKRbSXHJ0Llqfg/formResponse", //done
-    message: "https://script.google.com/macros/s/AKfycbzYnzhZD2uUvhsMgI9s17yrwtRZCal6h3_JQUV8cqCMamLiuRIxavEp28meTQNgOPfbpg/exec",  //done
-    guestList: "https://script.google.com/macros/s/AKfycbypXiNUHvm_zAsR5Xm0-i6OHQFDQFNkqnKW-dsrDtvgSbjFrnYRGZMm1y0ci7aMKe6dAg/exec",  //done
-    guestRequest: "https://script.google.com/macros/s/AKfycbxqfulnzYJmeASQG8ARksh2efSB-gB0y-UO3TqjzUuwniRuRAMLHG1BaguKGebajN5gbA/exec", //done
-    entourage: "https://script.google.com/macros/s/AKfycbyDOZCyXhbq_mkc2s0IHdGFaBzwXheebsHLTuptLAD1-pGifvIe2VVdSA07yjeshxPYKw/exec",  //done
-    sponsors: "https://script.google.com/macros/s/AKfycbz6iYn1pYVqXvETDjLsJf-vOvBvksef7a4x-N9UjwCq7knBa79yKB330wdUnycciSQgIQ/exec",  //done
-    weddingDetails: "https://script.google.com/macros/s/AKfycbyPpVAQ79monaA-ccKz0LxKjy0JFyy5mO8G_jZx-JrP3R_BlzpLFdPlwm11ZVGkAUPIGQ/exec",  //done
+    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSdIdbbjMODRyh7_s2dM9grIW2chcjoZV-RzQ5Fi_Xn6Wp8lAw/formResponse", //done
+    message: "https://script.google.com/macros/s/AKfycbwQSFuChJptz3DSUzyJxFdWquvBxhVUdcTa77WeaOW3GZRG4G-N9p7UrlPrsTNdCLjp/exec",   //dpme
+    guestList: "https://script.google.com/macros/s/AKfycbyfSSTnSzgMJfwViOVRzbIqJF3KP2hlmg-LEg2gXTzYg5Q5N3dqMX2KUfdazfqp81ks/exec",  //done
+    guestRequest: "https://script.google.com/macros/s/AKfycbzKgBHpTsZwEazYUzgPnhT2KLquB2gZbunvhxOW-4jJj1dSTbU57MyG5oOf4d2mVLXD/exec",  //done
+    entourage: "https://script.google.com/macros/s/AKfycbxVG5lfkbMsTjqXaUhFF9ggrSSgpunN8Vw_QxXkpr6g5livlhqo3_PtTfMyTcdTl6g/exec",  //done
+    sponsors: "https://script.google.com/macros/s/AKfycby8IFM324mgVtp47YoBrOwPstpSUidC2QZRUvSyzst-NTswOzBRLLgGO1uqzNI1R9dt/exec",  //done
+    weddingDetails: "https://script.google.com/macros/s/AKfycbzyfzPY1ILFNSi86c3OkU1Np-WJ5RpPlO7h7bL3HojH7ehFm__q3FyAPC4kECn8r3uj/exec",  
 ////google share 
-    googleShare: "https://docs.google.com/spreadsheets/d/1CQ66icW--Xvx7klG5zpe3MtzQS4S_0i8SfOxwz2px3o/edit?usp=sharing",
+    googleShare: "https://docs.google.com/spreadsheets/d/1vZ5A4SKlFNHqU02P52OczTzgcaCBOvkop6Oxe2hZ59U/edit?usp=sharing",
   },
   wedding: {
     date: "June 6, 2026",
@@ -110,7 +110,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     secondary: "#F5F5DC",
   },
   snapShare: {
-    googleDriveLink: "https://drive.google.com/drive/folders/1DqNft6O7vkNQsIaWgUbGW6-m9NQraMfd?usp=sharing",
+    googleDriveLink: "https://drive.google.com/drive/folders/1cCo5WtCNhquk86sm0zR6E8FNI3VzAnEv?usp=sharing",
     hashtag: ["#JezelAndRodel,#JezelAndRodelWedding"],
     instructions: "Please scan this QR Code, create a folder with your name and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
