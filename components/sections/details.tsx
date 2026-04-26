@@ -797,14 +797,16 @@ export function Details() {
               </div>
 
               {/* Gifts Reminder */}
-              {/* <div className="bg-motif-cream/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-semibold text-motif-deep mb-2 sm:mb-3`}>
-                  GIFTS
+              <div className="bg-motif-cream/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
+                <h4 className="lighten-regular text-[24px] sm:text-[30px] md:text-[35px] lg:text-[40px] xl:text-[45px] leading-tight text-center mb-4 sm:mb-5 md:mb-6 "
+                style={{ color: 'var(--color-motif-deep)' }}
+                >
+                  Gifts
                 </h4>
                 <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-deep/80 leading-relaxed`}>
                 We are grateful to God for your love and prayers on our special day.
                 For those who wish to give a gift, a monetary gift to help us begin our life together would be deeply appreciated.                </p>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
