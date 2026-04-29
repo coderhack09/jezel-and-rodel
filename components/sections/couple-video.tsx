@@ -28,9 +28,9 @@ export function CoupleVideo() {
   const playerRef = useRef<any>(null)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const { pauseMusic, resumeMusic } = useAudio()
-  // https://youtu.be/nSQq-ctQw3w
+  // https://youtu.be/N3n80j0OVVs?si=pw-LXQRBipYDO5Ws
   // YouTube video ID
-  const videoId = "nSQq-ctQw3w"
+  const videoId = "N3n80j0OVVs?si=pw-LXQRBipYDO5Ws"
 
   // Load YouTube IFrame API
   useEffect(() => {

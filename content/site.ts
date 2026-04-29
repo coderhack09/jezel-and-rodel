@@ -4,7 +4,7 @@ export const siteConfig = {
     brideNickname: "Jezel Mae", //Ltryl
     groom: "Rodel C. Campos", //Ltryl B. Benitez
     groomNickname: "Rodel",
-    monogram:"/monogram/monogramnew.png" ,//Ltryl
+    monogram:"/monogram/newMonogram.png" ,//Ltryl
     backgroundMusic:"/background_music/Kay Tagal Kitang Hinintay - Spongecola (wedding version).mp3"
   },
   googleAPI:{
@@ -28,7 +28,7 @@ export const siteConfig = {
   },
   details: {
     rsvp: {
-      deadline: "MAY 30, 2026",
+      deadline: "MAY 20, 2026",
       contact: "Jezel Mae A. Prudente",
       phone: "0917 888 8888",
     },
@@ -111,7 +111,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
   },
   snapShare: {
     googleDriveLink: "https://drive.google.com/drive/folders/1cCo5WtCNhquk86sm0zR6E8FNI3VzAnEv?usp=sharing",
-    hashtag: ["#JezelAndRodel","#JezelAndRodelWedding"],
+    hashtag: ["#RodelJezgotMaerried"],
     instructions: "Please scan this QR Code, create a folder with your name and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
 }

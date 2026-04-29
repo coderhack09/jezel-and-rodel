@@ -43,8 +43,7 @@ export function LoveStory() {
         text={
           <>
             <p className="mb-4">
-            {siteConfig.couple.brideNickname} and {siteConfig.couple.groomNickname}’s story began in the simplest yet most meaningful way—two hearts crossing paths at just the right moment, unaware that something extraordinary was about to unfold. 
-            What started as a connection soon blossomed into a love that felt both natural and destined, growing stronger with every shared smile and conversation.
+            Rodel’s story began with a quiet journey to Lake Holon. Surrounded by cool air and peaceful views, he found himself standing before the so called kissing stone. In a moment that felt almost like a joke, he leaned in and kissed it, never knowing that such a simple gesture would mark the beginning of a love he never expected.
             </p>
            
           </>
@@ -60,7 +59,8 @@ export function LoveStory() {
         text={
           <>
             <p>
-            As time passed, their bond deepened into something unshakable. Through life’s highs and lows, they became each other’s constant—finding comfort in presence, strength in unity, and joy in the little things. Their love is built not just on romance, but on genuine friendship and unwavering support.
+            A few days later, on an ordinary evening, he was browsing Facebook. As he casually scrolled through profiles, one smile made him pause, Jezel Mae from Kapalong, Davao del Norte. Without hesitation, he reached out, and as if fate had been waiting, it was a match.
+
             </p>
           </>
         }
@@ -76,7 +76,7 @@ export function LoveStory() {
         text={
           <>
             <p>
-            Together, they have created a journey filled with memories, laughter, and dreams for the future. Each chapter of their story reflects patience, understanding, and a love that continues to evolve. They have learned that true love is not just about finding the right person, but about choosing each other every day.
+            What started as a simple hello turned into long conversations. Daily good mornings and good nights became routine, and little by little, a connection grew between two hearts miles apart, Rodel from Santa Cruz, Davao del Sur, and Jezel Mae from Kapalong, Davao del Norte. What began as a spark soon became a long distance relationship, where love learned to be patient, intentional, and strong despite the space between them.
             </p>
            
           </>
@@ -91,7 +91,11 @@ export function LoveStory() {
         text={
           <>
             <p>
-            Now, {siteConfig.couple.brideNickname} and {siteConfig.couple.groomNickname} are ready to take the next step—hand in hand, heart to heart. With grateful spirits and hopeful hearts, they choose to turn their love into a lifelong commitment, embracing a future filled with shared dreams and endless possibilities.
+            When they finally met, all doubts faded. What once existed only through screens became real, warm, and undeniable. From that moment on, their bond only grew stronger.
+<br />
+<br />
+Not long after, Rodel began to pursue her, genuinely and sincerely, with a heart full of care. In time, Jezel Mae said yes, choosing to take a chance on a love that began in the most unexpected way.
+
             </p>
           </>
         }
@@ -107,7 +111,20 @@ export function LoveStory() {
         text={
           <>
             <p>
-            With this, they joyfully invite you to witness the beginning of their forever—a celebration of love, unity, and the promise of a beautiful life together.
+            Through distance, late night calls, and days spent missing each other, they chose to stay. They chose to love. They chose to become each other’s home.
+            <br />
+            <br />
+From a kiss on a stone, to a single moment that changed everything.
+<br />
+<br />
+ From miles apart, to standing side by side.
+<br />
+<br />
+Now, they step into the next chapter of their story together as one.
+<br />
+<br />
+On this day, we invite you to witness our forever 💍
+
             </p>
            
           </>

@@ -55,7 +55,7 @@ const faqItems: FAQItem[] = [
   {
     question: "How do I RSVP?",
     answer:
-    `Please RSVP through the RSVP section on this invitation. Simply search for your name in the guest list and confirm your attendance. Due Date of final RSVP is on ${siteConfig.details.rsvp.deadline}. For any questions, please contact ${siteConfig.details.rsvp.contact} via Messenger`
+    `Please RSVP through the RSVP section of this invitation. Simply search for your name in the guest list and confirm your attendance. The final RSVP deadline will be announced soon. For inquiries or assistance, please contact Rodel Camposo or Jezel Mae Prudente via Messenger,`
   },
   {
     question: "Are children allowed?",
