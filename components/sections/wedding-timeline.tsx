@@ -93,14 +93,14 @@ const timelineEvents: TimelineEvent[] = [
     icon: DinnerIcon,
     imageSrc: "/weddingtimeline/Lunch.png",
   },
-  {
-    time: "6:00 PM",
-    title: "Party",
-    // description: "Let's dance the night away and celebrate this new chapter!",
-    location: receptionVenue,
-    icon: DanceIcon,
-    imageSrc: "/weddingtimeline/SendOff.png",
-  },
+  // {
+  //   time: "6:00 PM",
+  //   title: "Party",
+  //   // description: "Let's dance the night away and celebrate this new chapter!",
+  //   location: receptionVenue,
+  //   icon: DanceIcon,
+  //   imageSrc: "/weddingtimeline/SendOff.png",
+  // },
 ]
 
 export function WeddingTimeline() {
