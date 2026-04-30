@@ -66,7 +66,7 @@ export const siteConfig = {
       female: "Ladies - Filipiniana-inspired design in beige or champagne tones",
       notes: "Principal sponsors: \n Gentlemen - Barong Tagalog/ Black Pants and Shoes/ White Shirt  \nLadies - Filipiniana-inspired design in beige or champagne tones",
       photo: "/Details/sponsors.png",
-      palette: "#A68A75,#D6BFA3, #F5EFE6,#EDE3D6",
+      palette: "#A68A75,#D6BFA3, #F5EFE6,#EDE3D6,#2F4F3E, #5F7D6B, #A7BFA9, #F4F6F2",
     },
     guests: {
       gents: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",

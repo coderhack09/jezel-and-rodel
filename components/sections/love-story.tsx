@@ -39,7 +39,7 @@ export function LoveStory() {
         layout="image-left"
         isFirst={true}
         title="A Love Meant to Last"
-        imageSrc="/mobile-background/couple (2).webp"
+        imageSrc="/Details/IMG_1548.JPG"
         text={
           <>
             <p className="mb-4">
@@ -54,7 +54,7 @@ export function LoveStory() {
       <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (12).webp"
+        imageSrc="/Details/IMG_1549.JPG"
         // title="Became a Couple (2019)"
         text={
           <>

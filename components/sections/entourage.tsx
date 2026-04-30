@@ -806,16 +806,36 @@ export function Entourage() {
                             for (let i = 0; i < maxLen; i++) {
                               const left = ringBearer[i]
                               const right = coinBearer[i]
-                              rows.push(
-                                <React.Fragment key={`ringcoin-row-${i}`}>
-                                  <div key={`ring-cell-${i}`} className="px-1.5 sm:px-2 md:px-2.5">
-                                    {left ? <NameItem member={left} align="right" /> : <div className="py-0.5" />}
+                              if (left && right) {
+                                rows.push(
+                                  <React.Fragment key={`ringcoin-row-${i}`}>
+                                    <div className="px-1.5 sm:px-2 md:px-2.5">
+                                      <NameItem member={left} align="right" />
+                                    </div>
+                                    <div className="px-1.5 sm:px-2 md:px-2.5">
+                                      <NameItem member={right} align="left" />
+                                    </div>
+                                  </React.Fragment>
+                                )
+                              } else if (left) {
+                                rows.push(
+                                  <div
+                                    key={`ringcoin-row-${i}`}
+                                    className="px-1.5 sm:px-2 md:px-2.5 min-[350px]:col-span-2 flex justify-center"
+                                  >
+                                    <NameItem member={left} align="center" />
                                   </div>
-                                  <div key={`coin-cell-${i}`} className="px-1.5 sm:px-2 md:px-2.5">
-                                    {right ? <NameItem member={right} align="left" /> : <div className="py-0.5" />}
+                                )
+                              } else if (right) {
+                                rows.push(
+                                  <div
+                                    key={`ringcoin-row-${i}`}
+                                    className="px-1.5 sm:px-2 md:px-2.5 min-[350px]:col-span-2 flex justify-center"
+                                  >
+                                    <NameItem member={right} align="center" />
                                   </div>
-                                </React.Fragment>
-                              )
+                                )
+                              }
                             }
                             return rows
                           })()}
@@ -932,16 +952,36 @@ export function Entourage() {
                         for (let i = 0; i < maxLen; i++) {
                           const l = left[i]
                           const r = right[i]
-                          rows.push(
-                            <React.Fragment key={`${category}-row-${i}`}>
-                              <div key={`${category}-cell-left-${i}`} className="px-1.5 sm:px-2 md:px-2.5">
-                                {l ? <NameItem member={l} align="right" /> : <div className="py-0.5 sm:py-1 md:py-1.5" />}
+                          if (l && r) {
+                            rows.push(
+                              <React.Fragment key={`${category}-row-${i}`}>
+                                <div className="px-1.5 sm:px-2 md:px-2.5">
+                                  <NameItem member={l} align="right" />
+                                </div>
+                                <div className="px-1.5 sm:px-2 md:px-2.5">
+                                  <NameItem member={r} align="left" />
+                                </div>
+                              </React.Fragment>
+                            )
+                          } else if (l) {
+                            rows.push(
+                              <div
+                                key={`${category}-row-${i}`}
+                                className="px-1.5 sm:px-2 md:px-2.5 min-[350px]:col-span-2 flex justify-center"
+                              >
+                                <NameItem member={l} align="center" />
                               </div>
-                              <div key={`${category}-cell-right-${i}`} className="px-1.5 sm:px-2 md:px-2.5">
-                                {r ? <NameItem member={r} align="left" /> : <div className="py-0.5 sm:py-1 md:py-1.5" />}
+                            )
+                          } else if (r) {
+                            rows.push(
+                              <div
+                                key={`${category}-row-${i}`}
+                                className="px-1.5 sm:px-2 md:px-2.5 min-[350px]:col-span-2 flex justify-center"
+                              >
+                                <NameItem member={r} align="center" />
                               </div>
-                            </React.Fragment>
-                          )
+                            )
+                          }
                         }
                         return rows
                       })()}
@@ -980,16 +1020,36 @@ export function Entourage() {
                         for (let i = 0; i < maxLen; i++) {
                           const l = left[i]
                           const r = right[i]
-                          rows.push(
-                            <React.Fragment key={`${category}-row-${i}`}>
-                              <div key={`${category}-cell-left-${i}`} className="px-1.5 sm:px-2 md:px-2.5">
-                                {l ? <NameItem member={l} align="right" /> : <div className="py-0.5 sm:py-1 md:py-1.5" />}
+                          if (l && r) {
+                            rows.push(
+                              <React.Fragment key={`${category}-row-${i}`}>
+                                <div className="px-1.5 sm:px-2 md:px-2.5">
+                                  <NameItem member={l} align="right" />
+                                </div>
+                                <div className="px-1.5 sm:px-2 md:px-2.5">
+                                  <NameItem member={r} align="left" />
+                                </div>
+                              </React.Fragment>
+                            )
+                          } else if (l) {
+                            rows.push(
+                              <div
+                                key={`${category}-row-${i}`}
+                                className="px-1.5 sm:px-2 md:px-2.5 min-[350px]:col-span-2 flex justify-center"
+                              >
+                                <NameItem member={l} align="center" />
                               </div>
-                              <div key={`${category}-cell-right-${i}`} className="px-1.5 sm:px-2 md:px-2.5">
-                                {r ? <NameItem member={r} align="left" /> : <div className="py-0.5 sm:py-1 md:py-1.5" />}
+                            )
+                          } else if (r) {
+                            rows.push(
+                              <div
+                                key={`${category}-row-${i}`}
+                                className="px-1.5 sm:px-2 md:px-2.5 min-[350px]:col-span-2 flex justify-center"
+                              >
+                                <NameItem member={r} align="center" />
                               </div>
-                            </React.Fragment>
-                          )
+                            )
+                          }
                         }
                         return rows
                       })()}
