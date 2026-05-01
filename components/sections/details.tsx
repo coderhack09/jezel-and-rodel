@@ -529,6 +529,9 @@ export function Details() {
                 <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-motif-deep leading-relaxed italic">
                   {siteConfig.dressCode.note}
                 </p> */}
+                <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] text-motif-deep leading-relaxed italic">
+                Our beloved Ninong and Ninang are welcome to wear any formal attire, as long as it complements or aligns with our wedding color palette.
+                </p>
               </div>
             </div>
           </div>
