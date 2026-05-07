@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Heart, RefreshCw, TrendingUp, Mail, Users, MapPin, Calendar, Crown } from "lucide-react"
 import { Cormorant_Garamond, Cinzel } from "next/font/google"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import Image from "next/image"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -40,7 +40,7 @@ const BOOK_DARK = "var(--color-motif-deep)"      // headings / names
 const BOOK_DARKER = "var(--color-motif-deep)"  // body text (steel blue depth)
 const BOOK_CREAM = "var(--color-motif-cream)"    // card surfaces
 const DECO_FILTER_BOOK =
-  "brightness(0) saturate(100%) invert(22%) sepia(88%) saturate(1800%) hue-rotate(185deg) brightness(90%) contrast(105%)"
+  "brightness(0) saturate(100%) invert(39%) sepia(18%) saturate(486%) hue-rotate(62deg) brightness(94%) contrast(88%)"
 
 export function BookOfGuests() {
   const [totalGuests, setTotalGuests] = useState(0)
@@ -191,50 +191,50 @@ export function BookOfGuests() {
       />
 
       {/* Flower decoration — warm brown tint */}
-      {/* <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+      <div className="absolute left-0 top-0 z-0 pointer-events-none">
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
           height={300}
           className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-70 scale-y-[-1]"
           priority={false}
-          style={{ filter: DECO_FILTER_BOOK }}
+          // style={{ filter: DECO_FILTER_BOOK }}
         />
       </div>
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
           height={300}
           className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-70 scale-x-[-1] scale-y-[-1]"
           priority={false}
-          style={{ filter: DECO_FILTER_BOOK }}
+          // style={{ filter: DECO_FILTER_BOOK }}
         />
       </div>
       <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
           height={300}
           className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-70"
           priority={false}
-          style={{ filter: DECO_FILTER_BOOK }}
+          // style={{ filter: DECO_FILTER_BOOK }}
         />
       </div>
       <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
           height={300}
           className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-70 scale-x-[-1]"
           priority={false}
-          style={{ filter: DECO_FILTER_BOOK }}
+          // style={{ filter: DECO_FILTER_BOOK }}
         />
-      </div> */}
+      </div>
 
       {/* Section Header */}
       <div className="relative z-10 text-center mb-3 sm:mb-4 md:mb-6 px-2 sm:px-3 md:px-4">
@@ -245,8 +245,8 @@ export function BookOfGuests() {
           Our Cherished Guests
         </p>
         <h2
-          className="lighten-regular text-[40px] sm:text-[50px] md:text-[60px] lg:text-[70px] xl:text-[80px] leading-tight mb-1 sm:mb-2 md:mb-3"
-          style={{ color: 'var(--color-motif-deep)' }}
+          className={`${cinzel.className} text-xl sm:text-3xl md:text-4xl lg:text-5xl mb-1 sm:mb-2 md:mb-3`}
+          style={{ color: BOOK_DARK }}
         >
           Book of Guests
         </h2>
@@ -373,13 +373,13 @@ export function BookOfGuests() {
                           </p>
                         )}
                       </div>
-
+{/* 
                       {guest.email && (
                         <div className="flex items-center gap-1 text-[9px] sm:text-[10px] md:text-xs mb-1.5 sm:mb-2 md:mb-3 opacity-75" style={{ color: BOOK_DARKER }}>
                           <Mail className="h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0" style={{ color: BOOK_DARK }} />
                           <span className="truncate">{guest.email}</span>
                         </div>
-                      )}
+                      )} */}
 
                       <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 md:gap-2 mb-1.5 sm:mb-2 md:mb-3">
                         <div
@@ -406,7 +406,7 @@ export function BookOfGuests() {
                         </div>
                       </div>
 
-                      {guest.message && guest.message.trim() !== "" && (
+                      {/* {guest.message && guest.message.trim() !== "" && (
                         <div
                           className="relative mb-1.5 sm:mb-2.5 md:mb-3 p-2 sm:p-3 md:p-5 rounded-lg md:rounded-xl border overflow-hidden"
                           style={{ backgroundColor: 'color-mix(in srgb, var(--color-motif-cream) 90%, white)', borderColor: 'color-mix(in srgb, var(--color-motif-deep) 15%, transparent)' }}
@@ -430,7 +430,7 @@ export function BookOfGuests() {
                           </div>
                           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 sm:w-1 h-8 sm:h-12 md:h-16 rounded-r-full opacity-40" style={{ background: 'linear-gradient(to bottom, transparent, var(--color-motif-deep), transparent)' }} />
                         </div>
-                      )}
+                      )} */}
 
                       {guest.companions && guest.companions.length > 0 && (
                         <div className="pt-1.5 sm:pt-2 md:pt-2.5 border-t" style={{ borderColor: 'color-mix(in srgb, var(--color-motif-deep) 15%, transparent)' }}>

@@ -60,8 +60,6 @@ interface Guest {
   Companions?: Array<{ name: string; relationship: string }>
 }
 
-// Colors sourced from globals.css @theme inline — edit there to update everywhere
-
 export function GuestList() {
   const [guests, setGuests] = useState<Guest[]>([])
   const [filteredGuests, setFilteredGuests] = useState<Guest[]>([])
@@ -317,14 +315,8 @@ export function GuestList() {
       // Trigger event to refresh Book of Guests
       window.dispatchEvent(new Event("rsvpUpdated"))
       
-      // Close modal and reset after showing success
-      setTimeout(() => {
-        setShowModal(false)
-        setSearchQuery("")
-        setSelectedGuest(null)
-        setSuccess(null)
-        fetchGuests()
-      }, 3000)
+      // Refresh guest list in the background
+      fetchGuests()
     } catch (error) {
       console.error("Error submitting RSVP:", error)
       setError("Failed to submit RSVP. Please try again.")
@@ -407,23 +399,23 @@ export function GuestList() {
       <div className="relative z-10 text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 px-2 sm:px-3 md:px-4">
         {/* Small label */}
         <p
-          className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-motif-cream mb-2`}
+          className={`${cormorant.className} text-xs sm:text-sm md:text-base uppercase tracking-[0.28em] text-white mb-2`}
           style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}
         >
-          Confirm Your Attendance
+          CONFIRM YOUR ATTENDANCE (RSVP)
         </p>
         
         <h2
-          className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-motif-cream mb-1.5 sm:mb-3 md:mb-4`}
+          className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4`}
           style={{ textShadow: "0 4px 18px rgba(0,0,0,0.85)" }}
         >
           RSVP
         </h2>
         
-        <p className={`${cormorant.className} text-xs sm:text-sm md:text-base text-motif-cream/90 font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`}>
+        <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-white/90 font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`}>
           Please search for your name below to confirm your presence at our special day
         </p>
-        <p className={`${cormorant.className} text-sm sm:text-base md:text-lg lg:text-xl text-motif-cream font-bold max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`}>
+        <p className={`${cormorant.className} text-sm sm:text-base md:text-lg lg:text-xl text-white font-bold max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`}>
           RSVP Deadline: {siteConfig.details.rsvp.deadline}
         </p>
         
@@ -431,7 +423,7 @@ export function GuestList() {
         <div className="flex items-center justify-center gap-1.5 sm:gap-2 mt-2 sm:mt-3 md:mt-4 lg:mt-5">
           <div className="w-6 sm:w-8 md:w-12 lg:w-16 h-px bg-gradient-to-r from-transparent via-motif-deep/80 to-transparent" />
           <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-motif-deep/90 rounded-full" />
-          <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-motif-cream/85 rounded-full" />
+          <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-white/85 rounded-full" />
           <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-motif-deep/90 rounded-full" />
           <div className="w-6 sm:w-8 md:w-12 lg:w-16 h-px bg-gradient-to-l from-transparent via-motif-deep/80 to-transparent" />
         </div>
@@ -449,10 +441,10 @@ export function GuestList() {
                   <Search className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 text-white" />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm md:text-base font-semibold text-motif-cream font-sans mb-0.5 sm:mb-1">
+                  <label className="block text-xs sm:text-sm md:text-base font-semibold text-white font-sans mb-0.5 sm:mb-1">
                     Find Your Name
                   </label>
-                  <p className="text-[10px] sm:text-xs text-motif-cream/80 font-sans">
+                  <p className="text-[10px] sm:text-xs text-white/80 font-sans">
                     Type as you search to see instant results
                   </p>
                 </div>
@@ -465,13 +457,13 @@ export function GuestList() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Type your name..."
-                    className="w-full pl-8 sm:pl-10 pr-2.5 sm:pr-3 py-2 sm:py-2.5 md:py-3 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 hover:border-motif-deep/70 focus:ring-2 focus:ring-motif-deep/20 bg-motif-cream shadow-sm focus:shadow-md"
+                    className="w-full pl-8 sm:pl-10 pr-2.5 sm:pr-3 py-2 sm:py-2.5 md:py-3 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 hover:border-motif-deep/70 focus:ring-2 focus:ring-motif-deep/20 bg-white shadow-sm focus:shadow-md"
                   />
                 </div>
                 {/* Autocomplete dropdown */}
                 {isSearching && filteredGuests.length > 0 && (
                   <div 
-                    className="absolute z-[9999] w-full mt-1 sm:mt-1.5 md:mt-2 bg-motif-cream/95 backdrop-blur-lg border border-motif-deep/70 rounded-lg sm:rounded-xl shadow-xl overflow-hidden" 
+                    className="absolute z-[9999] w-full mt-1 sm:mt-1.5 md:mt-2 bg-white/95 backdrop-blur-lg border border-motif-deep/70 rounded-lg sm:rounded-xl shadow-xl overflow-hidden" 
                     style={{ 
                       position: 'absolute', 
                       top: '100%',
@@ -511,7 +503,7 @@ export function GuestList() {
                 )}
                 {searchQuery && filteredGuests.length === 0 && (
                   <div 
-                    className="absolute z-[9999] w-full mt-1.5 sm:mt-2 bg-motif-cream/95 backdrop-blur-lg border-2 border-motif-deep/80 rounded-lg shadow-xl overflow-hidden" 
+                    className="absolute z-[9999] w-full mt-1.5 sm:mt-2 bg-white/95 backdrop-blur-lg border-2 border-motif-deep/80 rounded-lg shadow-xl overflow-hidden" 
                     style={{ 
                       position: 'absolute', 
                       top: '100%',
@@ -557,7 +549,7 @@ export function GuestList() {
           onClick={handleCloseModal}
         >
             <div 
-              className="relative w-full max-w-md sm:max-w-lg mx-1 sm:mx-2 md:mx-4 bg-motif-cream rounded-xl sm:rounded-2xl shadow-2xl border-2 border-motif-deep/80 overflow-hidden animate-in zoom-in-95 duration-300 max-h-[95vh] flex flex-col"
+              className="relative w-full max-w-md sm:max-w-lg mx-1 sm:mx-2 md:mx-4 bg-white rounded-xl sm:rounded-2xl shadow-2xl border-2 border-motif-deep/80 overflow-hidden animate-in zoom-in-95 duration-300 max-h-[95vh] flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
@@ -565,18 +557,18 @@ export function GuestList() {
                 <div className="relative flex items-start justify-between gap-1.5 sm:gap-2">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 mb-1 sm:mb-1.5 md:mb-2 lg:mb-3">
-                      <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-motif-cream/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 lg:h-5 lg:w-5 text-motif-cream" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                          <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 lg:h-5 lg:w-5 text-white" />
                       </div>
-                      <h3 className={`${cinzel.className} text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold text-motif-cream truncate`}>
+                      <h3 className={`${cinzel.className} text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold text-white truncate`}>
                         You're Invited!
                       </h3>
                     </div>
-                    <p className={`${cormorant.className} text-motif-cream/95 text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg leading-tight sm:leading-normal`}>
-                      Hello <span className="font-extrabold text-motif-cream">{selectedGuest?.Name}</span>, you are invited to our wedding!
+                    <p className={`${cormorant.className} text-white/95 text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg leading-tight sm:leading-normal`}>
+                      Hello <span className="font-extrabold text-white">{selectedGuest?.Name}</span>, you are invited to our wedding!
                     </p>
-                    <p className={`${cormorant.className} text-motif-cream/90 text-[10px] sm:text-xs md:text-sm mt-1 sm:mt-1.5`}>
-                      We've reserved <span className="font-bold text-motif-cream">{selectedGuest?.AllowedGuests || 1}</span> {selectedGuest?.AllowedGuests === 1 ? 'seat' : 'seats'} for you.
+                    <p className={`${cormorant.className} text-white/90 text-[10px] sm:text-xs md:text-sm mt-1 sm:mt-1.5`}>
+                      We've reserved <span className="font-bold text-motif-deep">{selectedGuest?.AllowedGuests || 1}</span> {selectedGuest?.AllowedGuests === 1 ? 'seat' : 'seats'} for you.
                     </p>
                   </div>
                   {!hasResponded && (
@@ -672,7 +664,7 @@ export function GuestList() {
                           className={`relative p-2 sm:p-2.5 md:p-3 lg:p-4 rounded-lg border-2 transition-all duration-300 ${
                             formData.RSVP === "Yes"
                               ? "border-motif-deep bg-motif-deep/10 shadow-md scale-105"
-                              : "border-motif-deep/60 bg-motif-cream/60 hover:border-motif-deep/70 hover:shadow-sm"
+                              : "border-motif-deep/60 bg-white hover:border-motif-deep/70 hover:shadow-sm"
                           }`}
                         >
                           <div className="flex items-center justify-center gap-1.5 sm:gap-2">
@@ -696,7 +688,7 @@ export function GuestList() {
                           className={`relative p-2 sm:p-2.5 md:p-3 lg:p-4 rounded-lg border-2 transition-all duration-300 ${
                             formData.RSVP === "No"
                               ? "border-red-500 bg-red-50 shadow-md scale-105"
-                              : "border-motif-deep/60 bg-motif-cream/60 hover:border-motif-deep/70 hover:shadow-sm"
+                              : "border-motif-deep/60 bg-white hover:border-motif-deep/70 hover:shadow-sm"
                           }`}
                         >
                           <div className="flex items-center justify-center gap-1.5 sm:gap-2">
@@ -749,7 +741,7 @@ export function GuestList() {
                                     setCompanions(newCompanions)
                                   }}
                                   placeholder={`Name of guest ${index + 2}`}
-                                  className="w-full px-2 sm:px-2.5 py-1.5 sm:py-2 border border-motif-deep/50 focus:border-motif-deep rounded text-[10px] sm:text-xs font-sans text-motif-deep placeholder:text-motif-medium/60 transition-all duration-300 focus:ring-1 focus:ring-motif-deep/20 bg-motif-cream"
+                                  className="w-full px-2 sm:px-2.5 py-1.5 sm:py-2 border border-motif-deep/50 focus:border-motif-deep rounded text-[10px] sm:text-xs font-sans text-motif-deep placeholder:text-motif-medium/60 transition-all duration-300 focus:ring-1 focus:ring-motif-deep/20 bg-white"
                                 />
                               </div>
                               <div>
@@ -765,7 +757,7 @@ export function GuestList() {
                                     setCompanions(newCompanions)
                                   }}
                                   placeholder="e.g., Spouse, Friend, Child, Parent"
-                                  className="w-full px-2 sm:px-2.5 py-1.5 sm:py-2 border border-motif-deep/50 focus:border-motif-deep rounded text-[10px] sm:text-xs font-sans text-motif-deep placeholder:text-motif-medium/60 transition-all duration-300 focus:ring-1 focus:ring-motif-deep/20 bg-motif-cream"
+                                  className="w-full px-2 sm:px-2.5 py-1.5 sm:py-2 border border-motif-deep/50 focus:border-motif-deep rounded text-[10px] sm:text-xs font-sans text-motif-deep placeholder:text-motif-medium/60 transition-all duration-300 focus:ring-1 focus:ring-motif-deep/20 bg-white"
                                 />
                               </div>
                             </div>
@@ -777,18 +769,19 @@ export function GuestList() {
                     {/* Message to the couple */}
                     <div>
                     <label className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-motif-deep mb-1.5 sm:mb-2 font-sans flex-wrap">
-                      <MessageSquare className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-motif-deep flex-shrink-0" />
-                        <span>Your Message to the Couple</span>
-                      <span className="text-[10px] sm:text-xs font-normal text-motif-deep/70">(Optional)</span>
-                      </label>
-                      <textarea
-                        name="Message"
-                        value={formData.Message}
-                        onChange={handleFormChange}
-                        placeholder="Share your excitement..."
-                        rows={3}
-                      className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 resize-none bg-motif-cream"
-                      />
+  <MessageSquare className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-motif-deep flex-shrink-0" />
+  <span>Song Request</span>
+  <span className="text-[10px] sm:text-xs font-normal text-motif-deep/70">(Optional)</span>
+</label>
+
+<input
+  type="text"
+  name="Message"
+  value={formData.Message}
+  onChange={handleFormChange}
+  placeholder="Share a song you'd love to hear on our special day 🎶"
+  className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-white"
+/>
                     </div>
 
                     {/* Email */}
@@ -804,7 +797,7 @@ export function GuestList() {
                         value={formData.Email}
                         onChange={handleFormChange}
                         placeholder="your.email@example.com"
-                        className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-motif-cream"
+                        className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-white"
                       />
                     </div>
 
@@ -832,60 +825,6 @@ export function GuestList() {
                 )}
               </div>
 
-              {/* Enhanced Success Overlay */}
-              {success && (
-                <div className="absolute inset-0 bg-motif-deep/98 backdrop-blur-md flex items-center justify-center z-50 animate-in fade-in duration-300 p-2 sm:p-3 md:p-4">
-                  <div className="text-center p-3 sm:p-4 md:p-5 lg:p-6 max-w-sm mx-auto">
-                    {/* Enhanced Icon Circle */}
-                    <div className="relative inline-flex items-center justify-center mb-3 sm:mb-4">
-                      {/* Animated rings */}
-                      <div className="absolute inset-0 rounded-full border-2 border-motif-cream/20 animate-ping" />
-                      <div className="absolute inset-0 rounded-full border-2 border-motif-cream/30" />
-                      {/* Icon container */}
-                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-motif-cream rounded-full flex items-center justify-center shadow-xl">
-                        <CheckCircle className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-10 lg:w-10 text-motif-medium" strokeWidth={2.5} />
-                      </div>
-                    </div>
-                    
-                    {/* Title */}
-                    <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl ${cinzel.className} font-bold text-motif-medium mb-2 sm:mb-3">
-                      RSVP Confirmed!
-                    </h4>
-                    
-                    {/* Message based on RSVP response */}
-                    {formData.RSVP === "Yes" && (
-                      <div className="space-y-1 sm:space-y-1.5 mb-2 sm:mb-3">
-                        <p className="text-motif-medium/95 text-xs sm:text-sm font-medium">
-                          We're thrilled you'll be joining us!
-                        </p>
-                        <p className="text-motif-medium/80 text-[10px] sm:text-xs">
-                          Your response has been recorded
-                        </p>
-                      </div>
-                    )}
-                    {formData.RSVP === "No" && (
-                      <p className="text-motif-medium/90 text-xs sm:text-sm mb-2 sm:mb-3">
-                        We'll miss you, but thank you for letting us know.
-                      </p>
-                    )}
-                    {!formData.RSVP && (
-                      <p className="text-motif-medium/90 text-xs sm:text-sm mb-2 sm:mb-3">
-                        Thank you for your response!
-                      </p>
-                    )}
-                    
-                    {/* Subtle closing indicator */}
-                    <div className="flex items-center justify-center gap-1 sm:gap-1.5 mt-2 sm:mt-3">
-                      <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-motif-medium/60 rounded-full animate-pulse" />
-                      <p className="text-motif-medium/70 text-[10px] sm:text-xs">
-                        This will close automatically
-                      </p>
-                      <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-motif-medium/60 rounded-full animate-pulse" />
-                    </div>
-                  </div>
-                </div>
-              )}
-
               {/* Error message */}
               {error && !success && (
                 <div className="px-2 sm:px-2.5 md:px-4 lg:px-6 xl:px-8 pb-2 sm:pb-2.5 md:pb-4 lg:pb-6">
@@ -901,6 +840,97 @@ export function GuestList() {
           </div>
         )}
 
+        {/* RSVP Success — rendered outside RSVP modal to escape transform stacking context */}
+        {success && (
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-5 sm:p-8 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
+            <div className="w-full max-w-xs animate-in zoom-in-95 duration-200">
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+
+                {/* Thin top bar */}
+                <div className="h-[3px] w-full bg-gradient-to-r from-motif-deep via-motif-soft to-motif-deep" />
+
+                <div className="px-6 pt-6 pb-6 text-center">
+
+                  {/* Check icon */}
+                  <div className="relative inline-flex items-center justify-center mb-4">
+                    <div className="absolute w-14 h-14 rounded-full bg-motif-soft/20 animate-ping" style={{ animationDuration: "2.5s" }} />
+                    <div className="relative w-12 h-12 rounded-full bg-motif-deep flex items-center justify-center shadow-md">
+                      <CheckCircle className="h-6 w-6 text-white" strokeWidth={2} />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h4 className={`${cinzel.className} text-base font-bold text-motif-deep tracking-widest uppercase mb-1`}>
+                    RSVP Confirmed
+                  </h4>
+
+                  {/* Response subtitle */}
+                  {formData.RSVP === "Yes" && (
+                    <p className={`${cormorant.className} text-sm text-motif-deep leading-snug`}>
+                      We&apos;re thrilled you&apos;ll be joining us — your spot is saved!
+                    </p>
+                  )}
+                  {formData.RSVP === "No" && (
+                    <p className={`${cormorant.className} text-sm text-motif-deep leading-snug`}>
+                      We&apos;ll miss you, but thank you for letting us know.
+                    </p>
+                  )}
+                  {!formData.RSVP && (
+                    <p className={`${cormorant.className} text-sm text-motif-deep leading-snug`}>
+                      Thank you for your response!
+                    </p>
+                  )}
+
+                  {/* Divider */}
+                  <div className="flex items-center gap-3 my-4">
+                    <div className="flex-1 h-px bg-motif-soft/70" />
+                    <Heart className="h-2.5 w-2.5 text-motif-soft flex-shrink-0" />
+                    <div className="flex-1 h-px bg-motif-soft/70" />
+                  </div>
+
+                  {/* Nudge text */}
+                  <p className={`${cormorant.className} text-sm text-motif-deep/65 leading-relaxed mb-4`}>
+                    Before you go, leave a message for the couple — your words will be a cherished memory they can always look back on.
+                  </p>
+
+                  {/* CTA */}
+                  <a
+                    href="#messages"
+                    onClick={() => {
+                      setSuccess(null)
+                      setShowModal(false)
+                      setSearchQuery("")
+                      setSelectedGuest(null)
+                      setTimeout(() => {
+                        const el = document.getElementById("messages")
+                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" })
+                      }, 100)
+                    }}
+                    className={`${cinzel.className} inline-flex items-center justify-center gap-2 w-full bg-motif-deep hover:bg-motif-deep/90 active:scale-[0.98] text-white text-[10px] tracking-widest uppercase font-semibold py-3 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md mb-3`}
+                  >
+                    <MessageSquare className="h-3 w-3 flex-shrink-0" />
+                    Leave a Message
+                  </a>
+
+                  {/* Dismiss */}
+                  <button
+                    onClick={() => {
+                      setSuccess(null)
+                      setShowModal(false)
+                      setSearchQuery("")
+                      setSelectedGuest(null)
+                    }}
+                    className="text-motif-medium hover:text-motif-deep text-[11px] tracking-wide transition-colors duration-200"
+                  >
+                    Maybe later — close
+                  </button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Request to Join Modal */}
         {showRequestModal && (
           <div 
@@ -908,7 +938,7 @@ export function GuestList() {
             onClick={handleCloseRequestModal}
           >
             <div 
-              className="relative w-full max-w-md sm:max-w-lg mx-1 sm:mx-2 md:mx-4 bg-motif-cream rounded-xl sm:rounded-2xl shadow-2xl border-2 border-motif-deep/80 overflow-hidden animate-in zoom-in-95 duration-300 max-h-[95vh] flex flex-col"
+              className="relative w-full max-w-md sm:max-w-lg mx-1 sm:mx-2 md:mx-4 bg-white rounded-xl sm:rounded-2xl shadow-2xl border-2 border-motif-deep/80 overflow-hidden animate-in zoom-in-95 duration-300 max-h-[95vh] flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header with Gradient */}
@@ -916,16 +946,16 @@ export function GuestList() {
                 <div className="relative flex items-start justify-between gap-1.5 sm:gap-2">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 mb-1 sm:mb-1.5 md:mb-2 lg:mb-3">
-                      <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-motif-cream/20 rounded-full flex items-center justify-center backdrop-blur-sm flex-shrink-0">
-                        <UserPlus className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 lg:h-5 lg:w-5 text-motif-cream" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm flex-shrink-0">
+                        <UserPlus className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 lg:h-5 lg:w-5 text-white" />
                       </div>
-                      <h3 className="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl ${cinzel.className} font-bold text-motif-cream truncate">
+                      <h3 className={`${cinzel.className} text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold text-white truncate`}>
                         Request to Join
                       </h3>
                     </div>
-                    <p className="text-motif-cream/95 text-[10px] sm:text-xs md:text-sm lg:text-base font-sans leading-tight sm:leading-normal">
+                    <p className="text-white/95 text-[10px] sm:text-xs md:text-sm lg:text-base font-sans leading-tight sm:leading-normal">
                       {requestFormData.Name ? (
-                        <>Hi <span className="font-extrabold text-motif-cream">{requestFormData.Name}</span> — want to celebrate with us? Send a request!</>
+                        <>Hi <span className="font-extrabold text-white">{requestFormData.Name}</span> — want to celebrate with us? Send a request!</>
                       ) : (
                         <>Want to celebrate with us? Send a request!</>
                       )}
@@ -933,9 +963,9 @@ export function GuestList() {
                   </div>
                   <button
                     onClick={handleCloseRequestModal}
-                    className="text-motif-cream/80 hover:text-motif-cream transition-colors p-0.5 sm:p-1 md:p-1.5 lg:p-2 hover:bg-motif-deep/20 rounded-full flex-shrink-0"
+                    className="text-white/80 hover:text-white transition-colors p-0.5 sm:p-1 md:p-1.5 lg:p-2 hover:bg-white/20 rounded-full flex-shrink-0"
                   >
-                    <X className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 text-motif-cream" />
+                    <X className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 text-white" />
                   </button>
                 </div>
               </div>
@@ -962,7 +992,7 @@ export function GuestList() {
                       onChange={(e) => setRequestFormData({ ...requestFormData, Name: e.target.value })}
                       required
                       placeholder="Enter your full name"
-                      className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-motif-cream"
+                      className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-white"
                     />
                   </div>
 
@@ -979,7 +1009,7 @@ export function GuestList() {
                       value={requestFormData.Email}
                       onChange={(e) => setRequestFormData({ ...requestFormData, Email: e.target.value })}
                       placeholder="your.email@example.com"
-                      className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-motif-cream"
+                      className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-white"
                     />
                   </div>
 
@@ -996,7 +1026,7 @@ export function GuestList() {
                       value={requestFormData.Phone}
                       onChange={(e) => setRequestFormData({ ...requestFormData, Phone: e.target.value })}
                       placeholder="+1 (555) 123-4567"
-                      className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-motif-cream"
+                      className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-white"
                     />
                   </div>
 
@@ -1014,7 +1044,7 @@ export function GuestList() {
                       min="1"
                       required
                       placeholder="How many guests?"
-                      className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-motif-cream"
+                      className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 bg-white"
                     />
                   </div>
 
@@ -1031,7 +1061,7 @@ export function GuestList() {
                       onChange={(e) => setRequestFormData({ ...requestFormData, Message: e.target.value })}
                       placeholder="Share why you'd like to join..."
                       rows={3}
-                        className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 resize-none bg-motif-cream"
+                        className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 border-2 border-motif-deep/60 focus:border-motif-deep rounded-lg text-xs sm:text-sm font-sans text-motif-deep placeholder:text-motif-medium/70 transition-all duration-300 focus:ring-2 focus:ring-motif-deep/20 resize-none bg-white"
                     />
                   </div>
 
@@ -1060,41 +1090,41 @@ export function GuestList() {
 
               {/* Enhanced Success Overlay */}
               {requestSuccess && (
-                <div className="absolute inset-0 bg-motif-medium/98 backdrop-blur-md flex items-center justify-center z-50 animate-in fade-in duration-300 p-2 sm:p-3 md:p-4">
+                <div className="absolute inset-0 bg-motif-soft/98 backdrop-blur-md flex items-center justify-center z-50 animate-in fade-in duration-300 p-2 sm:p-3 md:p-4">
                   <div className="text-center p-3 sm:p-4 md:p-5 lg:p-6 max-w-sm mx-auto">
                     {/* Enhanced Icon Circle */}
                     <div className="relative inline-flex items-center justify-center mb-3 sm:mb-4">
                       {/* Animated rings */}
-                      <div className="absolute inset-0 rounded-full border-2 border-[#8B3036]/20 animate-ping" />
-                      <div className="absolute inset-0 rounded-full border-2 border-[#8B3036]/30" />
+                      <div className="absolute inset-0 rounded-full border-2 border-motif-deep/20 animate-ping" />
+                      <div className="absolute inset-0 rounded-full border-2 border-motif-deep/30" />
                       {/* Icon container */}
                       <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-white rounded-full flex items-center justify-center shadow-xl">
-                        <CheckCircle className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-10 lg:w-10 text-motif-medium" strokeWidth={2.5} />
+                        <CheckCircle className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-10 lg:w-10 text-white" strokeWidth={2.5} />
                       </div>
                     </div>
                     
                     {/* Title */}
-                    <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl font-serif font-bold text-[#8B3036] mb-2 sm:mb-3">
+                    <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl font-serif font-bold text-motif-deep mb-2 sm:mb-3">
                       Request Sent!
                     </h4>
                     
                     {/* Message */}
                     <div className="space-y-1 sm:space-y-1.5 mb-2 sm:mb-3">
-                      <p className="text-[#8B3036]/95 text-xs sm:text-sm font-medium">
+                      <p className="text-motif-deep/95 text-xs sm:text-sm font-medium">
                         We've received your request
                       </p>
-                      <p className="text-[#8B3036]/85 text-[10px] sm:text-xs">
+                      <p className="text-motif-deep/85 text-[10px] sm:text-xs">
                         We'll review it and get back to you soon
                       </p>
                     </div>
                     
                     {/* Subtle closing indicator */}
                     <div className="flex items-center justify-center gap-1 sm:gap-1.5 mt-2 sm:mt-3">
-                      <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#8B3036]/60 rounded-full animate-pulse" />
-                      <p className="text-[#8B3036]/70 text-[10px] sm:text-xs">
+                      <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-motif-deep/60 rounded-full animate-pulse" />
+                      <p className="text-motif-deep/70 text-[10px] sm:text-xs">
                         This will close automatically
                       </p>
-                      <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#8B3036]/60 rounded-full animate-pulse" />
+                      <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-motif-deep/60 rounded-full animate-pulse" />
                     </div>
                   </div>
                 </div>
